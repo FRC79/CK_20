@@ -5,11 +5,10 @@ import org.usfirst.frc.team79.robot.commands.CommandBase;
 public class RotateDegrees extends CommandBase {
 
 	double degrees;
-	boolean done;
 	public RotateDegrees(double degrees) {
 		requires(gyro);
 		requires(arcadeDrive);
-		this.degrees = degrees;
+		this.degrees = gyro.getYawAngle() + degrees;
 	}
 	
 	protected void initialize() {
@@ -35,16 +34,16 @@ public class RotateDegrees extends CommandBase {
 //			done = true;
 //		}
 		if(degrees < 0){
-			return degrees >= gyro.GetGyroAngle();
+			return degrees >= gyro.getYawAngle();
 		}else{
-			return degrees <= gyro.GetGyroAngle();
+			return degrees <= gyro.getYawAngle();
 		}
 	}
 
 	protected void end() {
 		// TODO Auto-generated method stub
 		arcadeDrive.arcadeDrive(0, 0);
-		done = false;
+		gyro.resetGyro();
 	}
 
 	protected void interrupted() {

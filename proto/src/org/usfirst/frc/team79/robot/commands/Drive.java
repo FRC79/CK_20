@@ -19,7 +19,7 @@ public class Drive extends CommandBase {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-		arcadeDrive.arcadeDrive(Robot.oi.getJoystick());
+    	arcadeDrive.arcadeDriveScaled(Robot.oi.getJoystick(), 0.8);
     }
 
     // Make this return true when this Command no longer needs to run execute()

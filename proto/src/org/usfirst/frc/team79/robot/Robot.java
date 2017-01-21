@@ -24,7 +24,6 @@ public class Robot extends IterativeRobot {
 	public static Drive drive;
 	
     Command autonomousCommand;
-    Command firstcommand;
     
     CameraServer server;
     
@@ -42,7 +41,6 @@ public class Robot extends IterativeRobot {
 		
 		server = CameraServer.getInstance();
 		server.startAutomaticCapture("Cam0", 0);
-		
 		
 //        chooser.addObject("My Auto", new MyAutoCommand());
     }
@@ -71,7 +69,7 @@ public class Robot extends IterativeRobot {
     }
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro Angle", CommandBase.gyro.GetGyroAngle());
+		SmartDashboard.putNumber("Gyro Angle", CommandBase.gyro.getYawAngle());
 
     }
 
@@ -82,7 +80,7 @@ public class Robot extends IterativeRobot {
     
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro Angle", CommandBase.gyro.GetGyroAngle());
+		SmartDashboard.putNumber("Gyro Angle", CommandBase.gyro.getYawAngle());
 
     }
     

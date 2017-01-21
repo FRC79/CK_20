@@ -6,16 +6,17 @@ package org.usfirst.frc.team79.robot;
  * floating around.
  */
 public class RobotMap {
-	//Joystick0
-	public static int drivestick = 1;
-	
+
 	//motors
 	public static int ForntLeftMotor = 3;
 	public static int BackLeftMotor = 2;
 	public static int FrontRightMotor = 4;
 	public static int BackRightMotor = 1;
 	
-	//gyro
-	public static int GYRO = 1;
+	//encoders
+	public static int LEFT_WHEEL_ENCODER_A = 1;
+	public static int LEFT_WHEEL_ENCODER_B = 2;
 	
+	public static int RIGHT_WHEEL_ENCODER_A = 1;
+	public static int RIGHT_WHEEL_ENCODER_B = 2;
 }
