@@ -6,12 +6,24 @@ import edu.wpi.first.wpilibj.Joystick;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	
-	public  Joystick stick = new Joystick(0);
-	
-	public Joystick getJoystick(){
-		return stick;
-		// so much stick
+
+	public Joystick throttleStick = new Joystick(0);
+	public Joystick steeringStick = new Joystick(1);
+
+	public Joystick getJoystick() {
+		return throttleStick;
 	}
-	
+
+	public double getThrottle() {
+		return throttleStick.getY();
+	}
+
+	public double getSteering() {
+		return steeringStick.getX();
+	}
+
+	public boolean getSlowDrivingMode() {
+		return throttleStick.getTrigger();
+	}
+
 }

@@ -1,8 +1,7 @@
 
 package org.usfirst.frc.team79.robot;
 
-import org.usfirst.frc.team79.robot.commands.CommandBase;
-import org.usfirst.frc.team79.robot.commands.Drive;
+import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -19,31 +18,25 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi;
-	public static Drive drive;	
-	
+	public static OI oi = new OI();
+	public static DriveTrain drivetrain = new DriveTrain();
+
+
     Command autonomousCommand;
-    
+
     CameraServer server;
-    
+
 
     /**
      * This function is run when the robot is first started up and should be
      * used for any initialization code.
      */
     public void robotInit() {
-    	
-    	CommandBase.init();
-    	
-		oi = new OI();
-		drive = new Drive();
-		
-		server = CameraServer.getInstance();
-		server.startAutomaticCapture("Cam0", 0);
-		
+			server = CameraServer.getInstance();
+			server.startAutomaticCapture("Cam0", 0);
 //        chooser.addObject("My Auto", new MyAutoCommand());
     }
-	// this is dank code 
+	// this is dank code
 	/**
      * This function is called once each time the robot enters Disabled mode.
      * You can use it to reset any subsystem information you want to clear when
@@ -52,7 +45,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit(){
 
     }
-	
+
 	public void disabledPeriodic() {
 		Scheduler.getInstance().run();
 	}
@@ -60,23 +53,22 @@ public class Robot extends IterativeRobot {
     public void autonomousInit() {
 
     }
-    
+
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
+		// SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
     }
 
-    public void teleopInit() { 
-    	Robot.drive.start();
-    } 
-    
+    public void teleopInit() {
+    }
+
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-		SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
+		// SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
 
     }
-    
+
     public void testPeriodic() {
-    	
+
     }
 }
