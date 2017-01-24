@@ -19,29 +19,5 @@ public class Feeder extends Subsystem {
     	
     }
     
-    public void startConveyer(double speed){
-    	Conveyer.set(speed);
-    }
-    
-    public void stopConveyer(){
-    	Conveyer.set(0);
-    }
-    
-    public void StartFeeder(double speed){
-    	Feeder.set(speed);
-    }
-    
-    public void StopFeeder(){
-    	Feeder.set(0);
-    }
-    public void AllStart(double speed){
-    	Conveyer.set(speed);
-    	Feeder.set(speed);
-
-    }
-    public void AllStop(){
-    	Conveyer.set(0);
-    	Feeder.set(0);
-    }
 }
 

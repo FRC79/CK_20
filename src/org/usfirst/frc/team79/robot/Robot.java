@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -27,22 +26,12 @@ public class Robot extends IterativeRobot {
 
     CameraServer server;
 
-
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
     public void robotInit() {
 			server = CameraServer.getInstance();
 			server.startAutomaticCapture("Cam0", 0);
-//        chooser.addObject("My Auto", new MyAutoCommand());
     }
 	// this is dank code
-	/**
-     * This function is called once each time the robot enters Disabled mode.
-     * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-     */
+
     public void disabledInit(){
 
     }
@@ -57,7 +46,6 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-		// SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
     }
 
     public void teleopInit() {
@@ -65,7 +53,6 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-		// SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
 
     }
 
