@@ -2,6 +2,7 @@
 package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -20,7 +21,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi = new OI();
 	public static DriveTrain drivetrain = new DriveTrain();
-
+	public static Feeder conveyer = new Feeder();
 
     Command autonomousCommand;
 
