@@ -8,10 +8,13 @@ package org.usfirst.frc.team79.robot;
 public class RobotMap {
 
 	//motors
-	public static int FrontLeftMotor = 3;
-	public static int BackLeftMotor = 2;
-	public static int FrontRightMotor = 4;
-	public static int BackRightMotor = 1;
+	public static int FRONT_LEFT_MOTOR = 3;
+	public static int BACK_LEFT_MOTOR = 2;
+	public static int FRONT_RIGHT_MOTOR = 4;
+	public static int BACK_RIGHT_MOTOR = 1;
+	
+	public static int SHOOTER_MOTOR = 5;
+	public static int SHOOTER_ARTICULATOR = 6;
 
 	//encoders
 	public static int LEFT_WHEEL_ENCODER_A = 1;
