@@ -8,15 +8,19 @@ package org.usfirst.frc.team79.robot;
 public class RobotMap {
 
 	//motors
-	public static int ForntLeftMotor = 3;
+	public static int FrontLeftMotor = 3;
 	public static int BackLeftMotor = 2;
 	public static int FrontRightMotor = 4;
 	public static int BackRightMotor = 1;
-	
+
 	//encoders
 	public static int LEFT_WHEEL_ENCODER_A = 1;
 	public static int LEFT_WHEEL_ENCODER_B = 2;
-	
+
 	public static int RIGHT_WHEEL_ENCODER_A = 1;
 	public static int RIGHT_WHEEL_ENCODER_B = 2;
+
+
+	// Drivetrain Constants
+	public static double driveTurningConstant = 0.6;
 }

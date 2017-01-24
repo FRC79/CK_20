@@ -4,25 +4,37 @@ import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 
+import com.ctre.CANTalon.TalonControlMode;
 
 
 /**
  *
  */
-public class Drive extends Command  {
+public class CheezyDrive extends Command {
 
-    public Drive() {
+    public CheezyDrive() {
     	requires(Robot.drivetrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-
+      // We need to ensure that the drive motor ESCs are in vbus mode.
+      Robot.drivetrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);
+      Robot.drivetrain.FrontRight.changeControlMode(TalonControlMode.PercentVbus);
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	Robot.drivetrain.arcadeDriveScaled(Robot.oi.getJoystick(), 0.8);
+      double coeff = 1.0;
+      double invert = 1.0;
+
+      // Precision driving mode
+      if(Robot.oi.getSlowDrivingMode()) {
+        coeff = 0.7;
+      }
+
+      Robot.drivetrain.FrontLeft.set(Robot.oi.getThrottle() * invert - (Robot.oi.getSteering() * Robot.drivetrain.getTurningConstant()) * coeff);
+      Robot.drivetrain.FrontRight.set(Robot.oi.getThrottle() * invert + (Robot.oi.getSteering() * Robot.drivetrain.getTurningConstant()) * coeff);
     }
 
     // Make this return true when this Command no longer needs to run execute()
