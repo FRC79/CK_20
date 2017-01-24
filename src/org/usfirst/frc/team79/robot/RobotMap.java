@@ -12,7 +12,7 @@ public class RobotMap {
 	public static int BackLeftMotor = 2;
 	public static int FrontRightMotor = 4;
 	public static int BackRightMotor = 1;
-
+	public static int INATKE_MOTOR =5;
 	//encoders
 	public static int LEFT_WHEEL_ENCODER_A = 1;
 	public static int LEFT_WHEEL_ENCODER_B = 2;
