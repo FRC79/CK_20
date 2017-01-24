@@ -20,7 +20,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi = new OI();
 	public static DriveTrain drivetrain = new DriveTrain();
-
+	public static subsystem Intake intake = new Intake();
 
     Command autonomousCommand;
 
