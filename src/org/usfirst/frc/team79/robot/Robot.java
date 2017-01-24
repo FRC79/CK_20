@@ -22,12 +22,14 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static Feeder feeder;
+	public static Intake intake;
 
 	CameraServer server;
 
     public void robotInit() {
     	driveTrain = new DriveTrain();
     	feeder = new Feeder();
+		intake = new Intake();
     	oi = new OI();
     	
 		UsbCamera camera = new UsbCamera("cam0", 0);
