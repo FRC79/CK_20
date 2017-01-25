@@ -22,10 +22,10 @@ public class DriveTrain extends Subsystem {
 
 public DriveTrain(){
 
-  FrontLeft = new CANTalon(RobotMap.FrontLeftMotor);
-  BackLeft = new CANTalon(RobotMap.BackLeftMotor);
-  FrontRight = new CANTalon(RobotMap.FrontRightMotor);
-  BackRight = new CANTalon(RobotMap.BackRightMotor);
+  FrontLeft = new CANTalon(RobotMap.FRONT_LEFT_MOTOR);
+  BackLeft = new CANTalon(RobotMap.BACK_LEFT_MOTOR);
+  FrontRight = new CANTalon(RobotMap.FRONT_RIGHT_MOTOR);
+  BackRight = new CANTalon(RobotMap.BACK_RIGHT_MOTOR);
 
   Drive = new RobotDrive(FrontLeft, FrontRight);
 
