@@ -5,4 +5,5 @@ ADD install.xml ./
 ADD build.properties ./
 
 RUN ant -f install.xml install
-WORKDIR /
+WORKDIR /src
+ENTRYPOINT "ant"
