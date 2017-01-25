@@ -2,12 +2,12 @@
 package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team79.robot.subsystems.IntakeSystem;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -20,7 +20,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi = new OI();
 	public static DriveTrain drivetrain = new DriveTrain();
-
+	public static IntakeSystem intake = new IntakeSystem();
 
     Command autonomousCommand;
 

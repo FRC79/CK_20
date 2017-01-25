@@ -1,7 +1,6 @@
 package org.usfirst.frc.team79.robot.commands;
 
 import org.usfirst.frc.team79.robot.Robot;
-import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import edu.wpi.first.wpilibj.command.Command;
 
 import com.ctre.CANTalon.TalonControlMode;

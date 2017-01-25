@@ -4,12 +4,11 @@ import org.usfirst.frc.team79.robot.RobotMap;
 import org.usfirst.frc.team79.robot.commands.CheezyDrive;
 
 import com.ctre.CANTalon;
-import com.kauailabs.navx.frc.AHRS;
+//import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SerialPort;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
@@ -17,7 +16,7 @@ public class DriveTrain extends Subsystem {
 
 	private RobotDrive Drive;
 	public CANTalon FrontLeft, BackLeft, FrontRight, BackRight;
-	public AHRS gyro;
+//	public AHRS gyro;
 	public Encoder leftWheelEncoder, rightWheelEncoder;
 
 public DriveTrain(){
@@ -41,7 +40,7 @@ public DriveTrain(){
   FrontRight.setInverted(false);
 
   // gyro
-  gyro = new AHRS(SerialPort.Port.kMXP);
+//  gyro = new AHRS(SerialPort.Port.kMXP);
 
   //encoders
   //		leftWheelEncoder = new Encoder(RobotMap.LEFT_WHEEL_ENCODER_A,RobotMap.RIGHT_WHEEL_ENCODER_B);
@@ -55,34 +54,34 @@ public DriveTrain(){
 
     //gyros
 
-    public double getGyroAngle() {
-    	return gyro.getAngle();
-    }
-
-    public double getNormalAngle() {
-    	return ((gyro.getAngle() % 360) / 360);
-    }
-
-    public void resetGyro() {
-    	gyro.reset();
-    }
-
-    public double pidValue() {
-
-		double gyroRead = getGyroAngle() % 360;
-		double returnValue;
-
-		if(gyroRead < -180D) {
-			returnValue = 360D + gyroRead;
-		} else if(gyroRead > 180D) {
-			returnValue = -360D + gyroRead;
-		} else {
-			returnValue = gyroRead;
-		}
-
-		return returnValue / 180;
-
-	}
+//    public double getGyroAngle() {
+//    	return gyro.getAngle();
+//    }
+//
+//    public double getNormalAngle() {
+//    	return ((gyro.getAngle() % 360) / 360);
+//    }
+//
+//    public void resetGyro() {
+//    	gyro.reset();
+//    }
+//
+//    public double pidValue() {
+//
+//		double gyroRead = getGyroAngle() % 360;
+//		double returnValue;
+//
+//		if(gyroRead < -180D) {
+//			returnValue = 360D + gyroRead;
+//		} else if(gyroRead > 180D) {
+//			returnValue = -360D + gyroRead;
+//		} else {
+//			returnValue = gyroRead;
+//		}
+//
+//		return returnValue / 180;
+//
+//	}
 
     //driveTrain
 
