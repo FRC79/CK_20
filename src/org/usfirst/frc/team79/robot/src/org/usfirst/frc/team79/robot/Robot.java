@@ -2,7 +2,7 @@
 package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team79.robot.subsystems.IntakeSystem;
+import org.usfirst.frc.team79.robot.subsystems.Intake;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -20,7 +20,7 @@ public class Robot extends IterativeRobot {
 
 	public static OI oi = new OI();
 	public static DriveTrain drivetrain = new DriveTrain();
-	public static IntakeSystem intake = new IntakeSystem();
+	public static Intake intake = new Intake();
 
     Command autonomousCommand;
 
