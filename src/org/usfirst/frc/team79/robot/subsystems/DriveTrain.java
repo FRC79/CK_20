@@ -30,11 +30,10 @@ public DriveTrain(){
 
   BackRight.set(FrontRight.getDeviceID());
   BackLeft.set(FrontLeft.getDeviceID());
-
-  //Inverts motors
+  
   FrontLeft.setInverted(true);
   FrontRight.setInverted(false);
-
+  
   // gyro
   gyro = new AHRS(SerialPort.Port.kMXP);
 

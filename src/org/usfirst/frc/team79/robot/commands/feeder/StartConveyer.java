@@ -18,31 +18,30 @@ public class StartConveyer extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(Robot.conveyer.Conveyer.get() != 0 && Robot.conveyer.Feeder.get() != 0) {
+    		Robot.conveyer.Conveyer.set(0);
+    	}
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	if(Robot.oi.startAll.equals(true)){
-        	Robot.conveyer.Conveyer.set(0);
-    	}else{
-        	Robot.conveyer.Conveyer.set(1);
+//    	if(Robot.oi.startAll.equals(true)){
+//        	Robot.conveyer.Conveyer.set(0);
+//    	}else{
+//        	Robot.conveyer.Conveyer.set(1);
+//
+//    	}
 
-    	}
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.oi.conveyerStart.equals(false);
+        return Robot.oi.conveyerStart.get();
     }
 
     // Called once after isFinished returns true
     protected void end() {
-    	if(Robot.oi.startAll.equals(true)){
-    	}else{
-        	Robot.conveyer.Conveyer.set(0);
-
-    	}
-
+    	
     }
 
     // Called when another command which requires one or more of the same

@@ -4,10 +4,13 @@ package org.usfirst.frc.team79.robot;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
+import edu.wpi.cscore.MjpegServer;
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -18,17 +21,23 @@ import edu.wpi.first.wpilibj.command.Scheduler;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi = new OI();
+	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
 	public static Feeder conveyer = new Feeder();
 
-    Command autonomousCommand;
-
-    CameraServer server;
+	CameraServer server;
+	
+//	UsbCamera camera;
+//	MjpegServer inputstream;
 
     public void robotInit() {
-			server = CameraServer.getInstance();
-			server.startAutomaticCapture("Cam0", 0);
+    	oi = new OI();
+    	server = CameraServer.getInstance();
+		server.startAutomaticCapture("Cam0", 0);
+//		camera = new UsbCamera("cam0", 0);
+//		inputstream = new MjpegServer("Server", streamPort);
+//		inputstream.setSource(camera);
+    
     }
 	// this is dank code
 
