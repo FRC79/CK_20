@@ -25,7 +25,7 @@ public class ProcessGripData extends Command{
 		Contour tape = this.getGreatestContour(getContours());
 		double headerToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
 		//Sends the header to the dashboard to be used in the RotateDegrees command.
-		SmartDashboard.putNumber("boilerHeader", headerToTarget);
+		SmartDashboard.putNumber("Header to Boiler", headerToTarget);
 		finished = true;
 	}
 	
@@ -34,9 +34,9 @@ public class ProcessGripData extends Command{
 	 * @return
 	 */
 	private Contour[] getContours(){
-		double[] areas = grip.getNumberArray("reflectiveTapeReport/area", new double[0]);
-		double[] centerX = grip.getNumberArray("reflectiveTapeReport/centerX", new double[0]);
-		double[] centerY = grip.getNumberArray("reflectiveTapeReport/centerY", new double[0]);
+		double[] areas = grip.getSubTable("reflectiveTapeReport").getNumberArray("area", new double[0]);
+		double[] centerX = grip.getSubTable("reflectiveTapeReport").getNumberArray("centerX", new double[0]);
+		double[] centerY = grip.getSubTable("reflectiveTapeReport").getNumberArray("centerY", new double[0]);
 		Contour[] contours = new Contour[areas.length];
 		for(int i=0; i<contours.length; i++){
 			contours[i] = new Contour(areas[i], centerX[i], centerY[i]);
