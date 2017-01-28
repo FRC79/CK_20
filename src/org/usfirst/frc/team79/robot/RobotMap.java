@@ -29,10 +29,10 @@ public class RobotMap {
 	public static final double DIAGONAL_FOV = 68.5; // degrees
 	public static final double HORIZONTAL_ASPECT_RATIO = 4;
 	public static final double VERTICAL_ASPECT_RATIO = 3;
-	public static final double IMAGE_WIDTH = 640; // pixels
-	public static final double IMAGE_HEIGHT = 480; // pixels
+	public static final double IMAGE_WIDTH = 160; // pixels
+	public static final double IMAGE_HEIGHT = 120; // pixels
 	public static final double HORIZONTAL_FOV = Math.toDegrees(Math.atan(Math.tan(Math.toRadians(DIAGONAL_FOV / 2)) * (4 / Math.sqrt(Math.pow(HORIZONTAL_ASPECT_RATIO, 2) + Math.pow(VERTICAL_ASPECT_RATIO, 2)))) * 2);; // degrees
-	public static final double FOCAL_LENGTH = IMAGE_WIDTH / (2 * Math.tan(Math.toRadians(HORIZONTAL_FOV / 2))); // pixels
+	public static final double FOCAL_LENGTH = IMAGE_WIDTH / Math.toDegrees((2 * Math.tan(Math.toRadians(HORIZONTAL_FOV / 2)))); // pixels
 	//Center of camera image.
 	public static final double CX = IMAGE_WIDTH / 2 - .5;
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
