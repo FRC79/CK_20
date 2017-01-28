@@ -32,8 +32,7 @@ public class ProcessGripData extends Command{
 			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
 			SmartDashboard.putNumber("Center X", tape.centerX);
 			SmartDashboard.putNumber("Center Y", tape.centerY);
-		}
-		SmartDashboard.putString("Header to Boiler", "No target");
+		}else SmartDashboard.putNumber("Header to Boiler", 0);
 		finished = true;
 	}
 	
