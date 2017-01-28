@@ -37,10 +37,13 @@ public class Robot extends IterativeRobot {
 			camera.setBrightness(20);
 			server = CameraServer.getInstance();
 			server.startAutomaticCapture(camera);
-//        chooser.addObject("My Auto", new MyAutoCommand());
-    }
-	// this is dank code
-	/**
+			
+			SmartDashboard.putNumber("Heading to Boiler", 0);
+			SmartDashboard.putNumber("Center X", 0);
+			SmartDashboard.putNumber("Center Y", 0);
+		}
+
+    /**
      * This function is called once each time the robot enters Disabled mode.
      * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
