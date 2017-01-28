@@ -10,9 +10,7 @@ public class AlignShooter extends CommandGroup {
 	 */
 	public AlignShooter() {
 		addSequential(new ProcessGripData());
-		
-		//Commented out for testing purposes
-//		addSequential(new RotateDegrees(SmartDashboard.getNumber("Header to Boiler", 0)));
-	} 
+		addSequential(new RotateDegrees());
+	}
 
 }
