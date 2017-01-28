@@ -15,13 +15,16 @@ public class RotateDegrees extends CommandBase {
 		this.degrees = degrees + driveTrain.getGyroAngle();
 	}
 	
+	/**
+	 * 
+	 */
 	public RotateDegrees(){
 		requires(driveTrain);
 		grip = true;
 	}
 	
 	protected void initialize(){
-		if(grip) degrees = SmartDashboard.getNumber("Heading to Boiler", 0);
+		if(grip) degrees = SmartDashboard.getNumber("Heading to Boiler", 0) + driveTrain.getGyroAngle();
 	}
 
 	protected void execute() {
