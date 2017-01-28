@@ -25,9 +25,11 @@ public class ProcessGripData extends Command{
 		Contour[] contours = getContours();
 		if(contours.length > 0){
 			Contour tape = this.getGreatestContour(getContours());
-			double headerToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
+			double headingToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
+			double pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
 			//Sends the header to the dashboard to be used in the RotateDegrees command.
-			SmartDashboard.putNumber("Heading to Boiler", headerToTarget);
+			SmartDashboard.putNumber("Heading to Boiler", headingToTarget);
+			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
 			SmartDashboard.putNumber("Center X", tape.centerX);
 			SmartDashboard.putNumber("Center Y", tape.centerY);
 		}
