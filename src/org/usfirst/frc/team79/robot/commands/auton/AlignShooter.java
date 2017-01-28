@@ -8,12 +8,11 @@ public class AlignShooter extends CommandGroup {
 	/**
 	 * Aligns the shooter to face the boiler.
 	 */
-	public AlignShooter() {}
-	
-	protected void execute(){
+	public AlignShooter() {
 		addSequential(new ProcessGripData());
-		addSequential(new RotateDegrees(SmartDashboard.getNumber("boilerHeader", 0)));
-		//There will probably be more commands, like rotating pitch.
-	}
+		
+		//Commented out for testing purposes
+//		addSequential(new RotateDegrees(SmartDashboard.getNumber("Header to Boiler", 0)));
+	} 
 
 }
