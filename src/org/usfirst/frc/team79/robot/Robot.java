@@ -3,6 +3,7 @@ package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -32,8 +33,10 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
+			UsbCamera camera = new UsbCamera("cam0", 0);
+			camera.setBrightness(20);
 			server = CameraServer.getInstance();
-			server.startAutomaticCapture("Cam0", 0);
+			server.startAutomaticCapture(camera);
 //        chooser.addObject("My Auto", new MyAutoCommand());
     }
 	// this is dank code
