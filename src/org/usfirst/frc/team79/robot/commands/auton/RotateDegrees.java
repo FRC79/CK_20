@@ -32,11 +32,11 @@ public class RotateDegrees extends CommandBase {
 		double speed = 0.3d * displacement;
 		driveTrain.FrontLeft.set(speed);
 		driveTrain.FrontRight.set(-speed);
-		finished = Math.abs(displacement) < .2d;
+		finished = Math.abs(displacement) < .4d;
 	}
 
 	protected boolean isFinished() {
-		return finished; //TODO:
+		return finished;
 	}
 
 	protected void end() {
@@ -44,7 +44,6 @@ public class RotateDegrees extends CommandBase {
 	}
 
 	protected void interrupted() {
-		// TODO Auto-generated method stub
 		
 	}
 
