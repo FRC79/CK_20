@@ -19,7 +19,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi = new OI();
+	public static OI oi;
 	public static DriveTrain drivetrain = new DriveTrain();
 
 
@@ -33,15 +33,17 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-			UsbCamera camera = new UsbCamera("cam0", 0);
-			camera.setBrightness(15);
-			server = CameraServer.getInstance();
-			server.startAutomaticCapture(camera);
-			
-			SmartDashboard.putNumber("Heading to Boiler", 0);
-			SmartDashboard.putNumber("Center X", 0);
-			SmartDashboard.putNumber("Center Y", 0);
-		}
+    	oi = new OI();
+    	
+		UsbCamera camera = new UsbCamera("cam0", 0);
+		camera.setBrightness(15);
+		server = CameraServer.getInstance();
+		server.startAutomaticCapture(camera);
+		
+		SmartDashboard.putNumber("Heading to Boiler", 0);
+		SmartDashboard.putNumber("Center X", 0);
+		SmartDashboard.putNumber("Center Y", 0);
+	}
 
     /**
      * This function is called once each time the robot enters Disabled mode.
