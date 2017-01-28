@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	public Joystick throttleStick = new Joystick(0);
-	public Joystick steeringStick = new Joystick(1);
 	public Button gripButton = new JoystickButton(throttleStick, 5);
 	
 	public OI(){
@@ -28,7 +27,7 @@ public class OI {
 	}
 
 	public double getSteering() {
-		return throttleStick.getX();
+		return throttleStick.getZ();
 	}
 
 	public boolean getSlowDrivingMode() {
