@@ -34,7 +34,7 @@ public class Robot extends IterativeRobot {
      */
     public void robotInit() {
 			UsbCamera camera = new UsbCamera("cam0", 0);
-			camera.setBrightness(20);
+			camera.setBrightness(15);
 			server = CameraServer.getInstance();
 			server.startAutomaticCapture(camera);
 			
