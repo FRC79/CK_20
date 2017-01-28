@@ -10,13 +10,17 @@ public class RotateDegrees extends CommandBase {
 	boolean finished;
 	boolean grip;
 	
+	/**
+	 * Rotates based off the angle given. Positive = right.
+	 * @param degrees
+	 */
 	public RotateDegrees(double degrees){
 		requires(driveTrain);
 		this.degrees = degrees + driveTrain.getGyroAngle();
 	}
 	
 	/**
-	 * 
+	 * Rotates based off of GRIP data.
 	 */
 	public RotateDegrees(){
 		requires(driveTrain);
