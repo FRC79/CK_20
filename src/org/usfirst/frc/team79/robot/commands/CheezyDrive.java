@@ -1,10 +1,11 @@
 package org.usfirst.frc.team79.robot.commands;
 
 import org.usfirst.frc.team79.robot.Robot;
-import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
-import edu.wpi.first.wpilibj.command.Command;
 
 import com.ctre.CANTalon.TalonControlMode;
+
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 /**
@@ -32,9 +33,11 @@ public class CheezyDrive extends Command {
       if(Robot.oi.getSlowDrivingMode()) {
         coeff = 0.7;
       }
+      
+      Robot.drivetrain.FrontLeft.set(Robot.oi.getThrottle() * invert - (Robot.oi.getSteering() * Robot.drivetrain.getTurningConstant()));
 
-      Robot.drivetrain.FrontLeft.set(Robot.oi.getThrottle() * invert - (Robot.oi.getSteering() * Robot.drivetrain.getTurningConstant()) * coeff);
-      Robot.drivetrain.FrontRight.set(Robot.oi.getThrottle() * invert + (Robot.oi.getSteering() * Robot.drivetrain.getTurningConstant()) * coeff);
+      Robot.drivetrain.FrontRight.set(Robot.oi.getThrottle() * invert + (Robot.oi.getSteering() * Robot.drivetrain.getTurningConstant()));
+
     }
 
     // Make this return true when this Command no longer needs to run execute()

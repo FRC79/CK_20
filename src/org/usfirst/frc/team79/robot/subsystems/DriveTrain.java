@@ -7,15 +7,12 @@ import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
 import edu.wpi.first.wpilibj.SerialPort;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class DriveTrain extends Subsystem {
 
-	private RobotDrive Drive;
 	public CANTalon FrontLeft, BackLeft, FrontRight, BackRight;
 	public AHRS gyro;
 	public Encoder leftWheelEncoder, rightWheelEncoder;
@@ -27,19 +24,16 @@ public DriveTrain(){
   FrontRight = new CANTalon(RobotMap.FrontRightMotor);
   BackRight = new CANTalon(RobotMap.BackRightMotor);
 
-  Drive = new RobotDrive(FrontLeft, FrontRight);
-
   //slaves back Talons to front Talons
   BackRight.changeControlMode(CANTalon.TalonControlMode.Follower);
   BackLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 
   BackRight.set(FrontRight.getDeviceID());
   BackLeft.set(FrontLeft.getDeviceID());
-
-  //Inverts motors
+  
   FrontLeft.setInverted(true);
   FrontRight.setInverted(false);
-
+  
   // gyro
   gyro = new AHRS(SerialPort.Port.kMXP);
 
@@ -121,19 +115,4 @@ public DriveTrain(){
     public double getTurningConstant(){
       return RobotMap.driveTurningConstant;
     }
-
-    //ecncoders
-
-//	public double getLeftEncoder() {
-//		return ((leftWheelEncoder.getDistance() * 25.13) / 254) / 12;
-//	}
-//
-//	public double getRightEncoder() {
-//		return ((rightWheelEncoder.getDistance() * 25.13) / 254) / 12;
-//	}
-
-//	public void resetEncoders() {
-//		leftWheelEncoder.reset();
-//		rightWheelEncoder.reset();
-//	}
 }

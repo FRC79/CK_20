@@ -3,6 +3,7 @@ package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.commands.CommandBase;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -23,19 +24,13 @@ public class Robot extends IterativeRobot {
 	public static OI oi;
 	public static DriveTrain drivetrain;
 
+	CameraServer server;
+	
+//	UsbCamera camera;
+//	MjpegServer inputstream;
 
-    Command autonomousCommand;
-
-    CameraServer server;
-
-
-    /**
-     * This function is run when the robot is first started up and should be
-     * used for any initialization code.
-     */
     public void robotInit() {
     	drivetrain = new DriveTrain();
-    	CommandBase.driveTrain = drivetrain;
     	oi = new OI();
     	
 		UsbCamera camera = new UsbCamera("cam0", 0);
@@ -67,7 +62,6 @@ public class Robot extends IterativeRobot {
 
     public void autonomousPeriodic() {
         Scheduler.getInstance().run();
-		// SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
     }
 
     public void teleopInit() {
@@ -76,8 +70,6 @@ public class Robot extends IterativeRobot {
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
         SmartDashboard.putNumber("Gyro", drivetrain.getGyroAngle());
-		// SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
-
     }
 
     public void testPeriodic() {

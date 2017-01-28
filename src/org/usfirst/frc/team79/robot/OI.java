@@ -19,6 +19,18 @@ public class OI {
 		this.gripButton.toggleWhenPressed(new AlignShooter());
 	}
 
+	private Button gripButton = new JoystickButton(throttleStick, 5);
+
+	
+	public OI(){
+		
+		this.gripButton.toggleWhenPressed(new ProcessGripData());
+		
+//		startAll.whenPressed(new AllStart());
+//		feederStart.whenPressed(new StartFeeder());
+//		conveyerStart.whenPressed(new StartConveyer());
+	}
+	
 	public Joystick getJoystick() {
 		return throttleStick;
 	}
@@ -28,11 +40,10 @@ public class OI {
 	}
 
 	public double getSteering() {
-		return steeringStick.getX();
+		return throttleStick.getX();
 	}
 
 	public boolean getSlowDrivingMode() {
 		return throttleStick.getTrigger();
 	}
-
 }
