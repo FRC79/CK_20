@@ -39,7 +39,6 @@ public class Robot extends IterativeRobot {
 //		inputstream.setSource(camera);
     
     }
-	// this is dank code
 
     public void disabledInit(){
 
