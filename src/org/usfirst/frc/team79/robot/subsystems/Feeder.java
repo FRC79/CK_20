@@ -11,8 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class Feeder extends Subsystem {
 
-		public CANTalon Conveyer = new CANTalon(RobotMap.CONVEYER_MOTOR);
-		public CANTalon Feeder = new CANTalon(RobotMap.FEEDER_MOTOR);
+		public CANTalon conveyer = new CANTalon(RobotMap.CONVEYER_MOTOR);
+		public CANTalon feeder = new CANTalon(RobotMap.FEEDER_MOTOR);
   
 
     public void initDefaultCommand() {

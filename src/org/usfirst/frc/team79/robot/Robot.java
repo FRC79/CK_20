@@ -1,14 +1,12 @@
 
 package org.usfirst.frc.team79.robot;
 
-import org.usfirst.frc.team79.robot.commands.CommandBase;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
-import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -22,15 +20,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static DriveTrain drivetrain;
+	public static DriveTrain driveTrain;
+	public static Feeder feeder;
 
 	CameraServer server;
-	
-//	UsbCamera camera;
-//	MjpegServer inputstream;
 
     public void robotInit() {
-    	drivetrain = new DriveTrain();
+    	driveTrain = new DriveTrain();
+    	feeder = new Feeder();
     	oi = new OI();
     	
 		UsbCamera camera = new UsbCamera("cam0", 0);
@@ -69,7 +66,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Gyro", drivetrain.getGyroAngle());
+        SmartDashboard.putNumber("Gyro", driveTrain.getGyroAngle());
     }
 
     public void testPeriodic() {

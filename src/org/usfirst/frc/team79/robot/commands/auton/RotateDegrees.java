@@ -1,10 +1,11 @@
 package org.usfirst.frc.team79.robot.commands.auton;
 
-import org.usfirst.frc.team79.robot.commands.CommandBase;
+import org.usfirst.frc.team79.robot.Robot;
 
+import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class RotateDegrees extends CommandBase {
+public class RotateDegrees extends Command {
 
 	double degrees;
 	boolean finished;
@@ -15,27 +16,27 @@ public class RotateDegrees extends CommandBase {
 	 * @param degrees
 	 */
 	public RotateDegrees(double degrees){
-		requires(driveTrain);
-		this.degrees = degrees + driveTrain.getGyroAngle();
+		requires(Robot.driveTrain);
+		this.degrees = degrees + Robot.driveTrain.getGyroAngle();
 	}
 	
 	/**
 	 * Rotates based off of GRIP data.
 	 */
 	public RotateDegrees(){
-		requires(driveTrain);
+		requires(Robot.driveTrain);
 		grip = true;
 	}
 	
 	protected void initialize(){
-		if(grip) degrees = SmartDashboard.getNumber("Heading to Boiler", 0) + driveTrain.getGyroAngle();
+		if(grip) degrees = SmartDashboard.getNumber("Heading to Boiler", 0) + Robot.driveTrain.getGyroAngle();
 	}
 
 	protected void execute() {
-		double displacement = degrees - driveTrain.getGyroAngle();
+		double displacement = degrees - Robot.driveTrain.getGyroAngle();
 		double speed = 0.3d * displacement;
-		driveTrain.FrontLeft.set(speed);
-		driveTrain.FrontRight.set(-speed);
+		Robot.driveTrain.FrontLeft.set(speed);
+		Robot.driveTrain.FrontRight.set(-speed);
 		finished = Math.abs(displacement) < .4d;
 	}
 
@@ -44,7 +45,7 @@ public class RotateDegrees extends CommandBase {
 	}
 
 	protected void end() {
-		driveTrain.stop();
+		Robot.driveTrain.stop();
 	}
 
 	protected void interrupted() {

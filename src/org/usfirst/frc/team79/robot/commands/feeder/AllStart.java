@@ -9,54 +9,35 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class AllStart extends Command {
 
-	boolean isDone = false;
-	
+	/**
+	 * Starts the feeder and conveyer, or turns them both off if one is on.
+	 */
     public AllStart() {
-    	requires(Robot.conveyer);
-
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+    	requires(Robot.feeder);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
     	
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if(Robot.oi.conveyerStart.equals(false)&& Robot.oi.feederStart.equals(false)){
-//
-//    	}else if(Robot.oi.conveyerStart.equals(true)&& Robot.oi.feederStart.equals(true)){
-//    		Robot.conveyer.Feeder.set(0);
-//        	Robot.conveyer.Conveyer.set(0);
-//    	}else if(Robot.oi.conveyerStart.equals(false)&& Robot.oi.feederStart.equals(true)){
-//    		Robot.conveyer.Feeder.set(0);
-//        	Robot.conveyer.Conveyer.set(1);
-//    	}else if(Robot.oi.conveyerStart.equals(true)&& Robot.oi.feederStart.equals(false)){
-//    		Robot.conveyer.Feeder.set(1);
-//        	Robot.conveyer.Conveyer.set(0);
-//    	}
-    	Robot.conveyer.Feeder.set(1);
-    	Robot.conveyer.Conveyer.set(1);
+    	if(Robot.feeder.conveyer.get() != 0 || Robot.feeder.feeder.get() != 0){
+    		Robot.feeder.conveyer.set(0);
+    		Robot.feeder.feeder.set(0);
+    	} else{
+    		Robot.feeder.conveyer.set(1);
+    		Robot.feeder.feeder.set(1);
+    	}
     }
 
-    public void setDone() {
-    	isDone = true;
-    }
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.oi.startAll.get();
+        return true;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
-//    	Robot.conveyer.Feeder.set(0);
-//    	Robot.conveyer.Conveyer.set(0);
+    	
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }

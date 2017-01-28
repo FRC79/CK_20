@@ -9,43 +9,32 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StartConveyer extends Command {
 
+	/**
+	 * Toggles the conveyer.
+	 */
     public StartConveyer() {
-    	requires(Robot.conveyer);
+    	requires(Robot.feeder);
 
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
     }
 
-    // Called just before this Command runs the first time
     protected void initialize() {
-    	if(Robot.conveyer.Conveyer.get() != 0 && Robot.conveyer.Feeder.get() != 0) {
-    		Robot.conveyer.Conveyer.set(0);
-    	}
+    	
     }
 
-    // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-//    	if(Robot.oi.startAll.equals(true)){
-//        	Robot.conveyer.Conveyer.set(0);
-//    	}else{
-//        	Robot.conveyer.Conveyer.set(1);
-//
-//    	}
-
+    	if(Robot.feeder.conveyer.get() != 0){
+    		Robot.feeder.conveyer.set(0);
+    	}else Robot.feeder.conveyer.set(1);
     }
 
-    // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-        return Robot.oi.conveyerStart.get();
+        return true;
     }
 
-    // Called once after isFinished returns true
     protected void end() {
     	
     }
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
     protected void interrupted() {
     }
 }

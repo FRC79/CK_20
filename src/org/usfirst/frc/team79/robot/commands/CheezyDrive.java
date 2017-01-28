@@ -14,14 +14,14 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class CheezyDrive extends Command {
 
     public CheezyDrive() {
-    	requires(Robot.drivetrain);
+    	requires(Robot.driveTrain);
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
       // We need to ensure that the drive motor ESCs are in vbus mode.
-      Robot.drivetrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);
-      Robot.drivetrain.FrontRight.changeControlMode(TalonControlMode.PercentVbus);
+      Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);
+      Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.PercentVbus);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -34,9 +34,9 @@ public class CheezyDrive extends Command {
         coeff = 0.7;
       }
       
-      Robot.drivetrain.FrontLeft.set(Robot.oi.getThrottle() * invert - (Robot.oi.getSteering() * Robot.drivetrain.getTurningConstant()));
+      Robot.driveTrain.FrontLeft.set(Robot.oi.getThrottle() * invert - (Robot.oi.getSteering() * Robot.driveTrain.getTurningConstant()));
 
-      Robot.drivetrain.FrontRight.set(Robot.oi.getThrottle() * invert + (Robot.oi.getSteering() * Robot.drivetrain.getTurningConstant()));
+      Robot.driveTrain.FrontRight.set(Robot.oi.getThrottle() * invert + (Robot.oi.getSteering() * Robot.driveTrain.getTurningConstant()));
 
     }
 

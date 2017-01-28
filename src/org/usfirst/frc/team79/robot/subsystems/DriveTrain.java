@@ -7,6 +7,7 @@ import com.ctre.CANTalon;
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.Encoder;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SerialPort;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -86,11 +87,11 @@ public DriveTrain(){
     }
 
     public void arcadeDrive(Joystick stick){
-    	Drive.arcadeDrive(stick);
+    	arcadeDrive(stick);
     }
 
     public void arcadeDrive(double x, double y) {
-    	Drive.arcadeDrive(x, y);
+    	arcadeDrive(x, y);
     }
 
     public double maxSpeed(double speed){
@@ -109,7 +110,7 @@ public DriveTrain(){
     	if(scalar > 1) {
     		scalar = 1;
     	}
-    	Drive.arcadeDrive((x * scalar), (y * scalar));
+    	arcadeDrive((x * scalar), (y * scalar));
     }
 
     public double getTurningConstant(){
