@@ -1,8 +1,10 @@
 
 package org.usfirst.frc.team79.robot;
 
+import org.usfirst.frc.team79.robot.commands.CommandBase;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 
+import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Command;
@@ -18,8 +20,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  */
 public class Robot extends IterativeRobot {
 
-	public static OI oi = new OI();
-	public static DriveTrain drivetrain = new DriveTrain();
+	public static OI oi;
+	public static DriveTrain drivetrain;
 
 
     Command autonomousCommand;
@@ -32,12 +34,21 @@ public class Robot extends IterativeRobot {
      * used for any initialization code.
      */
     public void robotInit() {
-			server = CameraServer.getInstance();
-			server.startAutomaticCapture("Cam0", 0);
-//        chooser.addObject("My Auto", new MyAutoCommand());
-    }
-	// this is dank code
-	/**
+    	drivetrain = new DriveTrain();
+    	CommandBase.driveTrain = drivetrain;
+    	oi = new OI();
+    	
+		UsbCamera camera = new UsbCamera("cam0", 0);
+		camera.setBrightness(15);
+		server = CameraServer.getInstance();
+		server.startAutomaticCapture(camera);
+		
+		SmartDashboard.putNumber("Heading to Boiler", 0);
+		SmartDashboard.putNumber("Center X", 0);
+		SmartDashboard.putNumber("Center Y", 0);
+	}
+
+    /**
      * This function is called once each time the robot enters Disabled mode.
      * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
@@ -64,6 +75,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
+        SmartDashboard.putNumber("Gyro", drivetrain.getGyroAngle());
 		// SmartDashboard.putNumber("Gyro Angle", CommandBase.driveTrain.getGyroAngle());
 
     }

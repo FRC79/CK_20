@@ -87,7 +87,8 @@ public DriveTrain(){
     //driveTrain
 
     public void stop() {
-    	Drive.arcadeDrive(0, 0);
+    	FrontLeft.set(0);
+    	FrontRight.set(0);
     }
 
     public void arcadeDrive(Joystick stick){
