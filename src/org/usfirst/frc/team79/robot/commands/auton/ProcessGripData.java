@@ -27,7 +27,7 @@ public class ProcessGripData extends Command{
 			Contour tape = this.getGreatestContour(getContours());
 			double headerToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
 			//Sends the header to the dashboard to be used in the RotateDegrees command.
-			SmartDashboard.putNumber("Header to Boiler", headerToTarget);
+			SmartDashboard.putNumber("Heading to Boiler", headerToTarget);
 			SmartDashboard.putNumber("Center X", tape.centerX);
 			SmartDashboard.putNumber("Center Y", tape.centerY);
 		}
