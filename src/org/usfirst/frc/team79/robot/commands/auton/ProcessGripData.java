@@ -17,15 +17,21 @@ public class ProcessGripData extends Command{
 	 * Asks the driver station to process the video feed using GRIP pipeline.
 	 */
 	public ProcessGripData(){
-		grip = NetworkTable.getTable("grip");
+		grip = NetworkTable.getTable("GRIP");
 	}
 	
 	@Override
 	protected void execute(){
-		Contour tape = this.getGreatestContour(getContours());
-		double headerToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
-		//Sends the header to the dashboard to be used in the RotateDegrees command.
-		SmartDashboard.putNumber("Header to Boiler", headerToTarget);
+		Contour[] contours = getContours();
+		if(contours.length > 0){
+			Contour tape = this.getGreatestContour(getContours());
+			double headerToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
+			//Sends the header to the dashboard to be used in the RotateDegrees command.
+			SmartDashboard.putNumber("Header to Boiler", headerToTarget);
+			SmartDashboard.putNumber("Center X", tape.centerX);
+			SmartDashboard.putNumber("Center Y", tape.centerY);
+		}
+		SmartDashboard.putString("Header to Boiler", "No target");
 		finished = true;
 	}
 	
