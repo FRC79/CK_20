@@ -1,10 +1,10 @@
 
 package org.usfirst.frc.team79.robot;
 
+import org.usfirst.frc.team79.robot.commands.CommandBase;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
-import edu.wpi.cscore.MjpegServer;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -22,8 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class Robot extends IterativeRobot {
 
 	public static OI oi;
-	public static DriveTrain drivetrain = new DriveTrain();
-	public static Feeder conveyer = new Feeder();
+	public static DriveTrain drivetrain;
 
 	CameraServer server;
 	
@@ -31,15 +30,24 @@ public class Robot extends IterativeRobot {
 //	MjpegServer inputstream;
 
     public void robotInit() {
+    	drivetrain = new DriveTrain();
     	oi = new OI();
-    	server = CameraServer.getInstance();
-		server.startAutomaticCapture("Cam0", 0);
-//		camera = new UsbCamera("cam0", 0);
-//		inputstream = new MjpegServer("Server", streamPort);
-//		inputstream.setSource(camera);
-    
-    }
+    	
+		UsbCamera camera = new UsbCamera("cam0", 0);
+		camera.setBrightness(15);
+		server = CameraServer.getInstance();
+		server.startAutomaticCapture(camera);
+		
+		SmartDashboard.putNumber("Heading to Boiler", 0);
+		SmartDashboard.putNumber("Center X", 0);
+		SmartDashboard.putNumber("Center Y", 0);
+	}
 
+    /**
+     * This function is called once each time the robot enters Disabled mode.
+     * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.
+     */
     public void disabledInit(){
 
     }
@@ -61,7 +69,7 @@ public class Robot extends IterativeRobot {
 
     public void teleopPeriodic() {
         Scheduler.getInstance().run();
-
+        SmartDashboard.putNumber("Gyro", drivetrain.getGyroAngle());
     }
 
     public void testPeriodic() {
