@@ -1,34 +1,20 @@
-package subsystems;
-
-import java.awt.Robot;
+package org.usfirst.frc.team79.robot.subsystems;
 
 import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team79.robot.RobotMap;
 
 /**
  *
  */
 public class Intake extends Subsystem {
-	
-	
-	public CANTalon intake = new CANTalon(RobotMap.Intake_Motor);
-	
 
-	
+	public CANTalon intake = new CANTalon(RobotMap.INTAKE_MOTOR);
 
-  
-    
-   public void StartIntake(double speed){
-	  subsystems.intake.set(double speed);
-	   
-	   
-   }
-   public void StopIntake() {
-	  intake.set();
-	   
-   }
-  
-   
+	 public void initDefaultCommand(){
+
+	 }
+
+
 }
-

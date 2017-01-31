@@ -1,27 +1,25 @@
 package commands;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
+import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team79.robot.Robot;
 
 /**
  *
  */
-public class startIntake extends Subsystem {
+public class StartIntake extends Command {
 
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
 
-   
-    
-    public startIntake(){
+    public StartIntake(){
     	requires(Robot.intake);
-    	
+
     }
     public void execute() {
-    	Robot.intake.startIntake();
-    	
-    	
-    	
-    	
+    	Robot.intake.intake.set(1.0);
+    }
+
+    public boolean isFinished() {
+      return false;
     }
 }
-

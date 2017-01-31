@@ -3,12 +3,13 @@ package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
-import org.usfirst.frc.team79.robot.subsystems.IntakeSystem;
+import org.usfirst.frc.team79.robot.subsystems.Intake;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -29,18 +30,18 @@ public class Robot extends IterativeRobot {
     public void robotInit() {
     	driveTrain = new DriveTrain();
     	feeder = new Feeder();
-		intake = new Intake();
+			intake = new Intake();
     	oi = new OI();
-    	
-		UsbCamera camera = new UsbCamera("cam0", 0);
-		camera.setBrightness(15);
-		server = CameraServer.getInstance();
-		server.startAutomaticCapture(camera);
-		
-		SmartDashboard.putNumber("Heading to Boiler", 0);
-		SmartDashboard.putNumber("Center X", 0);
-		SmartDashboard.putNumber("Center Y", 0);
-	}
+
+			UsbCamera camera = new UsbCamera("cam0", 0);
+			camera.setBrightness(15);
+			server = CameraServer.getInstance();
+			server.startAutomaticCapture(camera);
+
+			SmartDashboard.putNumber("Heading to Boiler", 0);
+			SmartDashboard.putNumber("Center X", 0);
+			SmartDashboard.putNumber("Center Y", 0);
+		}
 
     /**
      * This function is called once each time the robot enters Disabled mode.
@@ -51,9 +52,9 @@ public class Robot extends IterativeRobot {
 
     }
 
-	public void disabledPeriodic() {
-		Scheduler.getInstance().run();
-	}
+		public void disabledPeriodic() {
+			Scheduler.getInstance().run();
+		}
 
     public void autonomousInit() {
 
