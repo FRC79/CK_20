@@ -74,7 +74,6 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Gyro", driveTrain.getGyroAngle());
 		SmartDashboard.putNumber("Left Encoder", driveTrain.FrontLeft.getPosition());
 		SmartDashboard.putNumber("Right Encoder", driveTrain.FrontRight.getPosition());
-		SmartDashboard.putNumber("Right Encoder", 0);
 	}
 
 	public void testPeriodic() {
