@@ -8,9 +8,9 @@ package org.usfirst.frc.team79.robot;
 public class RobotMap {
 
 	//motors
-	public static int FrontLeftMotor = 2;
-	public static int BackLeftMotor = 1;
-	public static int FrontRightMotor = 3;
+	public static int FrontLeftMotor = 1;
+	public static int BackLeftMotor = 3;
+	public static int FrontRightMotor = 2;
 	public static int BackRightMotor = 4;
 	public static int INTAKE_MOTOR =5;
 	public static int FEEDER_MOTOR = 8;
