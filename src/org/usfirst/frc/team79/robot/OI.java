@@ -1,5 +1,6 @@
 package org.usfirst.frc.team79.robot;
 
+import org.usfirst.frc.team79.robot.commands.DriveDistance;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -13,9 +14,11 @@ public class OI {
 
 	public Joystick throttleStick = new Joystick(0);
 	public Button gripButton = new JoystickButton(throttleStick, 5);
+	public Button driveButton = new JoystickButton(throttleStick, 8);
 	
 	public OI(){
 		this.gripButton.toggleWhenPressed(new AlignShooter());
+		this.driveButton.toggleWhenPressed(new DriveDistance(2*Math.PI));
 	}
 	
 	public Joystick getJoystick() {
