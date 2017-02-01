@@ -21,12 +21,20 @@ public class DriveDistance extends Command{
 	
 	protected void initialize(){
 		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.Position);
-		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.Position);
+		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.Position);
+		Robot.driveTrain.FrontLeft.setPosition(0);
+		Robot.driveTrain.FrontRight.setPosition(0);
 	}
 	
 	protected void execute(){
+		System.out.println("Hey. I'm executing drive distance code.");
 		Robot.driveTrain.FrontLeft.set(distance/RobotMap.WHEEL_CIRCUMFERENCE);
 		Robot.driveTrain.FrontRight.set(distance/RobotMap.WHEEL_CIRCUMFERENCE);
+	}
+	
+	public void end(){
+		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);
+	    Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.PercentVbus);
 	}
 	
 	@Override
