@@ -39,4 +39,6 @@ public class RobotMap {
 	//Center of camera image.
 	public static final double CX = IMAGE_WIDTH / 2 - .5;
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
+	
+	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI;
 }
