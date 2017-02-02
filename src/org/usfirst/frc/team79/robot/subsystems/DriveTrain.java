@@ -29,16 +29,17 @@ public class DriveTrain extends Subsystem {
 		BackRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		BackLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 		
-		FrontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		FrontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		FrontLeft.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
-		FrontRight.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
-
 		BackRight.set(FrontRight.getDeviceID());
 		BackLeft.set(FrontLeft.getDeviceID());
 
 		FrontLeft.setInverted(true);
 		FrontRight.setInverted(false);
+		
+		FrontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		FrontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
+		FrontLeft.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
+		FrontRight.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
+		FrontLeft.reverseSensor(true);
 
 		// gyro
 		gyro = new AHRS(SerialPort.Port.kMXP);
