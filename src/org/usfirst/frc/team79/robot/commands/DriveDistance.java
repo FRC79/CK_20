@@ -9,27 +9,27 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class DriveDistance extends Command{
 
-	public double distance;
+	public double rotations;
 	
 	/**
 	 * Drives a distance in feet.
 	 * @param distance in feet.
 	 */
 	public DriveDistance(double distance){
-		this.distance = distance;
+		this.rotations = distance/RobotMap.WHEEL_CIRCUMFERENCE;
 	}
 	
 	protected void initialize(){
 		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.Position);
 		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.Position);
-		Robot.driveTrain.FrontLeft.setPosition(0);
-		Robot.driveTrain.FrontRight.setPosition(0);
+		Robot.driveTrain.FrontLeft.setEncPosition(0);;
+		Robot.driveTrain.FrontRight.setEncPosition(0);
+		
 	}
 	
 	protected void execute(){
-		System.out.println("Hey. I'm executing drive distance code.");
-		Robot.driveTrain.FrontLeft.set(distance/RobotMap.WHEEL_CIRCUMFERENCE);
-		Robot.driveTrain.FrontRight.set(distance/RobotMap.WHEEL_CIRCUMFERENCE);
+		Robot.driveTrain.FrontLeft.set(rotations);
+		Robot.driveTrain.FrontRight.set(rotations);
 	}
 	
 	public void end(){
@@ -39,7 +39,9 @@ public class DriveDistance extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		return true;
+		double errorL = Math.abs(Robot.driveTrain.FrontLeft.getPosition()-rotations);
+		double errorR = Math.abs(Robot.driveTrain.FrontRight.getPosition()-rotations);
+		return false;
 	}
 
 }
