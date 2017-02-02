@@ -39,6 +39,8 @@ public class DriveTrain extends Subsystem {
 		FrontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		FrontLeft.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
 		FrontRight.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
+		FrontRight.setProfile(0);
+		FrontLeft.setProfile(0);
 		FrontLeft.reverseSensor(true);
 
 		// gyro
