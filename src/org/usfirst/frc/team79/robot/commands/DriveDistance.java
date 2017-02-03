@@ -12,8 +12,8 @@ public class DriveDistance extends Command{
 	public double rotations;
 	
 	/**
-	 * Drives a distance in feet.
-	 * @param distance in feet.
+	 * Drives a distance in inches.
+	 * @param distance in inches.
 	 */
 	public DriveDistance(double distance){
 		this.rotations = distance/RobotMap.WHEEL_CIRCUMFERENCE;
@@ -24,12 +24,16 @@ public class DriveDistance extends Command{
 		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.Position);
 		Robot.driveTrain.FrontLeft.setEncPosition(0);;
 		Robot.driveTrain.FrontRight.setEncPosition(0);
+		Robot.driveTrain.FrontRight.setAllowableClosedLoopErr(360);
+		Robot.driveTrain.FrontLeft.setAllowableClosedLoopErr(360);
+
 		
 	}
 	
 	protected void execute(){
 		Robot.driveTrain.FrontLeft.set(rotations);
-		Robot.driveTrain.FrontRight.set(rotations);
+		Robot.driveTrain.FrontRight.set(-rotations);
+		System.out.println("Driving Distance");
 	}
 	
 	public void end(){
@@ -39,8 +43,7 @@ public class DriveDistance extends Command{
 	
 	@Override
 	protected boolean isFinished() {
-		double errorL = Math.abs(Robot.driveTrain.FrontLeft.getPosition()-rotations);
-		double errorR = Math.abs(Robot.driveTrain.FrontRight.getPosition()-rotations);
+		//return Robot.driveTrain.FrontLeft.getClosedLoopError() < 0.5;
 		return false;
 	}
 

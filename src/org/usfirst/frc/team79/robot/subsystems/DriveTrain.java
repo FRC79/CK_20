@@ -42,6 +42,8 @@ public class DriveTrain extends Subsystem {
 		FrontRight.setProfile(0);
 		FrontLeft.setProfile(0);
 		FrontLeft.reverseSensor(true);
+		FrontRight.reverseSensor(true);
+
 
 		// gyro
 		gyro = new AHRS(SerialPort.Port.kMXP);
