@@ -1,15 +1,18 @@
 package org.usfirst.frc.team79.robot.commands.auton;
 
 import org.usfirst.frc.team79.robot.Robot;
+import org.usfirst.frc.team79.robot.utilities.GyroPIDOutput;
 
+import com.ctre.CANTalon.TalonControlMode;
+
+import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RotateDegrees extends Command {
 
 	double degrees;
-	boolean finished;
-	boolean grip;
+	public PIDController gyroPID;
 	
 	/**
 	 * Rotates based off the angle given. Positive = right.
@@ -18,21 +21,21 @@ public class RotateDegrees extends Command {
 	public RotateDegrees(double degrees){
 		requires(Robot.driveTrain);
 		this.degrees = degrees + Robot.driveTrain.getGyroAngle();
+		gyroPID = new PIDController(.2, 0, .2, Robot.driveTrain.gyro, new GyroPIDOutput());
 	}
 	
 	protected void initialize(){
+		gyroPID.setAbsoluteTolerance(0.5);
+		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);
+		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.PercentVbus);
 	}
 
 	protected void execute() {
-		double displacement = degrees - Robot.driveTrain.getGyroAngle();
-		double speed = 0.3d * displacement;
-		Robot.driveTrain.FrontLeft.set(speed);
-		Robot.driveTrain.FrontRight.set(-speed);
-		finished = Math.abs(displacement) < .4d;
+		gyroPID.setSetpoint(degrees);
 	}
 
 	protected boolean isFinished() {
-		return finished;
+		return gyroPID.onTarget();
 	}
 
 	protected void end() {
