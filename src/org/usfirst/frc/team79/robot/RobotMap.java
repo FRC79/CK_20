@@ -15,8 +15,10 @@ public class RobotMap {
 	public static int INTAKE_MOTOR =5;
 	public static int FEEDER_MOTOR = 8;
 	public static int CONVEYER_MOTOR = 7;
+	public static int SHOOTER_MOTOR_1 = 6;
+	public static int SHOOTER_MOTOR_2 = 9;
 	//encoders
-	
+
 	public static int LEFT_WHEEL_ENCODER_A = 1;
 	public static int LEFT_WHEEL_ENCODER_B = 2;
 
@@ -24,9 +26,10 @@ public class RobotMap {
 	public static int RIGHT_WHEEL_ENCODER_B = 2;
 
 
+
 	// Drivetrain Constants
 	public static double driveTurningConstant = 0.6;
-	
+
 	//Camera Constants
 	// Calcualtes FOV and Focal length of camera. May be inaccurate due to possible automatic scaling by GRIP.
 	public static final double DIAGONAL_FOV = 68.5; // degrees
@@ -39,7 +42,8 @@ public class RobotMap {
 	//Center of camera image.
 	public static final double CX = IMAGE_WIDTH / 2 - .5;
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
-	
+
 	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI;
 	public static final int TICKS_PER_REV = 360;
+	public static final int SHOOTER_TICKS_PER_REV = 1024;
 }
