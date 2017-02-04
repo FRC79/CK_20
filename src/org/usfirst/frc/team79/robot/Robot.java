@@ -27,52 +27,57 @@ public class Robot extends IterativeRobot {
 
 	CameraServer server;
 
-    public void robotInit() {
-    	driveTrain = new DriveTrain();
-    	feeder = new Feeder();
-			intake = new Intake();
-    	oi = new OI();
+	public void robotInit() {
+		driveTrain = new DriveTrain();
+		feeder = new Feeder();
+		intake = new Intake();
+		oi = new OI();
 
-			UsbCamera camera = new UsbCamera("cam0", 0);
-			camera.setBrightness(15);
-			server = CameraServer.getInstance();
-			server.startAutomaticCapture(camera);
+		UsbCamera camera = new UsbCamera("cam0", 0);
+		camera.setBrightness(15);
+		server = CameraServer.getInstance();
+		server.startAutomaticCapture(camera);
 
-			SmartDashboard.putNumber("Heading to Boiler", 0);
-			SmartDashboard.putNumber("Center X", 0);
-			SmartDashboard.putNumber("Center Y", 0);
-		}
+		SmartDashboard.putNumber("Heading to Boiler", 0);
+		SmartDashboard.putNumber("Center X", 0);
+		SmartDashboard.putNumber("Center Y", 0);
+		SmartDashboard.putNumber("Left Encoder", 0);
+		SmartDashboard.putNumber("Right Encoder", 0);
+	}
 
-    /**
-     * This function is called once each time the robot enters Disabled mode.
-     * You can use it to reset any subsystem information you want to clear when
+	/**
+	 * This function is called once each time the robot enters Disabled mode.
+	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.
-     */
-    public void disabledInit(){
+	 */
+	public void disabledInit() {
 
-    }
+	}
 
-		public void disabledPeriodic() {
-			Scheduler.getInstance().run();
-		}
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    public void autonomousInit() {
+	public void autonomousInit() {
 
-    }
+	}
 
-    public void autonomousPeriodic() {
-        Scheduler.getInstance().run();
-    }
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-    public void teleopInit() {
-    }
+	public void teleopInit() {
+	}
 
-    public void teleopPeriodic() {
-        Scheduler.getInstance().run();
-        SmartDashboard.putNumber("Gyro", driveTrain.getGyroAngle());
-    }
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Gyro", driveTrain.getGyroAngle());
+		SmartDashboard.putNumber("Left Encoder", driveTrain.FrontLeft.getPosition());
+		SmartDashboard.putNumber("Right Encoder", driveTrain.FrontRight.getPosition());
+		System.out.println("Left: " + driveTrain.FrontLeft.getPosition() + " Time: " + System.currentTimeMillis());
+	}
 
-    public void testPeriodic() {
+	public void testPeriodic() {
 
-    }
+	}
 }

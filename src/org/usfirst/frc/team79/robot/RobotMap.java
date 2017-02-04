@@ -8,9 +8,9 @@ package org.usfirst.frc.team79.robot;
 public class RobotMap {
 
 	//motors
-	public static int FrontLeftMotor = 2;
-	public static int BackLeftMotor = 1;
-	public static int FrontRightMotor = 3;
+	public static int FrontLeftMotor = 1;
+	public static int BackLeftMotor = 3;
+	public static int FrontRightMotor = 2;
 	public static int BackRightMotor = 4;
 	public static int INTAKE_MOTOR =5;
 	public static int FEEDER_MOTOR = 8;
@@ -39,4 +39,7 @@ public class RobotMap {
 	//Center of camera image.
 	public static final double CX = IMAGE_WIDTH / 2 - .5;
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
+	
+	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI;
+	public static final int TICKS_PER_REV = 360;
 }
