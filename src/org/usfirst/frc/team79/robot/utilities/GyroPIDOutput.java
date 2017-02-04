@@ -8,8 +8,8 @@ public class GyroPIDOutput implements PIDOutput{
 
 	@Override
 	public void pidWrite(double value) {
-		Robot.driveTrain.FrontLeft.set(value);
-		Robot.driveTrain.FrontRight.set(-value);
+		Robot.driveTrain.FrontLeft.set(-value);
+		Robot.driveTrain.FrontRight.set(value);
 	}
 
 }
