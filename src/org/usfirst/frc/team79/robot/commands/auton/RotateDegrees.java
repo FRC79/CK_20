@@ -20,16 +20,7 @@ public class RotateDegrees extends Command {
 		this.degrees = degrees + Robot.driveTrain.getGyroAngle();
 	}
 	
-	/**
-	 * Rotates based off of GRIP data.
-	 */
-	public RotateDegrees(){
-		requires(Robot.driveTrain);
-		grip = true;
-	}
-	
 	protected void initialize(){
-		if(grip) degrees = SmartDashboard.getNumber("Heading to Boiler", 0) + Robot.driveTrain.getGyroAngle();
 	}
 
 	protected void execute() {

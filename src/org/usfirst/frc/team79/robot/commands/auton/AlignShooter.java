@@ -9,8 +9,7 @@ public class AlignShooter extends CommandGroup {
 	 * Aligns the shooter to face the boiler.
 	 */
 	public AlignShooter() {
-		addSequential(new ProcessGripData());
-		addSequential(new RotateDegrees());
+		addSequential(new RotateDegrees(ProcessGripData.getHeading()));
 	}
 
 }
