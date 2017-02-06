@@ -38,12 +38,14 @@ public class Robot extends IterativeRobot {
 		server = CameraServer.getInstance();
 		server.startAutomaticCapture(camera);
 
-		SmartDashboard.putNumber("Heading to Boiler", 0);
-		SmartDashboard.putNumber("Center X", 0);
-		SmartDashboard.putNumber("Center Y", 0);
-		SmartDashboard.putNumber("Left Encoder", 0);
-		SmartDashboard.putNumber("Right Encoder", 0);
-	}
+			SmartDashboard.putNumber("Heading to Boiler", 0);
+			SmartDashboard.putNumber("Center X", 0);
+			SmartDashboard.putNumber("Center Y", 0);
+			
+			SmartDashboard.putNumber("Turn P", 0);
+			SmartDashboard.putNumber("Turn I", 0);
+			SmartDashboard.putNumber("Turn D", 0);
+		}
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
