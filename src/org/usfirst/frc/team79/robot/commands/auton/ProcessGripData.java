@@ -6,12 +6,11 @@ import org.usfirst.frc.team79.robot.grip.Contour;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.tables.ITable;
 
 public class ProcessGripData extends Command{
 	
 	public NetworkTable grip;
-	
-	private boolean finished;
 	
 	/**
 	 * Asks the driver station to process the video feed using GRIP pipeline.
@@ -24,7 +23,7 @@ public class ProcessGripData extends Command{
 	protected void execute(){
 		Contour[] contours = getContours();
 		if(contours.length > 0){
-			Contour tape = this.getGreatestContour(getContours());
+			Contour tape = this.getGreatestContour(contours);
 			double headingToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
 			double pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
 			//Sends the header to the dashboard to be used in the RotateDegrees command.
@@ -33,7 +32,6 @@ public class ProcessGripData extends Command{
 			SmartDashboard.putNumber("Center X", tape.centerX);
 			SmartDashboard.putNumber("Center Y", tape.centerY);
 		}else SmartDashboard.putNumber("Header to Boiler", 0);
-		finished = true;
 	}
 	
 	/**
@@ -41,9 +39,10 @@ public class ProcessGripData extends Command{
 	 * @return
 	 */
 	private Contour[] getContours(){
-		double[] areas = grip.getSubTable("reflectiveTapeReport").getNumberArray("area", new double[0]);
-		double[] centerX = grip.getSubTable("reflectiveTapeReport").getNumberArray("centerX", new double[0]);
-		double[] centerY = grip.getSubTable("reflectiveTapeReport").getNumberArray("centerY", new double[0]);
+		ITable gripSub = grip.getSubTable("reflectiveTapeReport");
+		double[] areas = gripSub.getNumberArray("area", new double[0]);
+		double[] centerX = gripSub.getNumberArray("centerX", new double[0]);
+		double[] centerY = gripSub.getNumberArray("centerY", new double[0]);
 		Contour[] contours = new Contour[areas.length];
 		for(int i=0; i<contours.length; i++){
 			contours[i] = new Contour(areas[i], centerX[i], centerY[i]);
@@ -69,7 +68,7 @@ public class ProcessGripData extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return finished;
+		return true;
 	}
 
 }
