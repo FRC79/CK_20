@@ -4,6 +4,7 @@ package org.usfirst.frc.team79.robot;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 import org.usfirst.frc.team79.robot.subsystems.Intake;
+import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
@@ -24,6 +25,7 @@ public class Robot extends IterativeRobot {
 	public static DriveTrain driveTrain;
 	public static Feeder feeder;
 	public static Intake intake;
+	public static Shooter shooter;
 
 	CameraServer server;
 
@@ -31,6 +33,7 @@ public class Robot extends IterativeRobot {
 		driveTrain = new DriveTrain();
 		feeder = new Feeder();
 		intake = new Intake();
+		shooter = new Shooter();
 		oi = new OI();
 
 		UsbCamera camera = new UsbCamera("cam0", 0);
