@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team79.robot;
 
+import org.usfirst.frc.team79.robot.commands.auton.InitAuton;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 import org.usfirst.frc.team79.robot.subsystems.Intake;
@@ -61,7 +62,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-
+		Scheduler.getInstance().add(new InitAuton());
 	}
 
 	public void autonomousPeriodic() {
