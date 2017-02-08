@@ -54,7 +54,8 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-
+		Robot.driveTrain.FrontLeft.clearMotionProfileTrajectories();
+		Robot.driveTrain.FrontRight.clearMotionProfileTrajectories();
 	}
 
 	public void disabledPeriodic() {

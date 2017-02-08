@@ -26,6 +26,7 @@ public class ExecuteMotionProfile extends Command{
 	protected void execute(){
 		Robot.driveTrain.FrontLeft.processMotionProfileBuffer();
 		Robot.driveTrain.FrontRight.processMotionProfileBuffer();
+		Robot.driveTrain.FrontLeft.getMotionProfileStatus(lStatus);
 	}
 	
 	protected void end(){
