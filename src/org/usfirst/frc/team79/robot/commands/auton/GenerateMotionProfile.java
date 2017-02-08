@@ -1,3 +1,4 @@
+
 package org.usfirst.frc.team79.robot.commands.auton;
 
 import org.usfirst.frc.team79.robot.Robot;
@@ -17,7 +18,7 @@ public class GenerateMotionProfile{
 	
 	/**
 	 * Generates points needed for motion profiling and sends them to the Talon.
-	 * @param points
+	 * @param points Use FWaypoint for feet and Waypoint for meters.
 	 */
 	public static void generate(Waypoint... points){
 		//TODO wheelbase needed. Distance (meters) between the 2 sides of the drive train.
@@ -30,7 +31,7 @@ public class GenerateMotionProfile{
 			TrajectoryPoint point = new TrajectoryPoint();
 			point.position = segment.position;
 			point.velocity = segment.velocity;
-			point.timeDurMs = (int) (segment.dt * 1000); //TODO I assume 'dt' is delta time in seconds. Will check later
+			point.timeDurMs = (int) (segment.dt * 1000);
 			point.profileSlotSelect = 0;
 			if(i==0) point.zeroPos = true;
 			if(i+1 == left.segments.length) point.isLastPoint = true;
@@ -41,7 +42,7 @@ public class GenerateMotionProfile{
 			TrajectoryPoint point = new TrajectoryPoint();
 			point.position = segment.position;
 			point.velocity = segment.velocity;
-			point.timeDurMs = (int) (segment.dt * 1000); //TODO I assume 'dt' is delta time in seconds. Will check later
+			point.timeDurMs = (int) (segment.dt * 1000);
 			point.profileSlotSelect = 0;
 			if(i==0) point.zeroPos = true;
 			if(i+1 == left.segments.length) point.isLastPoint = true;
