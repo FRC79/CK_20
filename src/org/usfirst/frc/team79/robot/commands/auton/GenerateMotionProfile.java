@@ -22,6 +22,10 @@ public class GenerateMotionProfile{
 		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(wheelbase);
 		left = modifier.getLeftTrajectory();
 		right = modifier.getRightTrajectory();
+		for(int i=0; i<right.segments.length; i++){
+			right.segments[i].position *= -1;
+			right.segments[i].velocity *= -1;
+		}
 	}
 
 }
