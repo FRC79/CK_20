@@ -9,36 +9,41 @@ import edu.wpi.first.wpilibj.command.Command;
 
 public class ExecuteMotionProfile extends Command{
 	
-	private MotionProfileStatus lStatus = new MotionProfileStatus();
-	private MotionProfileStatus rStatus = new MotionProfileStatus();
+	MotionProfileFollower left;
+	MotionProfileFollower right;
+	
+	MotionProfileStatus lStatus, rStatus;
 	
 	public ExecuteMotionProfile(){
 		requires(Robot.driveTrain);
 	}
 	
 	protected void initialize(){
+		lStatus = new MotionProfileStatus();
+		rStatus = new MotionProfileStatus();
 		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.MotionProfile);
 		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.MotionProfile);
-		Robot.driveTrain.FrontLeft.set(1);
-		Robot.driveTrain.FrontRight.set(1);
+		left = new MotionProfileFollower(Robot.driveTrain.FrontLeft, GenerateMotionProfile.left.segments);
+		right = new MotionProfileFollower(Robot.driveTrain.FrontRight, GenerateMotionProfile.right.segments);
+		left.startMotionProfile();
+		right.startMotionProfile();
 	}
 	
 	protected void execute(){
-		Robot.driveTrain.FrontLeft.processMotionProfileBuffer();
-		Robot.driveTrain.FrontRight.processMotionProfileBuffer();
-		Robot.driveTrain.FrontLeft.getMotionProfileStatus(lStatus);
+		left.control();
+		right.control();
+		Robot.driveTrain.FrontLeft.set(left.getSetValue().value);
+		Robot.driveTrain.FrontRight.set(right.getSetValue().value);
 	}
 	
 	protected void end(){
-		Robot.driveTrain.FrontLeft.set(0);
-		Robot.driveTrain.FrontRight.set(0);
+		left.reset();
+		right.reset();
 	}
 	
 	@Override
 	protected boolean isFinished() {
-		Robot.driveTrain.FrontLeft.getMotionProfileStatus(lStatus);
-		Robot.driveTrain.FrontRight.getMotionProfileStatus(rStatus);
-		return lStatus.activePoint.isLastPoint && rStatus.activePoint.isLastPoint;
+		return left.isFinished() && right.isFinished();
 	}
 
 }
