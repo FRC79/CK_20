@@ -29,10 +29,6 @@ public class StartFeeder extends Command {
         return true;
     }
 
-    protected void end() {
- 
-    }
-
  
 
     protected void interrupted() {

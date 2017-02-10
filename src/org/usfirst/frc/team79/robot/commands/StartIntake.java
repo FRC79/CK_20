@@ -23,6 +23,6 @@ public class StartIntake extends Command {
     }
 
     public boolean isFinished() {
-      return false;
+      return true;
     }
 }

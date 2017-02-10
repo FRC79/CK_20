@@ -12,7 +12,11 @@ public class Intake extends Subsystem {
 
 	public CANTalon intake = new CANTalon(RobotMap.INTAKE_MOTOR);
 
-	 public void initDefaultCommand(){
+	public Intake(){
+		intake.setInverted(true);
+	}
+	
+	public void initDefaultCommand(){
 
 	 }
 

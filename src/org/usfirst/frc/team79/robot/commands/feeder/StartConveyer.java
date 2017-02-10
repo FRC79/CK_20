@@ -30,11 +30,4 @@ public class StartConveyer extends Command {
     protected boolean isFinished() {
         return true;
     }
-
-    protected void end() {
-    	
-    }
-
-    protected void interrupted() {
-    }
 }
