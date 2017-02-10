@@ -38,14 +38,11 @@ public class DriveTrain extends Subsystem {
 		FrontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		FrontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
 		FrontLeft.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
-		FrontRight.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
+		FrontRight.configEncoderCodesPerRev(257);
 		FrontRight.setProfile(0);
 		FrontLeft.setProfile(0);
 		FrontLeft.reverseSensor(true);
 		FrontRight.reverseSensor(true);
-		
-		FrontLeft.setF(0.2);
-		FrontRight.setF(0.2);
 		
 		FrontLeft.clearMotionProfileTrajectories();
 		FrontRight.clearMotionProfileTrajectories();

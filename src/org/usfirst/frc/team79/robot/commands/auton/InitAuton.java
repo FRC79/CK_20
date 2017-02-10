@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class InitAuton extends CommandGroup{
 	
 	public InitAuton(){
-		GenerateMotionProfile.generate(new FWaypoint(0,0,0), new FWaypoint(1,0,0), new FWaypoint(3,0,0));
+		GenerateMotionProfile.generate(new FWaypoint(0,0,0), new FWaypoint(10,-1,0));
 		this.addSequential(new ExecuteMotionProfile());
 	}
 

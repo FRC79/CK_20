@@ -46,6 +46,8 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putNumber("Turn P", 0);
 			SmartDashboard.putNumber("Turn I", 0);
 			SmartDashboard.putNumber("Turn D", 0);
+			
+			SmartDashboard.putNumber("Velocity", 0);
 		}
 
 	/**
@@ -56,6 +58,8 @@ public class Robot extends IterativeRobot {
 	public void disabledInit() {
 		Robot.driveTrain.FrontLeft.clearMotionProfileTrajectories();
 		Robot.driveTrain.FrontRight.clearMotionProfileTrajectories();
+		Robot.driveTrain.FrontLeft.setEncPosition(0);
+		Robot.driveTrain.FrontRight.setEncPosition(0);
 	}
 
 	public void disabledPeriodic() {
@@ -68,6 +72,8 @@ public class Robot extends IterativeRobot {
 
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Left Encoder", driveTrain.FrontLeft.getPosition());
+		SmartDashboard.putNumber("Right Encoder", driveTrain.FrontRight.getPosition());
 	}
 
 	public void teleopInit() {
@@ -78,7 +84,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Gyro", driveTrain.getGyroAngle());
 		SmartDashboard.putNumber("Left Encoder", driveTrain.FrontLeft.getPosition());
 		SmartDashboard.putNumber("Right Encoder", driveTrain.FrontRight.getPosition());
-		System.out.println("Left: " + driveTrain.FrontLeft.getPosition() + " Time: " + System.currentTimeMillis());
+		SmartDashboard.putNumber("Velocity", driveTrain.FrontLeft.getSpeed());
 	}
 
 	public void testPeriodic() {

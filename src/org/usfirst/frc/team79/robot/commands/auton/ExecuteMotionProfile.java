@@ -23,6 +23,7 @@ public class ExecuteMotionProfile extends Command{
 		rStatus = new MotionProfileStatus();
 		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.MotionProfile);
 		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.MotionProfile);
+		Robot.driveTrain.FrontRight.set(Robot.driveTrain.FrontLeft.getDeviceID());
 		left = new MotionProfileFollower(Robot.driveTrain.FrontLeft, GenerateMotionProfile.left.segments);
 		right = new MotionProfileFollower(Robot.driveTrain.FrontRight, GenerateMotionProfile.right.segments);
 		left.startMotionProfile();
