@@ -4,17 +4,17 @@ import org.usfirst.frc.team79.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StartShooter extends Command{
+public class StopFeeder extends Command{
 	
 	/**
 	 * Toggles the shooter
 	 */
-	public StartShooter(){
-		requires(Robot.shooter);
+	public StopFeeder(){
+		requires(Robot.feeder);
 	}
 	
 	public void execute(){
-		Robot.shooter.shooterWheel.set(1.0);
+		Robot.feeder.feeder.set(0);
 	}
 
 	@Override
@@ -22,8 +22,6 @@ public class StartShooter extends Command{
 		return false;
 	}
 	protected void end(){
-		Robot.shooter.shooterWheel.set(0);
-
+		Robot.feeder.feeder.set(0);
 	}
-
 }

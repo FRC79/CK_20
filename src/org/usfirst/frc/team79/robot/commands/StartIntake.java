@@ -17,12 +17,13 @@ public class StartIntake extends Command {
     }
     
     public void execute() {
-    	if(Robot.intake.intake.get() != 0.0){
-    		Robot.intake.intake.set(0.0);
-    	}else Robot.intake.intake.set(1.0);
+    		Robot.intake.intake.set(-1);
     }
 
     public boolean isFinished() {
-      return true;
+      return false;
+    }
+    protected void end(){
+		Robot.intake.intake.set(0);
     }
 }

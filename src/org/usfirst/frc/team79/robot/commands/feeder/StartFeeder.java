@@ -20,13 +20,15 @@ public class StartFeeder extends Command {
     }
 
     protected void execute() {
-    	if(Robot.feeder.feeder.get() != 0){
-    		Robot.feeder.feeder.set(0);
-    	} else Robot.feeder.feeder.set(1);
+    	Robot.feeder.feeder.set(1);
     }
     
     protected boolean isFinished() {
-        return true;
+        return false;
+    }
+
+    protected void end() {
+    	Robot.feeder.feeder.set(0);
     }
 
  

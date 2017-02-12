@@ -4,17 +4,17 @@ import org.usfirst.frc.team79.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StartShooter extends Command{
+public class StopShooter extends Command{
 	
 	/**
 	 * Toggles the shooter
 	 */
-	public StartShooter(){
+	public StopShooter(){
 		requires(Robot.shooter);
 	}
 	
 	public void execute(){
-		Robot.shooter.shooterWheel.set(1.0);
+		Robot.shooter.shooterWheel.set(0);
 	}
 
 	@Override
@@ -23,7 +23,5 @@ public class StartShooter extends Command{
 	}
 	protected void end(){
 		Robot.shooter.shooterWheel.set(0);
-
 	}
-
 }

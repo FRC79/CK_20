@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team79.robot;
 
+
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 import org.usfirst.frc.team79.robot.subsystems.Intake;
@@ -8,6 +9,7 @@ import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	public Compressor pump;
 	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static Feeder feeder;
@@ -35,7 +37,10 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		shooter = new Shooter();
 		oi = new OI();
-
+		
+		pump = new Compressor();
+		//pump.setClosedLoopControl(true);
+		
 		UsbCamera camera = new UsbCamera("cam0", 0);
 		camera.setBrightness(15);
 		server = CameraServer.getInstance();
@@ -72,6 +77,7 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
+		pump.setClosedLoopControl(true);
 	}
 
 	public void teleopPeriodic() {
