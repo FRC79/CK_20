@@ -53,6 +53,8 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putNumber("Turn P", 0);
 			SmartDashboard.putNumber("Turn I", 0);
 			SmartDashboard.putNumber("Turn D", 0);
+			
+			SmartDashboard.putNumber("Set Shooter Speed", 1);
 		}
 
 	/**
