@@ -25,5 +25,8 @@ public class StartShooter extends Command{
 		Robot.shooter.shooterWheel.set(0);
 
 	}
+	protected void interrupted(){
+		this.end();
+	}
 
 }

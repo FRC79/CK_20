@@ -19,8 +19,9 @@ public class StopFeeder extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
+	
 	protected void end(){
 		Robot.feeder.feeder.set(0);
 	}

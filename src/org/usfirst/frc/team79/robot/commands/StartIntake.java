@@ -23,7 +23,12 @@ public class StartIntake extends Command {
     public boolean isFinished() {
       return false;
     }
+    
     protected void end(){
 		Robot.intake.intake.set(0);
+    }
+    
+    protected void interrupted(){
+    	this.end();
     }
 }

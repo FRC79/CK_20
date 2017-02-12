@@ -19,8 +19,9 @@ public class StopIntake extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
+	
 	protected void end(){
 		Robot.intake.intake.set(0);
 	}

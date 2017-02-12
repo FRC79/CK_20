@@ -20,12 +20,11 @@ public class StopConveyer extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
+	
 	protected void end(){
 		Robot.feeder.conveyer.set(0);
 		Robot.feeder.feeder.set(0);
-
-
 	}
 }

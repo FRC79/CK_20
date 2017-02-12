@@ -19,8 +19,9 @@ public class StopShooter extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
+	
 	protected void end(){
 		Robot.shooter.shooterWheel.set(0);
 	}
