@@ -1,6 +1,7 @@
 package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.commands.DeployIntake;
+import org.usfirst.frc.team79.robot.commands.RetractIntake;
 import org.usfirst.frc.team79.robot.commands.StartFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StartIntake;
 import org.usfirst.frc.team79.robot.commands.StartShooter;
@@ -31,6 +32,7 @@ public class OI {
 	public Button shootButton = new JoystickButton(throttleStick, 8);
 	public Button firingButton = new JoystickButton(throttleStick, 7);
 	public Button deployIntake = new JoystickButton(throttleStick, 1);
+	public Button retractIntake = new JoystickButton(throttleStick, 10);
 	
 	public OI(){
 //		this.gripButton.toggleWhenPressed(new AlignShooter());
@@ -40,6 +42,7 @@ public class OI {
 		this.shootButton.whenActive(new StartShooter());
 		this.firingButton.whenActive(new StartFiringSubsystems());
 		this.deployIntake.whenActive(new DeployIntake());
+		this.retractIntake.whenActive(new RetractIntake());
 		
 		this.intakeButton.whenReleased(new StopIntake());
 		this.feederButton.whenReleased(new StopFeeder());
