@@ -19,8 +19,8 @@ public class RobotMap {
 	public static int CONVEYER_MOTOR = 9;
 	
 	//Pnematics
-	public static int INTAKE_DEPLOY_DOWN = 0;
-	public static int INTAKE_DEPLOY_UP = 1;
+	public static int INTAKE_DEPLOY_UP = 0;
+	public static int INTAKE_DEPLOY_DOWN = 1;
 	
 	//encoders
 
