@@ -17,6 +17,11 @@ public class RobotMap {
 	public static int CONVEYER_MOTOR = 9;
 	public static int SHOOTER_MOTOR_1 = 5;
 	public static int SHOOTER_MOTOR_2 = 6;
+	
+	//Pnematics
+	public static int INTAKE_DEPLOY_FORWARDS = 1;
+	public static int INTAKE_DEPLOY_BACKWARDS = 2;
+	
 	//encoders
 
 	public static int LEFT_WHEEL_ENCODER_A = 1;
