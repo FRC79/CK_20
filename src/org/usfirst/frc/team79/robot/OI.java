@@ -1,11 +1,12 @@
 package org.usfirst.frc.team79.robot;
 
-import org.usfirst.frc.team79.robot.commands.DriveDistance;
-import org.usfirst.frc.team79.robot.commands.DriveSpeed;
+import org.usfirst.frc.team79.robot.commands.DeployIntake;
+import org.usfirst.frc.team79.robot.commands.StartFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StartIntake;
 import org.usfirst.frc.team79.robot.commands.StartShooter;
 import org.usfirst.frc.team79.robot.commands.StopConveyer;
 import org.usfirst.frc.team79.robot.commands.StopFeeder;
+import org.usfirst.frc.team79.robot.commands.StopFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StopIntake;
 import org.usfirst.frc.team79.robot.commands.StopShooter;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
@@ -28,6 +29,8 @@ public class OI {
 	public Button feederButton = new JoystickButton(throttleStick, 4);
 	public Button conveyerButton = new JoystickButton(throttleStick, 3);
 	public Button shootButton = new JoystickButton(throttleStick, 8);
+	public Button firingButton = new JoystickButton(throttleStick, 7);
+	public Button deployIntake = new JoystickButton(throttleStick, 1);
 	
 	public OI(){
 //		this.gripButton.toggleWhenPressed(new AlignShooter());
@@ -35,11 +38,14 @@ public class OI {
 		this.feederButton.whenActive(new StartFeeder());
 		this.conveyerButton.whenActive(new StartConveyer());
 		this.shootButton.whenActive(new StartShooter());
+		this.firingButton.whenActive(new StartFiringSubsystems());
+		this.deployIntake.whenActive(new DeployIntake());
 		
 		this.intakeButton.whenReleased(new StopIntake());
 		this.feederButton.whenReleased(new StopFeeder());
 		this.conveyerButton.whenReleased(new StopConveyer());
 		this.shootButton.whenReleased(new StopShooter());
+		this.firingButton.whenReleased(new StopFiringSubsystems());
 		
 	}
 	
