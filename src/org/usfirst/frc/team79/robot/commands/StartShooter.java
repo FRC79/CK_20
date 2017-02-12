@@ -14,19 +14,12 @@ public class StartShooter extends Command{
 	}
 	
 	public void execute(){
-		Robot.shooter.shooterWheel.set(1.0);
+		Robot.shooter.shooterWheel.set(0.6);
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
-	}
-	protected void end(){
-		Robot.shooter.shooterWheel.set(0);
-
-	}
-	protected void interrupted(){
-		this.end();
+		return true;
 	}
 
 }

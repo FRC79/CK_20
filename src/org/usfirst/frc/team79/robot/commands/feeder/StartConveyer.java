@@ -22,18 +22,10 @@ public class StartConveyer extends Command {
     }
 
     protected void execute() {
-    		Robot.feeder.conveyer.set(-1);
+    	Robot.feeder.conveyer.set(-0.6);
     }
 
     protected boolean isFinished() {
-        return false;
-    }
-
-    protected void end() {
-		Robot.feeder.conveyer.set(0);
-
-    }
-
-    protected void interrupted() {
+        return true;
     }
 }

@@ -20,19 +20,10 @@ public class StartFeeder extends Command {
     }
 
     protected void execute() {
-    	Robot.feeder.feeder.set(1);
+    	Robot.feeder.feeder.set(0.6);
     }
     
     protected boolean isFinished() {
-        return false;
-    }
-
-    protected void end() {
-    	Robot.feeder.feeder.set(0);
-    }
-
- 
-
-    protected void interrupted() {
+        return true;
     }
 }

@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 public class StopIntake extends Command{
 	
 	/**
-	 * Toggles the shooter
+	 * Stops the intake
 	 */
 	public StopIntake(){
 		requires(Robot.intake);
@@ -20,9 +20,5 @@ public class StopIntake extends Command{
 	@Override
 	protected boolean isFinished() {
 		return true;
-	}
-	
-	protected void end(){
-		Robot.intake.intake.set(0);
 	}
 }
