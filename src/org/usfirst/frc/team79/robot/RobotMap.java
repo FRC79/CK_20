@@ -9,18 +9,18 @@ public class RobotMap {
 
 	//motors
 	public static int FrontLeftMotor = 1;
-	public static int BackLeftMotor = 3;
 	public static int FrontRightMotor = 2;
+	public static int BackLeftMotor = 3;
 	public static int BackRightMotor = 4;
+	public static int SHOOTER_MOTOR_1 = 5;
+	public static int SHOOTER_MOTOR_2 = 6;
 	public static int INTAKE_MOTOR =7;
 	public static int FEEDER_MOTOR = 8;
 	public static int CONVEYER_MOTOR = 9;
-	public static int SHOOTER_MOTOR_1 = 5;
-	public static int SHOOTER_MOTOR_2 = 6;
 	
 	//Pnematics
-	public static int INTAKE_DEPLOY_UP = 1;
 	public static int INTAKE_DEPLOY_DOWN = 0;
+	public static int INTAKE_DEPLOY_UP = 1;
 	
 	//encoders
 
