@@ -13,7 +13,7 @@ import org.usfirst.frc.team79.robot.commands.StopIntake;
 public class Intake extends Subsystem {
 
 	public CANTalon intake = new CANTalon(RobotMap.INTAKE_MOTOR);
-	public DoubleSolenoid deploy = new DoubleSolenoid(RobotMap.INTAKE_DEPLOY_FORWARDS, RobotMap.INTAKE_DEPLOY_BACKWARDS);
+	public DoubleSolenoid deploy = new DoubleSolenoid(RobotMap.INTAKE_DEPLOY_UP, RobotMap.INTAKE_DEPLOY_DOWN);
 	
 	public Intake(){
 	}
