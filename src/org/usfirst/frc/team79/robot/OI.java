@@ -2,6 +2,7 @@ package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.commands.DeployIntake;
 import org.usfirst.frc.team79.robot.commands.RetractIntake;
+import org.usfirst.frc.team79.robot.commands.ShiftShooterMotor;
 import org.usfirst.frc.team79.robot.commands.StartFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StartIntake;
 import org.usfirst.frc.team79.robot.commands.StartShooter;
@@ -13,6 +14,7 @@ import org.usfirst.frc.team79.robot.commands.StopShooter;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
 import org.usfirst.frc.team79.robot.commands.feeder.StartConveyer;
 import org.usfirst.frc.team79.robot.commands.feeder.StartFeeder;
+import org.usfirst.frc.team79.robot.utilities.ShiftState;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -33,6 +35,8 @@ public class OI {
 	public Button firingButton = new JoystickButton(throttleStick, 7);
 	public Button deployIntake = new JoystickButton(throttleStick, 1);
 	public Button retractIntake = new JoystickButton(throttleStick, 10);
+	public Button shiftShooter = new JoystickButton(throttleStick, 9);
+	public Button shiftClimber = new JoystickButton(throttleStick, 5);
 	
 	public OI(){
 //		this.gripButton.toggleWhenPressed(new AlignShooter());
@@ -43,6 +47,8 @@ public class OI {
 		this.firingButton.whenActive(new StartFiringSubsystems());
 		this.deployIntake.whenActive(new DeployIntake());
 		this.retractIntake.whenActive(new RetractIntake());
+		this.shiftShooter.whenActive(new ShiftShooterMotor(ShiftState.SHOOTER));
+		this.shiftClimber.whenActive(new ShiftShooterMotor(ShiftState.CLIMBER));
 		
 		this.intakeButton.whenReleased(new StopIntake());
 		this.feederButton.whenReleased(new StopFeeder());
