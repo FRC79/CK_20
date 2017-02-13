@@ -42,6 +42,10 @@ public class ProcessGripData{
 		return distance;
 	}
 	
+	/**
+	 * Gets angle displacement between the angle of the camera and the angle it should face to be directly pointed at the tape.
+	 * @return Heading in degrees
+	 */
 	public static double getPitchHeading(){
 		Contour[] contours = getContours();
 		double pitchHeading = 0;
