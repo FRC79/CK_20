@@ -16,10 +16,9 @@ public class ProcessGripData{
 	 * @return Heading in degrees.
 	 */
 	public static double getHeading(){
-		Contour[] contours = getContours();
+		Contour tape = getSingleContour();
 		double headingToTarget = 0;
-		if(contours.length > 0){
-			Contour tape = getGreatestContour(contours);
+		if(tape != null){
 			headingToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
 			SmartDashboard.putNumber("Heading to Boiler", headingToTarget);
 		}else SmartDashboard.putNumber("Heading to Boiler", 0);
@@ -31,10 +30,9 @@ public class ProcessGripData{
 	 * @return Distance in feet.
 	 */
 	public static double getDistance(){
-		Contour[] contours = getContours();
+		Contour tape = getSingleContour();
 		double distance = 0;
-		if(contours.length > 0){
-			Contour tape = getGreatestContour(contours);
+		if(tape != null){
 			double pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
 			distance = (RobotMap.BOILER_HEIGHT-RobotMap.CAMERA_HEIGHT)/Math.toDegrees(Math.tan(RobotMap.CAMERA_ANGLE + pitchHeading));
 			SmartDashboard.putNumber("Distance to Boiler", distance);
@@ -47,10 +45,9 @@ public class ProcessGripData{
 	 * @return Heading in degrees
 	 */
 	public static double getPitchHeading(){
-		Contour[] contours = getContours();
+		Contour tape = getSingleContour();
 		double pitchHeading = 0;
-		if(contours.length > 0){
-			Contour tape = getGreatestContour(contours);
+		if(tape != null){
 			pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
 			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
 		}else SmartDashboard.putNumber("Pitch Heading to Boiler", 0);
@@ -58,35 +55,25 @@ public class ProcessGripData{
 	}
 	
 	/**
-	 * Grabs the individual bits of contour data from the NetworkTable and creates a list of objects from it. 
-	 * @return
+	 * Grabs the contour of the greatest area in one iteration.
+	 * @return GRIP Contour
 	 */
-	private static Contour[] getContours(){
+	private static Contour getSingleContour(){
 		ITable gripSub = grip.getSubTable("reflectiveTapeReport");
 		double[] areas = gripSub.getNumberArray("area", new double[0]);
 		double[] centerX = gripSub.getNumberArray("centerX", new double[0]);
 		double[] centerY = gripSub.getNumberArray("centerY", new double[0]);
 		Contour[] contours = new Contour[areas.length];
+		int winner = -1;
+		double area = 0;
 		for(int i=0; i<contours.length; i++){
-			contours[i] = new Contour(areas[i], centerX[i], centerY[i]);
-		}
-		return contours;
-	}
-	
-	/**
-	 * Given a list of contours, this will select the one with the largest area. Should remove extraneous, non-tape contours.
-	 * @return
-	 */
-	private static Contour getGreatestContour(Contour[] contours){
-		int winner = 0;
-		double greatest = 0;
-		for(int i=0; i<contours.length; i++){
-			if(contours[i].area > greatest){
-				greatest = contours[i].area;
+			if(areas[i] > area){
 				winner = i;
+				area = contours[i].area;
 			}
 		}
-		return contours[winner];
+		if(winner == -1) return null;
+		return new Contour(areas[winner], centerX[winner], centerY[winner]);
 	}
 
 }
