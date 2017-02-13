@@ -11,20 +11,46 @@ public class ProcessGripData{
 	
 	public static NetworkTable grip = NetworkTable.getTable("GRIP");
 	
+	/**
+	 * Determines the angle displacement to the boiler target. 
+	 * @return Heading in degrees.
+	 */
 	public static double getHeading(){
 		Contour[] contours = getContours();
 		double headingToTarget = 0;
 		if(contours.length > 0){
 			Contour tape = getGreatestContour(contours);
 			headingToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
-			double pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
-			//Sends the header to the dashboard to be used in the RotateDegrees command.
 			SmartDashboard.putNumber("Heading to Boiler", headingToTarget);
-			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
-			SmartDashboard.putNumber("Center X", tape.centerX);
-			SmartDashboard.putNumber("Center Y", tape.centerY);
-		}else SmartDashboard.putNumber("Header to Boiler", 0);
+		}else SmartDashboard.putNumber("Heading to Boiler", 0);
 		return headingToTarget;
+	}
+	
+	/**
+	 * Determines the horizontal distance between the robot and the boiler.
+	 * @return Distance in feet.
+	 */
+	public static double getDistance(){
+		Contour[] contours = getContours();
+		double distance = 0;
+		if(contours.length > 0){
+			Contour tape = getGreatestContour(contours);
+			double pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
+			distance = (RobotMap.BOILER_HEIGHT-RobotMap.CAMERA_HEIGHT)/Math.toDegrees(Math.tan(RobotMap.CAMERA_ANGLE + pitchHeading));
+			SmartDashboard.putNumber("Distance to Boiler", distance);
+		}else SmartDashboard.putNumber("Distance to Boiler", 0);
+		return distance;
+	}
+	
+	public static double getPitchHeading(){
+		Contour[] contours = getContours();
+		double pitchHeading = 0;
+		if(contours.length > 0){
+			Contour tape = getGreatestContour(contours);
+			pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
+			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
+		}else SmartDashboard.putNumber("Pitch Heading to Boiler", 0);
+		return pitchHeading;
 	}
 	
 	/**
