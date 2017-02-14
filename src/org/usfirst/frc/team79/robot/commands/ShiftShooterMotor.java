@@ -15,7 +15,7 @@ public class ShiftShooterMotor extends Command{
 	}
 	
 	public void execute(){
-		if(RobotMap.Shift_State != state){
+		if(ShiftState.getStateByValue(Robot.shooter.shift.get()) != state){
 			Robot.shooter.shift.set(state.value);
 		}
 	}
