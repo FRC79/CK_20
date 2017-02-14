@@ -15,4 +15,8 @@ public enum ShiftState {
 		this.value = value;
 	}
 	
+	public static ShiftState getStateByValue(Value value){
+		return value==Value.kForward ? SHOOTER : value==Value.kReverse ? CLIMBER : null;
+	}
+	
 }
