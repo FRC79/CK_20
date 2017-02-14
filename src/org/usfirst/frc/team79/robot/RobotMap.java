@@ -29,6 +29,7 @@ public class RobotMap {
 	public static double driveTurningConstant = 0.6;
 
 	//Camera Constants
+	// Calcualtes FOV and Focal length of camera. May be inaccurate due to possible automatic scaling by GRIP.
 	public static final double DIAGONAL_FOV = 68.5; // degrees
 	public static final double HORIZONTAL_ASPECT_RATIO = 4;
 	public static final double VERTICAL_ASPECT_RATIO = 3;
@@ -45,9 +46,6 @@ public class RobotMap {
 	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI;
 	public static final int TICKS_PER_REV = 360;
 	public static final int SHOOTER_TICKS_PER_REV = 1024;
-	
-	//The percentage of velocity that is transfered from the shooter wheels to the balls.
-	public static final double BALL_VELOCITY_CONSTANT = 0.5;
 	
 	//Game Constants
 	public static final double BOILER_HEIGHT = 8 + 1/12; //Feet
