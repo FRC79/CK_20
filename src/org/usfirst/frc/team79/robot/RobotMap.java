@@ -26,8 +26,7 @@ public class RobotMap {
 	public static final int INTAKE_DEPLOY_UP = 1;
 	public static final int SHIFT_SHOOTER = 2;
 	public static final int SHIFT_CLIMBER = 3;
-	
-	public static ShiftState Shift_State = ShiftState.SHOOTER;
+	public static final int PITCH_CONTROLLER = 4;
 	
 	//encoders
 
