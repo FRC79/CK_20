@@ -17,7 +17,7 @@ public class StartIntake extends Command {
     }
     
     public void execute() {
-    		Robot.intake.intake.set(-0.6);
+    		Robot.intake.intake.set(-1.0);
     }
 
     public boolean isFinished() {
