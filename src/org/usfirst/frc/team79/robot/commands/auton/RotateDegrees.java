@@ -15,6 +15,7 @@ public class RotateDegrees extends Command {
 
 	double degrees;
 	public PIDController gyroPID;
+	private boolean grip;
 	
 	/**
 	 * Rotates based off the angle given. Positive = right.
@@ -22,10 +23,14 @@ public class RotateDegrees extends Command {
 	 */
 	public RotateDegrees(double degrees){
 		requires(Robot.driveTrain);
-		Robot.driveTrain.gyro.zeroYaw(); //Temporary for testing
 		this.degrees = degrees + Robot.driveTrain.getGyroAngle();
 		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput());
-		}
+	}
+	
+	public RotateDegrees(){
+		requires(Robot.driveTrain);
+		grip = true;
+	}
 	
 	protected void initialize(){
 		System.out.println("Initializing command");
