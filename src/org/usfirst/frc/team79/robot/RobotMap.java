@@ -17,8 +17,8 @@ public class RobotMap {
 	public static int CONVEYER_MOTOR = 7;
 	public static int SHOOTER_MOTOR_1 = 6;
 	public static int SHOOTER_MOTOR_2 = 9;
+	
 	//encoders
-
 	public static int LEFT_WHEEL_ENCODER_A = 1;
 	public static int LEFT_WHEEL_ENCODER_B = 2;
 
@@ -43,7 +43,9 @@ public class RobotMap {
 	public static final double CAMERA_ANGLE = 30.0; //Degrees TODO
 	public static final double CAMERA_HEIGHT = 2; //Feet TODO
 
-	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI;
+	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI; //inches
+	public static final double SHOOTER_MAX_VELOCITY = 1000; //RPM
+	public static final double SHOOTER_WHEEL_RADIUS = 1; //feet
 	public static final int TICKS_PER_REV = 360;
 	public static final int SHOOTER_TICKS_PER_REV = 1024;
 	
