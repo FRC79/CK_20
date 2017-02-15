@@ -9,7 +9,7 @@ public class StartFiringSubsystems extends CommandGroup{
 	
 	public StartFiringSubsystems(){
 		this.addSequential(new StartShooter());
-		this.addSequential(new WaitForIt(0.25));
+		this.addSequential(new WaitForIt(0.4));
 		this.addSequential(new StartFeeder());
 		this.addSequential(new StartConveyer());
 	}
