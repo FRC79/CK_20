@@ -17,6 +17,10 @@ public class ProcessGripData{
 	 */
 	public static double getHeading(){
 		Contour tape = getSingleContour();
+		return getHeading(tape);
+	}
+	
+	public static double getHeading(Contour tape){
 		double headingToTarget = 0;
 		if(tape != null){
 			headingToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
@@ -31,6 +35,10 @@ public class ProcessGripData{
 	 */
 	public static double getDistance(){
 		Contour tape = getSingleContour();
+		return getDistance(tape);
+	}
+	
+	public static double getDistance(Contour tape){
 		double distance = 0;
 		if(tape != null){
 			double pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
@@ -46,12 +54,26 @@ public class ProcessGripData{
 	 */
 	public static double getPitchHeading(){
 		Contour tape = getSingleContour();
+		return getPitchHeading(tape);
+	}
+	
+	public static double getPitchHeading(Contour tape){
 		double pitchHeading = 0;
 		if(tape != null){
 			pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
 			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
 		}else SmartDashboard.putNumber("Pitch Heading to Boiler", 0);
 		return pitchHeading;
+	}
+	
+	public static double getBoilerPitchHeading(){
+		Contour tape = getSingleContour();
+		double boilerPitchHeading = 0;
+		if(tape != null){
+			double distance = getDistance(tape);
+			boilerPitchHeading = Math.toDegrees(Math.atan(RobotMap.BOILER_HEIGHT/distance));
+		}
+		return boilerPitchHeading;
 	}
 	
 	/**
