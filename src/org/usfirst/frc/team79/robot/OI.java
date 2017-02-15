@@ -1,5 +1,6 @@
 package org.usfirst.frc.team79.robot;
 
+import org.usfirst.frc.team79.robot.commands.ChangeProjection;
 import org.usfirst.frc.team79.robot.commands.DeployIntake;
 import org.usfirst.frc.team79.robot.commands.RetractIntake;
 import org.usfirst.frc.team79.robot.commands.ShiftShooterMotor;
@@ -37,6 +38,7 @@ public class OI {
 	public Button retractIntake = new JoystickButton(throttleStick, 10);
 	public Button shiftShooter = new JoystickButton(throttleStick, 9);
 	public Button shiftClimber = new JoystickButton(throttleStick, 5);
+	public Button changeProjection = new JoystickButton(throttleStick, 6);
 	
 	public OI(){
 //		this.gripButton.toggleWhenPressed(new AlignShooter());
@@ -49,6 +51,7 @@ public class OI {
 		this.retractIntake.whenActive(new RetractIntake());
 		this.shiftShooter.whenActive(new ShiftShooterMotor(ShiftState.SHOOTER));
 		this.shiftClimber.whenActive(new ShiftShooterMotor(ShiftState.CLIMBER));
+		this.changeProjection.whenActive(new ChangeProjection());
 		
 		this.intakeButton.whenReleased(new StopIntake());
 		this.feederButton.whenReleased(new StopFeeder());
