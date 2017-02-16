@@ -36,8 +36,7 @@ public class OI {
 	public Button firingButton = new JoystickButton(throttleStick, 7);
 	public Button deployIntake = new JoystickButton(throttleStick, 1);
 	public Button retractIntake = new JoystickButton(throttleStick, 10);
-	public Button shiftShooter = new JoystickButton(throttleStick, 9);
-	public Button shiftClimber = new JoystickButton(throttleStick, 5);
+	public Button invertSubsystems = new JoystickButton(throttleStick, 9);
 	public Button changeProjection = new JoystickButton(throttleStick, 6);
 	
 	public OI(){
@@ -49,8 +48,8 @@ public class OI {
 		this.firingButton.whenActive(new StartFiringSubsystems());
 		this.deployIntake.whenActive(new DeployIntake());
 		this.retractIntake.whenActive(new RetractIntake());
-		this.shiftShooter.whenActive(new ShiftShooterMotor(ShiftState.SHOOTER));
-		this.shiftClimber.whenActive(new ShiftShooterMotor(ShiftState.CLIMBER));
+		this.invertSubsystems.whenActive(new StartFiringSubsystems(true));
+//		this.shiftClimber.whenActive(new ShiftShooterMotor(ShiftState.CLIMBER));
 		this.changeProjection.whenActive(new ChangeProjection());
 		
 		this.intakeButton.whenReleased(new StopIntake());
@@ -58,6 +57,7 @@ public class OI {
 		this.conveyerButton.whenReleased(new StopConveyer());
 		this.shootButton.whenReleased(new StopShooter());
 		this.firingButton.whenReleased(new StopFiringSubsystems());
+		this.invertSubsystems.whenReleased(new StopFiringSubsystems());
 		
 	}
 	
