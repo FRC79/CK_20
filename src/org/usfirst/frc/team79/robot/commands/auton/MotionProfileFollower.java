@@ -1,5 +1,6 @@
 package org.usfirst.frc.team79.robot.commands.auton;
 
+import org.usfirst.frc.team79.robot.RobotMap;
 import org.usfirst.frc.team79.robot.utilities.MPOutput;
 
 import com.ctre.CANTalon;
@@ -241,8 +242,8 @@ public class MotionProfileFollower {
 		this.talon.clearMotionProfileTrajectories();
 
 		for (int i = 0; i < segments.length; ++i) {
-			point.position = segments[i].position;
-			point.velocity = segments[i].velocity;
+			point.position = segments[i].position*3.28084/RobotMap.WHEEL_CIRCUMFERENCE; //meters to rotations
+			point.velocity = segments[i].velocity*3.28084/RobotMap.WHEEL_CIRCUMFERENCE*60; //meters/second to RPM
 			point.timeDurMs = (int) (segments[i].dt * 1000);
 			point.profileSlotSelect = 0;
 			point.velocityOnly = false;
