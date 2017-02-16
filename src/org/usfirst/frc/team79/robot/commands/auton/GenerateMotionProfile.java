@@ -4,6 +4,8 @@ package org.usfirst.frc.team79.robot.commands.auton;
 import java.io.File;
 import java.io.IOException;
 
+import org.usfirst.frc.team79.robot.RobotMap;
+
 import jaci.pathfinder.Pathfinder;
 import jaci.pathfinder.Trajectory;
 import jaci.pathfinder.Waypoint;
@@ -26,9 +28,7 @@ public class GenerateMotionProfile{
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		//TODO wheelbase needed. Distance (meters) between the 2 sides of the drive train.
-		double wheelbase = 1.0;
-		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(wheelbase);
+		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(RobotMap.WHEEL_BASE);
 		left = modifier.getLeftTrajectory();
 		right = modifier.getRightTrajectory();
 		for(int i=0; i<right.segments.length; i++){
