@@ -38,7 +38,7 @@ public class StartShooter extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return Robot.shooter.shooterWheel.getError() < 0.5;
+		return false;
 	}
 
 }
