@@ -2,6 +2,7 @@ package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.commands.DriveDistance;
 import org.usfirst.frc.team79.robot.commands.DriveSpeed;
+import org.usfirst.frc.team79.robot.commands.StartShooter;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
 
 import edu.wpi.first.wpilibj.Joystick;
@@ -17,10 +18,12 @@ public class OI {
 
 	public Button gripButton = new JoystickButton(throttleStick, 5);
 	public Button driveButton = new JoystickButton(throttleStick, 8);
+	public Button shooterButton = new JoystickButton(throttleStick, 4);
 	
 	public OI(){
 		this.gripButton.toggleWhenPressed(new AlignShooter());
 		this.driveButton.toggleWhenPressed(new DriveDistance(120));
+		this.shooterButton.toggleWhenPressed(new StartShooter(1000));
 	}
 	
 	public Joystick getJoystick() {
