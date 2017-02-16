@@ -5,12 +5,12 @@ import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 public enum ProjectionEnum {
 	
 	UP(30, Value.kForward),
-	DOWN(10, Value.kReverse);
+	DOWN(18, Value.kReverse);
 	
 	public final double angle;
 	public final Value value;
 	
-	ProjectionEnum(double angle){
+	ProjectionEnum(double angle, Value value){
 		this.angle = angle;
 		this.value = value;
 	}
