@@ -8,10 +8,14 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class StartFiringSubsystems extends CommandGroup{
 	
 	public StartFiringSubsystems(){
-		this.addSequential(new StartShooter());
+		this(false);
+	}
+	
+	public StartFiringSubsystems(boolean invert){
+		this.addSequential(new StartShooter(invert));
 		this.addSequential(new WaitForIt(0.4));
-		this.addSequential(new StartFeeder());
-		this.addSequential(new StartConveyer());
+		this.addSequential(new StartFeeder(invert));
+		this.addSequential(new StartConveyer(invert));
 	}
 
 }
