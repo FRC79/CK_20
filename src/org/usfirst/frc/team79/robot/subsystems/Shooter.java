@@ -18,8 +18,7 @@ public class Shooter extends Subsystem {
 	public Shooter() {
 		shooterWheelSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		shooterWheelSlave.set(shooterWheel.getDeviceID());
-		shooterWheel.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		shooterWheel.configEncoderCodesPerRev(RobotMap.SHOOTER_TICKS_PER_REV);
+		shooterWheel.setFeedbackDevice(FeedbackDevice.CtreMagEncoder_Relative);
 	}
 
 	public void initDefaultCommand() {
