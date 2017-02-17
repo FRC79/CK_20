@@ -44,7 +44,7 @@ public class RobotMap {
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
 
 	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI/12d;
-	public static final double WHEEL_BASE = 0.4112; //Meters
+	public static final double WHEEL_BASE = 0.7112; //Meters
 	public static final int TICKS_PER_REV = 360;
 	public static final int SHOOTER_TICKS_PER_REV = 1024;
 }
