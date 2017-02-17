@@ -4,17 +4,17 @@ import org.usfirst.frc.team79.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StopIntake extends Command{
+public class StopConveyer extends Command{
 	
 	/**
-	 * Stops the intake
+	 * Toggles the shooter
 	 */
-	public StopIntake(){
-		requires(Robot.intake);
+	public StopConveyer(){
+		requires(Robot.feeder);
 	}
 	
 	public void execute(){
-		Robot.intake.intake.set(0);
+		Robot.feeder.conveyer.set(0);
 	}
 
 	@Override

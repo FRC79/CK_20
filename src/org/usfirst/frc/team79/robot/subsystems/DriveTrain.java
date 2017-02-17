@@ -7,6 +7,7 @@ import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SerialPort;
@@ -24,7 +25,6 @@ public class DriveTrain extends Subsystem {
 		BackLeft = new CANTalon(RobotMap.BackLeftMotor);
 		FrontRight = new CANTalon(RobotMap.FrontRightMotor);
 		BackRight = new CANTalon(RobotMap.BackRightMotor);
-
 		// slaves back Talons to front Talons
 		BackRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		BackLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
