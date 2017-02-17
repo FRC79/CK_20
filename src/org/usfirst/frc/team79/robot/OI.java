@@ -12,7 +12,6 @@ import org.usfirst.frc.team79.robot.commands.StartShooter;
 import org.usfirst.frc.team79.robot.commands.StopFeederConveyer;
 import org.usfirst.frc.team79.robot.commands.StopFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StopIntake;
-import org.usfirst.frc.team79.robot.commands.StopShooter;
 import org.usfirst.frc.team79.robot.commands.UnengageHanger;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
 
@@ -65,8 +64,7 @@ public class OI {
 		shootRoutine.whenReleased(new StopFiringSubsystems());
 		
 		//Operator controller
-		manualShooterControl.whenPressed(new StartShooter(0));
-		manualShooterControl.whenReleased(new StopShooter());
+		manualShooterControl.whileActive(new StartShooter(0));
 		
 		intakeDeploy.whenPressed(new DeployIntake());
 		intakeRetract.whenPressed(new RetractIntake());
@@ -76,6 +74,9 @@ public class OI {
 		
 		reverseConveyer_FeederRun.whenPressed(new RunFeederConveyer(true));
 		reverseConveyer_FeederRun.whenReleased(new StopFeederConveyer());
+		
+		conveyer_FeederRun.whenPressed(new RunFeederConveyer(false));
+		conveyer_FeederRun.whenReleased(new StopFeederConveyer());
 	}
 	
 	public Joystick getJoystick() {
