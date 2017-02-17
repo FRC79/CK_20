@@ -27,6 +27,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	public Joystick throttleStick = new Joystick(0);
+	public Joystick operatorStick = new Joystick(1);
 
 //	public Button gripButton = new JoystickButton(throttleStick, 5);
 	public Button intakeButton = new JoystickButton(throttleStick, 2);
