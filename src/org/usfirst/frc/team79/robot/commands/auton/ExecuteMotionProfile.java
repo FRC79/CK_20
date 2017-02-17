@@ -21,13 +21,15 @@ public class ExecuteMotionProfile extends Command{
 	protected void initialize(){
 		lStatus = new MotionProfileStatus();
 		rStatus = new MotionProfileStatus();
+		Robot.driveTrain.FrontLeft.setEncPosition(0);
+		Robot.driveTrain.FrontRight.setEncPosition(0);
 		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.MotionProfile);
 		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.MotionProfile);
-		Robot.driveTrain.FrontRight.set(Robot.driveTrain.FrontLeft.getDeviceID());
 		left = new MotionProfileFollower(Robot.driveTrain.FrontLeft, GenerateMotionProfile.left.segments);
 		right = new MotionProfileFollower(Robot.driveTrain.FrontRight, GenerateMotionProfile.right.segments);
 		left.startMotionProfile();
 		right.startMotionProfile();
+		Robot.driveTrain.FrontRight.reverseOutput(true);
 	}
 	
 	protected void execute(){
@@ -40,6 +42,9 @@ public class ExecuteMotionProfile extends Command{
 	protected void end(){
 		left.reset();
 		right.reset();
+		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);
+		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.PercentVbus);
+		Robot.driveTrain.FrontRight.reverseOutput(false);
 	}
 	
 	@Override
