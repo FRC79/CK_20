@@ -27,7 +27,6 @@ public class RobotMap {
 	public static final int SHIFT_SHOOTER = 2;
 	public static final int SHIFT_CLIMBER = 3;
 	public static final int PITCH_CONTROLLER = 4;
-	
 	//encoders
 
 	public static final int LEFT_WHEEL_ENCODER_A = 1;
@@ -54,7 +53,8 @@ public class RobotMap {
 	public static final double CX = IMAGE_WIDTH / 2 - .5;
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
 
-	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI;
+	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI/12d;
+	public static final double WHEEL_BASE = 0.7112; //Meters
 	public static final int TICKS_PER_REV = 360;
 	public static final int SHOOTER_TICKS_PER_REV = 1024;
 }

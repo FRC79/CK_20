@@ -1,7 +1,7 @@
 
 package org.usfirst.frc.team79.robot;
 
-
+import org.usfirst.frc.team79.robot.commands.auton.InitAuton;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 import org.usfirst.frc.team79.robot.subsystems.Intake;
@@ -53,7 +53,7 @@ public class Robot extends IterativeRobot {
 			SmartDashboard.putNumber("Turn P", 0);
 			SmartDashboard.putNumber("Turn I", 0);
 			SmartDashboard.putNumber("Turn D", 0);
-			
+			SmartDashboard.putNumber("Velocity", 0);
 			SmartDashboard.putNumber("Set Shooter Speed", 1);
 		}
 
@@ -63,7 +63,10 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-
+		Robot.driveTrain.FrontLeft.clearMotionProfileTrajectories();
+		Robot.driveTrain.FrontRight.clearMotionProfileTrajectories();
+		Robot.driveTrain.FrontLeft.setEncPosition(0);
+		Robot.driveTrain.FrontRight.setEncPosition(0);
 	}
 
 	public void disabledPeriodic() {
@@ -71,11 +74,13 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-
+		Scheduler.getInstance().add(new InitAuton());
 	}
 
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Left Encoder", driveTrain.FrontLeft.getPosition());
+		SmartDashboard.putNumber("Right Encoder", driveTrain.FrontRight.getPosition());
 	}
 
 	public void teleopInit() {
@@ -87,6 +92,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Gyro", driveTrain.getGyroAngle());
 		SmartDashboard.putNumber("Left Encoder", driveTrain.FrontLeft.getPosition());
 		SmartDashboard.putNumber("Right Encoder", driveTrain.FrontRight.getPosition());
+		SmartDashboard.putNumber("Velocity", driveTrain.FrontLeft.getSpeed());
 		SmartDashboard.putNumber("Shooter Velocity", shooter.shooterWheel.getSpeed());
 	}
 
