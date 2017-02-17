@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StartIntake extends Command {
 	
-	private int invert;
+	private double invert;
 
 	/**
 	 * Toggles the intake
@@ -20,11 +20,11 @@ public class StartIntake extends Command {
     
     public StartIntake(boolean invert){
     	requires(Robot.intake);
-    	this.invert = invert ? -1 : 1;
+    	this.invert = invert ? -0.15 : 1;
     }
     
     public void execute() {
-    		Robot.intake.intake.set(-1.0*invert);
+    	Robot.intake.intake.set(-1.0*invert);
     }
 
     public boolean isFinished() {
