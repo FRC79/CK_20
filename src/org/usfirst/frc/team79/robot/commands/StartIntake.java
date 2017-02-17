@@ -20,7 +20,7 @@ public class StartIntake extends Command {
     
     public StartIntake(boolean invert){
     	requires(Robot.intake);
-    	this.invert = invert ? -0.15 : 1;
+    	this.invert = invert ? -1 : 1;
     }
     
     public void execute() {
