@@ -1,23 +1,20 @@
 package org.usfirst.frc.team79.robot;
 
-import org.usfirst.frc.team79.robot.commands.ChangeProjection;
 import org.usfirst.frc.team79.robot.commands.DeployIntake;
 import org.usfirst.frc.team79.robot.commands.EngageHanger;
+import org.usfirst.frc.team79.robot.commands.HoodDown;
+import org.usfirst.frc.team79.robot.commands.HoodUp;
 import org.usfirst.frc.team79.robot.commands.RetractIntake;
 import org.usfirst.frc.team79.robot.commands.RunFeederConveyer;
 import org.usfirst.frc.team79.robot.commands.StartFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StartIntake;
 import org.usfirst.frc.team79.robot.commands.StartShooter;
-import org.usfirst.frc.team79.robot.commands.StopConveyer;
-import org.usfirst.frc.team79.robot.commands.StopFeeder;
 import org.usfirst.frc.team79.robot.commands.StopFeederConveyer;
 import org.usfirst.frc.team79.robot.commands.StopFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StopIntake;
 import org.usfirst.frc.team79.robot.commands.StopShooter;
 import org.usfirst.frc.team79.robot.commands.UnengageHanger;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
-import org.usfirst.frc.team79.robot.commands.feeder.StartConveyer;
-import org.usfirst.frc.team79.robot.commands.feeder.StartFeeder;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -30,7 +27,9 @@ public class OI {
 
 	public Joystick throttleStick = new Joystick(0);
 	
+	public Button lowerHood = new JoystickButton(throttleStick, 2);
 	public Button autoAlignWithBoiler = new JoystickButton(throttleStick, 3);
+	public Button liftHood = new JoystickButton(throttleStick, 4);
 	public Button intakeRun = new JoystickButton(throttleStick, 6);
 	public Button reverseShootRoutine = new JoystickButton(throttleStick, 7);
 	public Button shootRoutine = new JoystickButton(throttleStick, 8);
@@ -51,6 +50,9 @@ public class OI {
 	
 	public OI(){
 		//Driving controller
+		liftHood.whenActive(new HoodUp());
+		lowerHood.whenActive(new HoodDown());
+		
 		autoAlignWithBoiler.toggleWhenActive(new AlignShooter());
 		
 		intakeRun.whenPressed(new StartIntake());
