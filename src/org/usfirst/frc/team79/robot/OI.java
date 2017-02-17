@@ -29,6 +29,7 @@ public class OI {
 	public Button lowerHood = new JoystickButton(throttleStick, 2);
 	public Button autoAlignWithBoiler = new JoystickButton(throttleStick, 3);
 	public Button liftHood = new JoystickButton(throttleStick, 4);
+	public Button intakeReverse = new JoystickButton(throttleStick, 5);
 	public Button intakeRun = new JoystickButton(throttleStick, 6);
 	public Button reverseShootRoutine = new JoystickButton(throttleStick, 7);
 	public Button shootRoutine = new JoystickButton(throttleStick, 8);
@@ -54,6 +55,8 @@ public class OI {
 		
 		autoAlignWithBoiler.toggleWhenActive(new AlignShooter());
 		
+		intakeReverse.whenPressed(new StartIntake(true));
+		intakeReverse.whenReleased(new StopIntake());
 		intakeRun.whenPressed(new StartIntake());
 		intakeRun.whenReleased(new StopIntake());
 		
