@@ -2,7 +2,6 @@ package org.usfirst.frc.team79.robot.subsystems;
 
 import org.usfirst.frc.team79.robot.RobotMap;
 import org.usfirst.frc.team79.robot.commands.StopShooter;
-import org.usfirst.frc.team79.robot.utilities.ShiftState;
 
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
