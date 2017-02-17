@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class StartShooter extends Command{
 	
-	private int invert;
+	private double invert;
 	
 	/**
 	 * Toggles the shooter
@@ -18,7 +18,7 @@ public class StartShooter extends Command{
 	
 	public StartShooter(boolean invert){
 		requires(Robot.shooter);
-		this.invert = invert ? -1 : 1;
+		this.invert = invert ? -0.15 : 1;
 	}
 	
 	public void execute(){
