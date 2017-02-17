@@ -37,6 +37,7 @@ public class OI {
 	
 	public Joystick operatorStick = new Joystick(1);
 	
+	public Button manualShooterControl = new JoystickButton(operatorStick, 1);
 	public Button gearUp = new JoystickButton(operatorStick, 2);
 	public Button gearDown = new JoystickButton(operatorStick, 3);
 	public Button gearIntake = new JoystickButton(operatorStick, 4);
@@ -62,6 +63,9 @@ public class OI {
 		shootRoutine.whenReleased(new StopFiringSubsystems());
 		
 		//Operator controller
+		manualShooterControl.whenPressed(new StartShooter(0));
+		manualShooterControl.whenReleased(new StopShooter());
+		
 		intakeDeploy.whenPressed(new DeployIntake());
 		intakeRetract.whenPressed(new RetractIntake());
 		

@@ -10,7 +10,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class StartShooter extends Command{
 	
 	private double invert;
-	private Boolean stickControl;
+	public static Boolean stickControl;
+
 	/**
 	 * Toggles the shooter
 	 */
@@ -31,7 +32,7 @@ public class StartShooter extends Command{
 	}
 	
 	public void execute(){
-		if(stickControl != true){
+		if(!stickControl){
 			Robot.shooter.shooterWheel.set(SmartDashboard.getNumber("Set Shooter Speed", 0)*invert);
 		}else{
 			Robot.shooter.shooterWheel.set(Robot.oi.operatorStick.getY());
@@ -40,7 +41,7 @@ public class StartShooter extends Command{
 
 	@Override
 	protected boolean isFinished() {
-		return true;
+		return !stickControl;
 	}
 
 }

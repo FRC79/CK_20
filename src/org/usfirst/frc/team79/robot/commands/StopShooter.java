@@ -15,6 +15,7 @@ public class StopShooter extends Command{
 	
 	public void execute(){
 		Robot.shooter.shooterWheel.set(0);
+		StartShooter.stickControl = false;
 	}
 
 	@Override
