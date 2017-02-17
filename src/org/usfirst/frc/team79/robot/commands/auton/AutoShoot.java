@@ -2,10 +2,8 @@ package org.usfirst.frc.team79.robot.commands.auton;
 
 import java.util.ArrayList;
 
-import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.RobotMap;
 import org.usfirst.frc.team79.robot.commands.StartShooter;
-import org.usfirst.frc.team79.robot.utilities.ProjectionEnum;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.CommandGroup;
@@ -20,10 +18,10 @@ public class AutoShoot extends CommandGroup{
 	}
 	
 	public void initialize(){
-		double projection = Math.toRadians(ProjectionEnum.DOWN.angle);
+		double projection = Math.toRadians(RobotMap.HOOD_DOWN_ANGLE);
 		double target = 0;
 		if((target=calculateVelocity(projection))>RobotMap.SHOOTER_MAX_VELOCITY){
-			target = calculateVelocity(ProjectionEnum.UP.angle);
+			target = calculateVelocity(RobotMap.HOOD_UP_ANGLE);
 		}
 		((StartShooter)commands.get(1)).speed = target;
 		System.out.println("Shooter set to " + target + " RPM");

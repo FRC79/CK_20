@@ -49,6 +49,9 @@ public class RobotMap {
 	public static final int TICKS_PER_REV = 360;
 	public static final int SHOOTER_TICKS_PER_REV = 1024;
 	
+	public static final double HOOD_UP_ANGLE = 30; //Degrees
+	public static final double HOOD_DOWN_ANGLE = 10; //Degrees
+	
 	//Game Constants
 	public static final double BOILER_HEIGHT = 8 + 1/12; //Feet
 	
