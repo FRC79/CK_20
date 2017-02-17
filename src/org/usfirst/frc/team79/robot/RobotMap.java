@@ -1,4 +1,7 @@
 package org.usfirst.frc.team79.robot;
+
+import org.usfirst.frc.team79.robot.utilities.ShiftState;
+
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
  * to a variable name. This provides flexibility changing wiring, makes checking
@@ -8,27 +11,35 @@ package org.usfirst.frc.team79.robot;
 public class RobotMap {
 
 	//motors
-	public static int FrontLeftMotor = 1;
-	public static int BackLeftMotor = 3;
-	public static int FrontRightMotor = 2;
-	public static int BackRightMotor = 4;
-	public static int INTAKE_MOTOR =5;
-	public static int FEEDER_MOTOR = 8;
-	public static int CONVEYER_MOTOR = 7;
-	public static int SHOOTER_MOTOR_1 = 6;
-	public static int SHOOTER_MOTOR_2 = 9;
+	public static final int FrontLeftMotor = 1;
+	public static final int FrontRightMotor = 2;
+	public static final int BackLeftMotor = 3;
+	public static final int BackRightMotor = 4;
+	public static final int SHOOTER_MOTOR_1 = 5;
+	public static final int SHOOTER_MOTOR_2 = 6;
+	public static final int INTAKE_MOTOR =7;
+	public static final int FEEDER_MOTOR = 8;
+	public static final int CONVEYER_MOTOR = 9;
+	
+	//Pnematics
+	public static final int INTAKE_DEPLOY_DOWN = 0;
+	public static final int INTAKE_DEPLOY_UP = 1;
+	public static final int SHIFT_SHOOTER = 2;
+	public static final int SHIFT_CLIMBER = 3;
+	public static final int PITCH_CONTROLLER = 4;
+	
 	//encoders
 
-	public static int LEFT_WHEEL_ENCODER_A = 1;
-	public static int LEFT_WHEEL_ENCODER_B = 2;
+	public static final int LEFT_WHEEL_ENCODER_A = 1;
+	public static final int LEFT_WHEEL_ENCODER_B = 2;
 
-	public static int RIGHT_WHEEL_ENCODER_A = 1;
-	public static int RIGHT_WHEEL_ENCODER_B = 2;
+	public static final int RIGHT_WHEEL_ENCODER_A = 1;
+	public static final int RIGHT_WHEEL_ENCODER_B = 2;
 
 
 
 	// Drivetrain Constants
-	public static double driveTurningConstant = 0.6;
+	public static final double driveTurningConstant = 0.6;
 
 	//Camera Constants
 	// Calcualtes FOV and Focal length of camera. May be inaccurate due to possible automatic scaling by GRIP.
