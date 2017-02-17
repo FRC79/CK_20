@@ -2,20 +2,22 @@ package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.commands.ChangeProjection;
 import org.usfirst.frc.team79.robot.commands.DeployIntake;
+import org.usfirst.frc.team79.robot.commands.EngageHanger;
 import org.usfirst.frc.team79.robot.commands.RetractIntake;
-import org.usfirst.frc.team79.robot.commands.ShiftShooterMotor;
+import org.usfirst.frc.team79.robot.commands.RunFeederConveyer;
 import org.usfirst.frc.team79.robot.commands.StartFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StartIntake;
 import org.usfirst.frc.team79.robot.commands.StartShooter;
 import org.usfirst.frc.team79.robot.commands.StopConveyer;
 import org.usfirst.frc.team79.robot.commands.StopFeeder;
+import org.usfirst.frc.team79.robot.commands.StopFeederConveyer;
 import org.usfirst.frc.team79.robot.commands.StopFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StopIntake;
 import org.usfirst.frc.team79.robot.commands.StopShooter;
+import org.usfirst.frc.team79.robot.commands.UnengageHanger;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
 import org.usfirst.frc.team79.robot.commands.feeder.StartConveyer;
 import org.usfirst.frc.team79.robot.commands.feeder.StartFeeder;
-import org.usfirst.frc.team79.robot.utilities.ShiftState;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
@@ -27,39 +29,47 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	public Joystick throttleStick = new Joystick(0);
+	
+	public Button autoAlignWithBoiler = new JoystickButton(throttleStick, 3);
+	public Button intakeRun = new JoystickButton(throttleStick, 6);
+	public Button reverseShootRoutine = new JoystickButton(throttleStick, 7);
+	public Button shootRoutine = new JoystickButton(throttleStick, 8);
+	
 	public Joystick operatorStick = new Joystick(1);
-
-//	public Button gripButton = new JoystickButton(throttleStick, 5);
-	public Button intakeButton = new JoystickButton(throttleStick, 2);
-	public Button feederButton = new JoystickButton(throttleStick, 4);
-	public Button conveyerButton = new JoystickButton(throttleStick, 3);
-	public Button shootButton = new JoystickButton(throttleStick, 8);
-	public Button firingButton = new JoystickButton(throttleStick, 7);
-	public Button deployIntake = new JoystickButton(throttleStick, 1);
-	public Button retractIntake = new JoystickButton(throttleStick, 10);
-	public Button invertSubsystems = new JoystickButton(throttleStick, 9);
-	public Button changeProjection = new JoystickButton(throttleStick, 6);
+	
+	public Button gearUp = new JoystickButton(operatorStick, 2);
+	public Button gearDown = new JoystickButton(operatorStick, 3);
+	public Button gearIntake = new JoystickButton(operatorStick, 4);
+	public Button gearReject = new JoystickButton(operatorStick, 5);
+	public Button intakeDeploy = new JoystickButton(operatorStick, 6);
+	public Button intakeRetract = new JoystickButton(operatorStick, 7);
+	public Button engageHanger = new JoystickButton(operatorStick, 8);
+	public Button unengageHanger = new JoystickButton(operatorStick, 9);
+	public Button reverseConveyer_FeederRun = new JoystickButton(operatorStick, 10);
+	public Button conveyer_FeederRun = new JoystickButton(operatorStick, 11);
 	
 	public OI(){
-//		this.gripButton.toggleWhenPressed(new AlignShooter());
-		this.intakeButton.whenActive(new StartIntake());
-		this.feederButton.whenActive(new StartFeeder());
-		this.conveyerButton.whenActive(new StartConveyer());
-		this.shootButton.whenActive(new StartShooter());
-		this.firingButton.whenActive(new StartFiringSubsystems());
-		this.deployIntake.whenActive(new DeployIntake());
-		this.retractIntake.whenActive(new RetractIntake());
-		this.invertSubsystems.whenActive(new StartFiringSubsystems(true));
-//		this.shiftClimber.whenActive(new ShiftShooterMotor(ShiftState.CLIMBER));
-		this.changeProjection.whenActive(new ChangeProjection());
+		//Driving controller
+		autoAlignWithBoiler.toggleWhenActive(new AlignShooter());
 		
-		this.intakeButton.whenReleased(new StopIntake());
-		this.feederButton.whenReleased(new StopFeeder());
-		this.conveyerButton.whenReleased(new StopConveyer());
-		this.shootButton.whenReleased(new StopShooter());
-		this.firingButton.whenReleased(new StopFiringSubsystems());
-		this.invertSubsystems.whenReleased(new StopFiringSubsystems());
+		intakeRun.whenPressed(new StartIntake());
+		intakeRun.whenReleased(new StopIntake());
 		
+		reverseShootRoutine.whenPressed(new StartFiringSubsystems(true));
+		reverseShootRoutine.whenReleased(new StopFiringSubsystems());
+		
+		shootRoutine.whenPressed(new StartFiringSubsystems());
+		shootRoutine.whenReleased(new StopFiringSubsystems());
+		
+		//Operator controller
+		intakeDeploy.whenPressed(new DeployIntake());
+		intakeRetract.whenPressed(new RetractIntake());
+		
+		engageHanger.whenPressed(new EngageHanger());
+		unengageHanger.whenPressed(new UnengageHanger());
+		
+		reverseConveyer_FeederRun.whenPressed(new RunFeederConveyer(true));
+		reverseConveyer_FeederRun.whenReleased(new StopFeederConveyer());
 	}
 	
 	public Joystick getJoystick() {
