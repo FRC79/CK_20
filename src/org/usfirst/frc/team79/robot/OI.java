@@ -59,8 +59,8 @@ public class OI {
 		intakeRun.whenPressed(new StartIntake());
 		intakeRun.whenReleased(new StopIntake());
 		
-		intakeDeploy.whenPressed(new EngageHanger());
-		intakeRetract.whenPressed(new UnengageHanger());
+		intakeDeploy.whenPressed(new DeployIntake());
+		intakeRetract.whenPressed(new RetractIntake());
 		
 		//Operator controller
 		hoodControl.whenActive(new HoodUp(), 0);
@@ -68,8 +68,8 @@ public class OI {
 		
 		manualShooterControl.whileActive(new StartShooter(0), -1, 1);
 		
-		engageHanger.whenPressed(new DeployIntake());
-		unengageHanger.whenPressed(new RetractIntake());
+		engageHanger.whenPressed(new EngageHanger());
+		unengageHanger.whenPressed(new UnengageHanger());
 		
 		conveyer_FeederRun.whenActive(new RunFeederConveyer(true), 1, .8);
 		conveyer_FeederRun.whenActive(new RunFeederConveyer(false), -1, .8);
