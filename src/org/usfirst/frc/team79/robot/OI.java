@@ -15,6 +15,7 @@ import org.usfirst.frc.team79.robot.commands.StopIntake;
 import org.usfirst.frc.team79.robot.commands.StopShooter;
 import org.usfirst.frc.team79.robot.commands.UnengageHanger;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
+import org.usfirst.frc.team79.robot.commands.auton.AutoShoot;
 import org.usfirst.frc.team79.robot.utilities.AxisButton;
 import org.usfirst.frc.team79.robot.utilities.POVButton;
 
@@ -52,7 +53,7 @@ public class OI {
 	
 	public OI(){
 		//Driving controller
-		autoAlignWithBoiler.toggleWhenActive(new AlignShooter());
+		autoAlignWithBoiler.toggleWhenActive(new AutoShoot());
 		
 		intakeReverse.whenPressed(new StartIntake(true));
 		intakeReverse.whenReleased(new StopIntake());
