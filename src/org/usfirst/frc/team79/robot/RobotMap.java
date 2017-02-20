@@ -48,8 +48,8 @@ public class RobotMap {
 	//Center of camera image.
 	public static final double CX = 83;
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
-	public static final double CAMERA_ANGLE = 30.0; //Degrees TODO
-	public static final double CAMERA_HEIGHT = 2; //Feet TODO
+	public static final double CAMERA_ANGLE = 40.0; //Degrees TODO
+	public static final double CAMERA_HEIGHT = 23.3/12; //Feet TODO
 
 	public static final double SHOOTER_MAX_VELOCITY = 5000; //RPM
 	public static final double SHOOTER_WHEEL_RADIUS = 1; //feet
@@ -58,8 +58,8 @@ public class RobotMap {
 	public static final int TICKS_PER_REV = 360;
 	public static final int SHOOTER_TICKS_PER_REV = 1024;
 	
-	public static final double HOOD_UP_ANGLE = 30; //Degrees
-	public static final double HOOD_DOWN_ANGLE = 10; //Degrees
+	public static final double HOOD_UP_ANGLE = 80; //Degrees
+	public static final double HOOD_DOWN_ANGLE = 70; //Degrees
 	
 	//Game Constants
 	public static final double BOILER_HEIGHT = 8 + 1/12; //Feet
