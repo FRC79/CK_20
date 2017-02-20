@@ -35,13 +35,11 @@ public class StartShooter extends Command{
 		if(!stickControl){
 			Robot.shooter.shooterWheel.set(SmartDashboard.getNumber("Set Shooter Speed", 0)*invert);
 		}else{
-			System.out.println(Robot.oi.operatorStick.getY());
-			Robot.shooter.shooterWheel.set(Robot.oi.operatorStick.getY());
+			Robot.shooter.shooterWheel.set(Robot.oi.operatorStick.getY()*-1);
 		}
 	}
 	
 	public void end(){
-		if(stickControl) Robot.shooter.shooterWheel.set(0);
 	}
 	
 	public void interrupted(){

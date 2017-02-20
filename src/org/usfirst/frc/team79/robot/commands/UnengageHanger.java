@@ -2,6 +2,7 @@ package org.usfirst.frc.team79.robot.commands;
 
 import org.usfirst.frc.team79.robot.Robot;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -12,7 +13,8 @@ public class UnengageHanger extends Command{
 	}
 	
 	protected void execute(){
-		Robot.shooter.shift.set(Value.kReverse);
+		System.out.println("Backwards");
+		Robot.shooter.solenoidShift.set(DoubleSolenoid.Value.kReverse);
 	}
 	
 	@Override

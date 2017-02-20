@@ -17,8 +17,8 @@ public class Shooter extends Subsystem {
 
 	public CANTalon shooterWheel = new CANTalon(RobotMap.SHOOTER_MOTOR_1);
 	public CANTalon shooterWheelSlave = new CANTalon(RobotMap.SHOOTER_MOTOR_2);
-	public DoubleSolenoid shift = new DoubleSolenoid(RobotMap.SHIFT_SHOOTER, RobotMap.SHIFT_CLIMBER);
-	public Solenoid hoodController = new Solenoid(RobotMap.PITCH_CONTROLLER);
+	public DoubleSolenoid solenoidShift = new DoubleSolenoid(RobotMap.SHIFT_SHOOTER, RobotMap.SHIFT_CLIMBER);
+	public Solenoid hoodController = new Solenoid(RobotMap.HOOD_CONTROLLER);
 
 	public Shooter() {
 		shooterWheelSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
