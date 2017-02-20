@@ -8,7 +8,6 @@ import edu.wpi.first.wpilibj.command.Command;
 public class EngageHanger extends Command{
 
 	public EngageHanger(){
-		requires(Robot.shooter);
 	}
 	
 	protected void execute(){
