@@ -12,6 +12,7 @@ import org.usfirst.frc.team79.robot.commands.StartShooter;
 import org.usfirst.frc.team79.robot.commands.StopFeederConveyer;
 import org.usfirst.frc.team79.robot.commands.StopFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StopIntake;
+import org.usfirst.frc.team79.robot.commands.StopShooter;
 import org.usfirst.frc.team79.robot.commands.UnengageHanger;
 import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
 import org.usfirst.frc.team79.robot.utilities.AxisButton;
@@ -66,7 +67,8 @@ public class OI {
 		hoodControl.whenActive(new HoodUp(), 0);
 		hoodControl.whenActive(new HoodDown(), 180);
 		
-		manualShooterControl.whileActive(new StartShooter(0), -1, 1);
+		manualShooterControl.whileActive(new StartShooter(0), -1, 0.87);
+		manualShooterControl.whenActive(new StopShooter(), 0, .1);
 		
 		engageHanger.whenPressed(new EngageHanger());
 		unengageHanger.whenPressed(new UnengageHanger());
