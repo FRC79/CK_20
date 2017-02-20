@@ -22,8 +22,8 @@ public class RobotMap {
 	//Pnematics
 	public static final int INTAKE_DEPLOY_DOWN = 0;
 	public static final int INTAKE_DEPLOY_UP = 1;
-	public static final int SHIFT_SHOOTER = 6;
-	public static final int SHIFT_CLIMBER = 7;
+	public static final int SHIFT_CLIMBER = 6;
+	public static final int SHIFT_SHOOTER = 7;
 	public static final int HOOD_CONTROLLER = 4;
 	//encoders
 
@@ -49,7 +49,7 @@ public class RobotMap {
 	public static final double HORIZONTAL_FOV = Math.toDegrees(Math.atan(Math.tan(Math.toRadians(DIAGONAL_FOV / 2)) * (4 / Math.sqrt(Math.pow(HORIZONTAL_ASPECT_RATIO, 2) + Math.pow(VERTICAL_ASPECT_RATIO, 2)))) * 2);; // degrees
 	public static final double FOCAL_LENGTH = IMAGE_WIDTH / Math.toDegrees((2 * Math.tan(Math.toRadians(HORIZONTAL_FOV / 2)))); // pixels
 	//Center of camera image.
-	public static final double CX = IMAGE_WIDTH / 2 - .5 + CAMERAOFFSET;
+	public static final double CX = 83;
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
 
 	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI/12d;
