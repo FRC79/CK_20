@@ -45,7 +45,16 @@ public class Robot extends IterativeRobot {
 		camera.setBrightness(15);
 		server = CameraServer.getInstance();
 		server.startAutomaticCapture(camera);
+    
+		SmartDashboard.putNumber("Heading to Boiler", 0);
+		SmartDashboard.putNumber("Center X", 0);
+		SmartDashboard.putNumber("Center Y", 0);
 
+		SmartDashboard.putNumber("Turn P", 0);
+		SmartDashboard.putNumber("Turn I", 0);
+		SmartDashboard.putNumber("Turn D", 0);
+		
+		SmartDashboard.putNumber("Shooter Velocity", 0);
 			SmartDashboard.putNumber("Heading to Boiler", 0);
 			SmartDashboard.putNumber("Center X", 0);
 			SmartDashboard.putNumber("Center Y", 0);

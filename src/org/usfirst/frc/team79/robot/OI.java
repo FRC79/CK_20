@@ -28,7 +28,7 @@ import edu.wpi.first.wpilibj.buttons.JoystickButton;
 public class OI {
 
 	public Joystick throttleStick = new Joystick(0);
-	
+
 	public Button intakeDeploy = new JoystickButton(throttleStick, 2);
 	public Button intakeRetract = new JoystickButton(throttleStick, 4);
 	public Button autoAlignWithBoiler = new JoystickButton(throttleStick, 3);

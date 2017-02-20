@@ -7,8 +7,7 @@ package org.usfirst.frc.team79.robot;
  * floating around.
  */
 public class RobotMap {
-
-	//motors
+  
 	public static final int FrontLeftMotor = 1;
 	public static final int FrontRightMotor = 2;
 	public static final int BackLeftMotor = 3;
@@ -33,8 +32,6 @@ public class RobotMap {
 	public static final int RIGHT_WHEEL_ENCODER_A = 1;
 	public static final int RIGHT_WHEEL_ENCODER_B = 2;
 
-
-
 	// Drivetrain Constants
 	public static final double driveTurningConstant = 0.6;
 
@@ -51,9 +48,21 @@ public class RobotMap {
 	//Center of camera image.
 	public static final double CX = 83;
 	public static final double CY = IMAGE_HEIGHT / 2 - .5;
+	public static final double CAMERA_ANGLE = 30.0; //Degrees TODO
+	public static final double CAMERA_HEIGHT = 2; //Feet TODO
 
+	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI; //inches
+	public static final double SHOOTER_MAX_VELOCITY = 5000; //RPM
+	public static final double SHOOTER_WHEEL_RADIUS = 1; //feet
 	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI/12d;
 	public static final double WHEEL_BASE = 0.7112; //Meters
 	public static final int TICKS_PER_REV = 360;
 	public static final int SHOOTER_TICKS_PER_REV = 1024;
+	
+	public static final double HOOD_UP_ANGLE = 30; //Degrees
+	public static final double HOOD_DOWN_ANGLE = 10; //Degrees
+	
+	//Game Constants
+	public static final double BOILER_HEIGHT = 8 + 1/12; //Feet
+	
 }
