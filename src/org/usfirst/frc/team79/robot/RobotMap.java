@@ -51,7 +51,6 @@ public class RobotMap {
 	public static final double CAMERA_ANGLE = 30.0; //Degrees TODO
 	public static final double CAMERA_HEIGHT = 2; //Feet TODO
 
-	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI; //inches
 	public static final double SHOOTER_MAX_VELOCITY = 5000; //RPM
 	public static final double SHOOTER_WHEEL_RADIUS = 1; //feet
 	public static final double WHEEL_CIRCUMFERENCE = 4 * Math.PI/12d;
