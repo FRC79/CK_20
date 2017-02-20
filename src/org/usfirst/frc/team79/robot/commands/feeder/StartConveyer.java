@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StartConveyer extends Command {
 
-	private int invert;
+	private double invert;
 	
 	/**
 	 * Toggles the conveyer.
@@ -20,7 +20,7 @@ public class StartConveyer extends Command {
     
     public StartConveyer(boolean invert){
     	requires(Robot.feeder);
-    	this.invert = invert ? -1 : 1;
+    	this.invert = invert ? -0.6 : 1;
     }
 
     protected void initialize() {
@@ -28,7 +28,7 @@ public class StartConveyer extends Command {
     }
 
     protected void execute() {
-    	Robot.feeder.conveyer.set(-0.6*invert);
+    	Robot.feeder.conveyer.set(-1.0*invert);
     }
 
     protected boolean isFinished() {

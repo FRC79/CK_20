@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class StartFeeder extends Command {
 
-	private int invert;
+	private double invert;
 	
 	/**
 	 * Toggles the feeder
@@ -20,14 +20,14 @@ public class StartFeeder extends Command {
     
     public StartFeeder(boolean invert){
     	requires(Robot.feeder);
-    	this.invert = invert ? -1 : 1;
+    	this.invert = invert ? -0.15 : 1;
     }
 
     protected void initialize() {
     }
 
     protected void execute() {
-    	Robot.feeder.feeder.set(0.6*invert);
+    	Robot.feeder.feeder.set(1.0*invert);
     }
     
     protected boolean isFinished() {
