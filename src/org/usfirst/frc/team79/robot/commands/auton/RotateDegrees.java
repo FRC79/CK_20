@@ -26,33 +26,35 @@ public class RotateDegrees extends Command {
 	public RotateDegrees(double degrees){
 		requires(Robot.driveTrain);
 		this.degrees = degrees + Robot.driveTrain.getGyroAngle();
-		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput());
+		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput(), 0.015);
 	}
 	
 	public RotateDegrees(){
 		this.grip = true;
-		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput());
+		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput(), 0.015);
 	}
 	
 	protected void initialize(){
-		if(grip) degrees = SmartDashboard.getNumber("Heading to Boiler", 0);
+		if(grip) degrees = ProcessGripData.getHeading() + Robot.driveTrain.getGyroAngle();
 		gyroPID.setPID(SmartDashboard.getNumber("Turn P", 0), SmartDashboard.getNumber("Turn I", 0), SmartDashboard.getNumber("Turn D", 0));
+		System.out.println("P: " + gyroPID.getP());
 		gyroPID.setContinuous();
-		gyroPID.setAbsoluteTolerance(0.9);
+		gyroPID.setAbsoluteTolerance(0.25);
 		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);
 		Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.PercentVbus);
 		gyroPID.setSetpoint(degrees);
 		gyroPID.enable();
+		System.out.println("Running RotateDegrees " + degrees);
 	}
 
 	protected void execute() {
-		System.out.println("Running command");
+		System.out.println("Error: " + gyroPID.getError());
 	}
 
 	protected boolean isFinished() {
 		boolean flag;
-		if(grip) flag = Robot.oi.throttleStick.getY()!=0 || Robot.oi.throttleStick.getX()!=0;
 		flag = gyroPID.onTarget();
+		if(grip && !flag) flag = Math.abs(Robot.oi.throttleStick.getY())>0.12 || Math.abs(Robot.oi.throttleStick.getX())>0.12;
 		return flag;
 	}
 
