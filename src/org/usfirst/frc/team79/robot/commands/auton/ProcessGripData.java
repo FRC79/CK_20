@@ -13,6 +13,7 @@ public class ProcessGripData{
 	
 	public static double getHeading(){
 		Contour[] contours = getContours();
+		System.out.println("Contours: " + contours.length);
 		double headingToTarget = 0;
 		if(contours.length > 0){
 			Contour tape = getGreatestContour(contours);
@@ -20,10 +21,11 @@ public class ProcessGripData{
 			double pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
 			//Sends the header to the dashboard to be used in the RotateDegrees command.
 			SmartDashboard.putNumber("Heading to Boiler", headingToTarget);
+			System.out.println("Heading: " + headingToTarget);
 			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
 			SmartDashboard.putNumber("Center X", tape.centerX);
 			SmartDashboard.putNumber("Center Y", tape.centerY);
-		}else SmartDashboard.putNumber("Header to Boiler", 0);
+		}else SmartDashboard.putNumber("Heading to Boiler", 0);
 		return headingToTarget;
 	}
 	
