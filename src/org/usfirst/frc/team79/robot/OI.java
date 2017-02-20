@@ -2,6 +2,11 @@ package org.usfirst.frc.team79.robot;
 
 import org.usfirst.frc.team79.robot.commands.DeployIntake;
 import org.usfirst.frc.team79.robot.commands.EngageHanger;
+import org.usfirst.frc.team79.robot.commands.GearDown;
+import org.usfirst.frc.team79.robot.commands.GearIn;
+import org.usfirst.frc.team79.robot.commands.GearOut;
+import org.usfirst.frc.team79.robot.commands.GearStop;
+import org.usfirst.frc.team79.robot.commands.GearUp;
 import org.usfirst.frc.team79.robot.commands.HoodDown;
 import org.usfirst.frc.team79.robot.commands.HoodUp;
 import org.usfirst.frc.team79.robot.commands.RetractIntake;
@@ -14,7 +19,6 @@ import org.usfirst.frc.team79.robot.commands.StopFiringSubsystems;
 import org.usfirst.frc.team79.robot.commands.StopIntake;
 import org.usfirst.frc.team79.robot.commands.StopShooter;
 import org.usfirst.frc.team79.robot.commands.UnengageHanger;
-import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
 import org.usfirst.frc.team79.robot.commands.auton.AutoShoot;
 import org.usfirst.frc.team79.robot.utilities.AxisButton;
 import org.usfirst.frc.team79.robot.utilities.POVButton;
@@ -83,6 +87,15 @@ public class OI {
 		
 		shootRoutine.whenPressed(new StartFiringSubsystems());
 		shootRoutine.whenReleased(new StopFiringSubsystems());
+		
+		gearIntake.whenPressed(new GearIn());
+		gearIntake.whenReleased(new GearStop());
+		
+		gearReject.whenPressed(new GearOut());
+		gearReject.whenReleased(new GearStop());
+		
+		gearUp.whenPressed(new GearUp());
+		gearDown.whenPressed(new GearDown());
 	}
 	
 	public Joystick getJoystick() {

@@ -17,10 +17,13 @@ public class RobotMap {
 	public static final int INTAKE_MOTOR =7;
 	public static final int FEEDER_MOTOR = 8;
 	public static final int CONVEYER_MOTOR = 9;
+	public static final int GEAR_INTAKE = 10;
 	
 	//Pnematics
 	public static final int INTAKE_DEPLOY_DOWN = 0;
 	public static final int INTAKE_DEPLOY_UP = 1;
+	public static final int GEAR_DOWN = 2;
+	public static final int GEAR_UP = 3;
 	public static final int SHIFT_CLIMBER = 6;
 	public static final int SHIFT_SHOOTER = 7;
 	public static final int HOOD_CONTROLLER = 4;
