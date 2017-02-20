@@ -25,6 +25,10 @@ public class ProcessGripData{
 		if(tape != null){
 			headingToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
 			SmartDashboard.putNumber("Heading to Boiler", headingToTarget);
+			System.out.println("Heading: " + headingToTarget);
+			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
+			SmartDashboard.putNumber("Center X", tape.centerX);
+			SmartDashboard.putNumber("Center Y", tape.centerY);
 		}else SmartDashboard.putNumber("Heading to Boiler", 0);
 		return headingToTarget;
 	}

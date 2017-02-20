@@ -4,21 +4,19 @@ import org.usfirst.frc.team79.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 
-public class StopIntake extends Command{
-	
-	/**
-	 * Stops the intake
-	 */
-	public StopIntake(){
-		requires(Robot.intake);
-	}
-	
-	public void execute(){
-		Robot.intake.intake.set(0);
-	}
+public class HoodUp extends Command{
 
+	public HoodUp(){
+		requires(Robot.shooter);
+	}
+	
+	protected void execute(){
+		Robot.shooter.hoodController.set(true);
+	}
+	
 	@Override
 	protected boolean isFinished() {
 		return true;
 	}
+
 }

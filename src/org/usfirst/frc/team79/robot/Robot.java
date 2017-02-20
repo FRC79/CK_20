@@ -1,6 +1,7 @@
 
 package org.usfirst.frc.team79.robot;
 
+import org.usfirst.frc.team79.robot.commands.auton.InitAuton;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 import org.usfirst.frc.team79.robot.subsystems.Intake;
@@ -8,6 +9,7 @@ import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -20,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * directory.
  */
 public class Robot extends IterativeRobot {
-
+	public Compressor pump;
 	public static OI oi;
 	public static DriveTrain driveTrain;
 	public static Feeder feeder;
@@ -35,12 +37,15 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		shooter = new Shooter();
 		oi = new OI();
-
+		
+		pump = new Compressor();
+		//pump.setClosedLoopControl(true);
+		
 		UsbCamera camera = new UsbCamera("cam0", 0);
 		camera.setBrightness(15);
 		server = CameraServer.getInstance();
 		server.startAutomaticCapture(camera);
-
+    
 		SmartDashboard.putNumber("Heading to Boiler", 0);
 		SmartDashboard.putNumber("Center X", 0);
 		SmartDashboard.putNumber("Center Y", 0);
@@ -50,7 +55,16 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Turn D", 0);
 		
 		SmartDashboard.putNumber("Shooter Velocity", 0);
-	}
+			SmartDashboard.putNumber("Heading to Boiler", 0);
+			SmartDashboard.putNumber("Center X", 0);
+			SmartDashboard.putNumber("Center Y", 0);
+			
+			SmartDashboard.putNumber("Turn P", 0);
+			SmartDashboard.putNumber("Turn I", 0);
+			SmartDashboard.putNumber("Turn D", 0);
+			SmartDashboard.putNumber("Velocity", 0);
+			SmartDashboard.putNumber("Set Shooter Speed", 0.8);
+		}
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
@@ -58,7 +72,10 @@ public class Robot extends IterativeRobot {
 	 * the robot is disabled.
 	 */
 	public void disabledInit() {
-
+		Robot.driveTrain.FrontLeft.clearMotionProfileTrajectories();
+		Robot.driveTrain.FrontRight.clearMotionProfileTrajectories();
+		Robot.driveTrain.FrontLeft.setEncPosition(0);
+		Robot.driveTrain.FrontRight.setEncPosition(0);
 	}
 
 	public void disabledPeriodic() {
@@ -66,14 +83,17 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-
+		Scheduler.getInstance().add(new InitAuton());
 	}
 
 	public void autonomousPeriodic() {
 		Scheduler.getInstance().run();
+		SmartDashboard.putNumber("Left Encoder", driveTrain.FrontLeft.getPosition());
+		SmartDashboard.putNumber("Right Encoder", driveTrain.FrontRight.getPosition());
 	}
 
 	public void teleopInit() {
+		pump.setClosedLoopControl(true);
 	}
 
 	public void teleopPeriodic() {
@@ -81,7 +101,7 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Gyro", driveTrain.getGyroAngle());
 		SmartDashboard.putNumber("Left Encoder", driveTrain.FrontLeft.getPosition());
 		SmartDashboard.putNumber("Right Encoder", driveTrain.FrontRight.getPosition());
-		System.out.println("Left: " + driveTrain.FrontLeft.getPosition() + " Time: " + System.currentTimeMillis());
+		SmartDashboard.putNumber("Velocity", driveTrain.FrontLeft.getSpeed());
 		SmartDashboard.putNumber("Shooter Velocity", shooter.shooterWheel.getSpeed());
 	}
 

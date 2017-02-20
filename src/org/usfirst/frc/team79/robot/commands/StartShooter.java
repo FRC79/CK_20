@@ -2,43 +2,53 @@ package org.usfirst.frc.team79.robot.commands;
 
 import org.usfirst.frc.team79.robot.Robot;
 
-import com.ctre.CANTalon.TalonControlMode;
+import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class StartShooter extends Command{
 	
-	public double speed;
-	
+	private double invert;
+	public boolean stickControl;
+
 	/**
-	 * Set the shooter to a certain speed in RPM
-	 * @param speed RPM
+	 * Toggles the shooter
 	 */
-	public StartShooter(double speed){
-		this.speed = speed;
+	public StartShooter(){
+		this(false);
+	}
+	public StartShooter(int nothing){
+		this(false);
+		stickControl = true;
 	}
 	
-	protected void initialize(){
-		Robot.shooter.shooterWheel.changeControlMode(TalonControlMode.Speed);
-		Robot.shooter.shooterWheel.setEncPosition(0);
-		Robot.shooter.shooterWheel.setAllowableClosedLoopErr(360);
+	public StartShooter(boolean invert){
+		this.stickControl = false;
+		this.invert = invert ? -0.15 : 1;
+	}
+	protected void initialize() {
+		Robot.shooter.shooterWheel.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
 	}
 	
-	protected void execute(){
-		Robot.shooter.shooterWheel.set(speed);
+	public void execute(){
+		if(!stickControl){
+			Robot.shooter.shooterWheel.set(SmartDashboard.getNumber("Set Shooter Speed", 0)*invert);
+		}else{
+			Robot.shooter.shooterWheel.set(Robot.oi.operatorStick.getY()*-1d);
+		}
 	}
 	
-	protected void end(){
-		Robot.shooter.shooterWheel.set(0);
+	public void end(){
 	}
 	
-	protected void interrupted(){
-		this.end();
+	public void interrupted(){
+		end();
 	}
 
 	@Override
 	protected boolean isFinished() {
-		return false;
+		return true;
 	}
 
 }
