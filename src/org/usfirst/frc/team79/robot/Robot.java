@@ -37,35 +37,26 @@ public class Robot extends IterativeRobot {
 		intake = new Intake();
 		shooter = new Shooter();
 		oi = new OI();
-		
+
 		pump = new Compressor();
-		//pump.setClosedLoopControl(true);
-		
+		// pump.setClosedLoopControl(true);
+
 		UsbCamera camera = new UsbCamera("cam0", 0);
-		camera.setBrightness(15);
+		camera.setBrightness(7);
 		server = CameraServer.getInstance();
 		server.startAutomaticCapture(camera);
-    
+
 		SmartDashboard.putNumber("Heading to Boiler", 0);
 		SmartDashboard.putNumber("Center X", 0);
 		SmartDashboard.putNumber("Center Y", 0);
 
-		SmartDashboard.putNumber("Turn P", 0);
+		SmartDashboard.putNumber("Turn P", 0.1);
 		SmartDashboard.putNumber("Turn I", 0);
 		SmartDashboard.putNumber("Turn D", 0);
-		
-		SmartDashboard.putNumber("Shooter Velocity", 0);
-			SmartDashboard.putNumber("Heading to Boiler", 0);
-			SmartDashboard.putNumber("Center X", 0);
-			SmartDashboard.putNumber("Center Y", 0);
-			
-			SmartDashboard.putNumber("Turn P", 0);
-			SmartDashboard.putNumber("Turn I", 0);
-			SmartDashboard.putNumber("Turn D", 0);
-			SmartDashboard.putNumber("Velocity", 0);
-			SmartDashboard.putNumber("Set Shooter Speed", 0.8);
-			SmartDashboard.putBoolean("Use Auto Shoot", false);
-		}
+		SmartDashboard.putNumber("Velocity", 0);
+		SmartDashboard.putNumber("Set Shooter Speed", 0.8);
+		SmartDashboard.putBoolean("Use Auto Shoot", false);
+	}
 
 	/**
 	 * This function is called once each time the robot enters Disabled mode.
