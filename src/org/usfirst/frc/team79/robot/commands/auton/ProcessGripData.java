@@ -94,7 +94,7 @@ public class ProcessGripData{
 		for(int i=0; i<contours.length; i++){
 			if(areas[i] > area){
 				winner = i;
-				area = contours[i].area;
+				area = areas[i];
 			}
 		}
 		if(winner == -1) return null;
