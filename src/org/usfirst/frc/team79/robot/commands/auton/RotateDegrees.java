@@ -1,15 +1,12 @@
 package org.usfirst.frc.team79.robot.commands.auton;
 
-import org.usfirst.frc.team79.robot.OI;
 import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.utilities.GyroPIDOutput;
 import org.usfirst.frc.team79.robot.utilities.GyroPIDSource;
 
 import com.ctre.CANTalon.TalonControlMode;
 
-import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDSourceType;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -26,18 +23,17 @@ public class RotateDegrees extends Command {
 	public RotateDegrees(double degrees){
 		requires(Robot.driveTrain);
 		this.degrees = degrees + Robot.driveTrain.getGyroAngle();
-		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput(), 0.015);
+		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput(), 0.01);
 	}
 	
 	public RotateDegrees(){
 		this.grip = true;
-		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput(), 0.015);
+		gyroPID = new PIDController(0, 0, 0, new GyroPIDSource(), new GyroPIDOutput(), 0.01);
 	}
 	
 	protected void initialize(){
 		if(grip) degrees = ProcessGripData.getHeading() + Robot.driveTrain.getGyroAngle();
 		gyroPID.setPID(SmartDashboard.getNumber("Turn P", 0), SmartDashboard.getNumber("Turn I", 0), SmartDashboard.getNumber("Turn D", 0));
-		System.out.println("P: " + gyroPID.getP());
 		gyroPID.setContinuous();
 		gyroPID.setAbsoluteTolerance(0.25);
 		Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);

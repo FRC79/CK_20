@@ -2,7 +2,6 @@ package org.usfirst.frc.team79.robot.subsystems;
 
 import org.usfirst.frc.team79.robot.RobotMap;
 import org.usfirst.frc.team79.robot.commands.StopConveyer;
-import org.usfirst.frc.team79.robot.commands.StopFeeder;
 
 import com.ctre.CANTalon;
 

@@ -4,6 +4,7 @@ package org.usfirst.frc.team79.robot;
 import org.usfirst.frc.team79.robot.commands.auton.InitAuton;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
+import org.usfirst.frc.team79.robot.subsystems.GearManipulator;
 import org.usfirst.frc.team79.robot.subsystems.Intake;
 import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
@@ -28,6 +29,7 @@ public class Robot extends IterativeRobot {
 	public static Feeder feeder;
 	public static Intake intake;
 	public static Shooter shooter;
+	public static GearManipulator gearManipulator;
 
 	CameraServer server;
 
@@ -36,6 +38,7 @@ public class Robot extends IterativeRobot {
 		feeder = new Feeder();
 		intake = new Intake();
 		shooter = new Shooter();
+		gearManipulator = new GearManipulator();
 		oi = new OI();
 
 		pump = new Compressor();
