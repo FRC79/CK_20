@@ -7,7 +7,6 @@ import org.usfirst.frc.team79.robot.utilities.Units;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.Notifier;
 import jaci.pathfinder.Trajectory.Segment;
-import jaci.pathfinder.modifiers.TankModifier;
 
 import com.ctre.CANTalon.TalonControlMode;
 
