@@ -10,7 +10,7 @@ public class GearRightAuton extends CommandGroup{
 	
 	public GearRightAuton(){
 		this.addSequential(new ExecuteMotionProfile("GearSidePart1"));
-		this.addSequential(new RotateDegrees(45));
+		this.addSequential(new RotateDegrees(-45));
 		this.addSequential(new ExecuteMotionProfile("GearSidePart2"));
 		this.addSequential(new WaitForIt(.2));
 		this.addSequential(new GearDown());
