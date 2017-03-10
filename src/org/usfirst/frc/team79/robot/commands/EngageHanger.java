@@ -8,7 +8,7 @@ import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
 public class EngageHanger extends Command {
 	protected void execute() {
-		Robot.shooter.solenoidShift.set(DoubleSolenoid.Value.kForward);
+		Robot.shooter.solenoidShift.set(DoubleSolenoid.Value.kReverse);
 	}
 
 	protected boolean isFinished() {
