@@ -15,7 +15,7 @@ public class RetractIntake extends Command {
 
 	protected void execute() {
 		if (Robot.feeder.conveyer.get() == 0.0D) {
-			Robot.intake.deploy.set(DoubleSolenoid.Value.kReverse);
+			Robot.intake.deploy.set(DoubleSolenoid.Value.kForward);
 		}
 	}
 

@@ -10,7 +10,7 @@ import org.usfirst.frc.team79.robot.subsystems.Shooter;
 public class UnengageHanger extends Command {
 	protected void execute() {
 		System.out.println("Backwards");
-		Robot.shooter.solenoidShift.set(DoubleSolenoid.Value.kReverse);
+		Robot.shooter.solenoidShift.set(DoubleSolenoid.Value.kForward);
 	}
 
 	protected boolean isFinished() {
