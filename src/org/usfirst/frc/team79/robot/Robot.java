@@ -1,6 +1,5 @@
 package org.usfirst.frc.team79.robot;
 
-import com.ctre.CANTalon;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -11,7 +10,6 @@ import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import jaci.pathfinder.Waypoint;
-import java.io.PrintStream;
 import org.usfirst.frc.team79.robot.commands.RetractIntake;
 import org.usfirst.frc.team79.robot.commands.UnengageHanger;
 import org.usfirst.frc.team79.robot.commands.auton.GearCenterAuton;
@@ -68,9 +66,12 @@ public class Robot extends IterativeRobot {
 		this.autonChooser.addObject("Left Gear", 2);
 		this.autonChooser.addObject("Right Gear", 3);
 		SmartDashboard.putData("Autonomous Chooser", this.autonChooser);
-		SmartDashboard.putNumber("Turn P", 0.05D);
+		SmartDashboard.putNumber("Turn P", 0.025D);
 		SmartDashboard.putNumber("Turn I", 0.0D);
 		SmartDashboard.putNumber("Turn D", 0.0D);
+		
+		SmartDashboard.putNumber("Rotate Speed", 1);
+		SmartDashboard.putNumber("Rotate Time", 1);
 	}
 
 	public void disabledInit() {
@@ -90,7 +91,7 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new UnengageHanger());
 		switch(this.autonChooser.getSelected()){
 			case 0:
-				Scheduler.getInstance().add(new GearCenterAuton());
+				Scheduler.getInstance().add(new GearCenterAutonOld());
 				break;
 			case 1:
 				Scheduler.getInstance().add(new DriveForwardAuton());
@@ -138,7 +139,7 @@ public class Robot extends IterativeRobot {
 		GenerateMotionProfile.generate("DriveStraight",
 				new Waypoint[] { new FWaypoint(0.0D, 0.0D, 0.0D), new FWaypoint(16.0D, 0.1D, 0.0D) });
 		GenerateMotionProfile.generate("Gear",
-				new Waypoint[] { new FWaypoint(0.0D, 0.0D, 0.0D), new FWaypoint(-3.0D, 0.0D, 0.0D) });
+				new Waypoint[] { new FWaypoint(0.0D, 0.0D, 0.0D), new IWaypoint(-81, 0.0D, 0.0D) });
 		GenerateMotionProfile.generate("GearSidePart1", new IWaypoint(0, 0, 0), new IWaypoint(-105+RobotMap.ROBOT_LENGTH/2, 0, 0));
 		GenerateMotionProfile.generate("GearSidePart2", new IWaypoint(0, 0, 0), new IWaypoint(-50, 0, 0));
 		GenerateMotionProfile.generate("GearSidePart3", new IWaypoint(0, 0, 0), new IWaypoint(50, 0, 0));
