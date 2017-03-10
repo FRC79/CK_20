@@ -9,7 +9,7 @@ import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 public class GyroPIDOutput implements PIDOutput {
 	public void pidWrite(double value) {
 		SmartDashboard.putNumber("PID Output", value);
-		Robot.driveTrain.FrontLeft.set(-value);
-		Robot.driveTrain.FrontRight.set(value);
+		Robot.driveTrain.FrontLeft.set(-value*.8);
+		Robot.driveTrain.FrontRight.set(value*.8);
 	}
 }
