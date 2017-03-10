@@ -1,62 +1,98 @@
 package org.usfirst.frc.team79.robot.commands.auton;
 
-import org.usfirst.frc.team79.robot.RobotMap;
-import org.usfirst.frc.team79.robot.grip.Contour;
-
 import edu.wpi.first.wpilibj.networktables.NetworkTable;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.tables.ITable;
+import java.io.PrintStream;
+import org.usfirst.frc.team79.robot.RobotMap;
+import org.usfirst.frc.team79.robot.grip.Contour;
 
-public class ProcessGripData{
-	
+public class ProcessGripData {
 	public static NetworkTable grip = NetworkTable.getTable("GRIP");
-	
-	public static double getHeading(){
-		Contour[] contours = getContours();
-		double headingToTarget = 0;
-		if(contours.length > 0){
-			Contour tape = getGreatestContour(contours);
-			headingToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX-RobotMap.CX)/RobotMap.FOCAL_LENGTH)));
-			double pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY-RobotMap.CY)/RobotMap.FOCAL_LENGTH));
-			//Sends the header to the dashboard to be used in the RotateDegrees command.
+
+	public static double getHeading() {
+		Contour tape = getSingleContour();
+		return getHeading(tape);
+	}
+
+	public static double getHeading(Contour tape) {
+		double headingToTarget = 0.0D;
+		if (tape != null) {
+			double distance = getDistance(tape);
+			double angularOffset = Math.atan(5.25D / distance);
+			double cx = Math.sin(angularOffset) * 120.0D / 2.0D + 59.5D;
+			headingToTarget = Math.toDegrees(Math.atan(Math.toRadians((tape.centerX - cx) / RobotMap.FOCAL_LENGTH)));
 			SmartDashboard.putNumber("Heading to Boiler", headingToTarget);
-			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
+			System.out.println("Heading: " + headingToTarget);
 			SmartDashboard.putNumber("Center X", tape.centerX);
 			SmartDashboard.putNumber("Center Y", tape.centerY);
-		}else SmartDashboard.putNumber("Header to Boiler", 0);
+		} else {
+			SmartDashboard.putNumber("Heading to Boiler", 0.0D);
+		}
 		return headingToTarget;
 	}
-	
-	/**
-	 * Grabs the individual bits of contour data from the NetworkTable and creates a list of objects from it. 
-	 * @return
-	 */
-	private static Contour[] getContours(){
+
+	public static double getDistance() {
+		Contour tape = getSingleContour();
+		return getDistance(tape);
+	}
+
+	public static double getDistance(Contour tape) {
+		double distance = 0.0D;
+		if (tape != null) {
+			double pitchHeading = Math
+					.toDegrees(Math.atan(Math.toRadians(tape.centerY - 79.5D) / RobotMap.FOCAL_LENGTH));
+			distance = 6.058333333333334D / Math.toDegrees(Math.tan(44.0D + pitchHeading));
+			SmartDashboard.putNumber("Distance to Boiler", distance);
+		} else {
+			SmartDashboard.putNumber("Distance to Boiler", 0.0D);
+		}
+		return distance;
+	}
+
+	public static double getPitchHeading() {
+		Contour tape = getSingleContour();
+		return getPitchHeading(tape);
+	}
+
+	public static double getPitchHeading(Contour tape) {
+		double pitchHeading = 0.0D;
+		if (tape != null) {
+			pitchHeading = Math.toDegrees(Math.atan(Math.toRadians(tape.centerY - 79.5D) / RobotMap.FOCAL_LENGTH));
+			SmartDashboard.putNumber("Pitch Heading to Boiler", pitchHeading);
+		} else {
+			SmartDashboard.putNumber("Pitch Heading to Boiler", 0.0D);
+		}
+		return pitchHeading;
+	}
+
+	public static double getBoilerPitchHeading() {
+		Contour tape = getSingleContour();
+		double boilerPitchHeading = 0.0D;
+		if (tape != null) {
+			double distance = getDistance(tape);
+			boilerPitchHeading = Math.toDegrees(Math.atan(8.0D / distance));
+		}
+		return boilerPitchHeading;
+	}
+
+	private static Contour getSingleContour() {
 		ITable gripSub = grip.getSubTable("reflectiveTapeReport");
 		double[] areas = gripSub.getNumberArray("area", new double[0]);
 		double[] centerX = gripSub.getNumberArray("centerX", new double[0]);
 		double[] centerY = gripSub.getNumberArray("centerY", new double[0]);
 		Contour[] contours = new Contour[areas.length];
-		for(int i=0; i<contours.length; i++){
-			contours[i] = new Contour(areas[i], centerX[i], centerY[i]);
-		}
-		return contours;
-	}
-	
-	/**
-	 * Given a list of contours, this will select the one with the largest area. Should remove extraneous, non-tape contours.
-	 * @return
-	 */
-	private static Contour getGreatestContour(Contour[] contours){
-		int winner = 0;
-		double greatest = 0;
-		for(int i=0; i<contours.length; i++){
-			if(contours[i].area > greatest){
-				greatest = contours[i].area;
+		int winner = -1;
+		double area = 0.0D;
+		for (int i = 0; i < contours.length; i++) {
+			if (areas[i] > area) {
 				winner = i;
+				area = areas[i];
 			}
 		}
-		return contours[winner];
+		if (winner == -1) {
+			return null;
+		}
+		return new Contour(areas[winner], centerX[winner], centerY[winner]);
 	}
-
 }

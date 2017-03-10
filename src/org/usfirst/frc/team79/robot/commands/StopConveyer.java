@@ -1,23 +1,15 @@
 package org.usfirst.frc.team79.robot.commands;
 
-import org.usfirst.frc.team79.robot.Robot;
-
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team79.robot.Robot;
+import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
-public class StopConveyer extends Command{
-	
-	/**
-	 * Toggles the shooter
-	 */
-	public StopConveyer(){
-		requires(Robot.feeder);
-	}
-	
-	public void execute(){
-		Robot.feeder.conveyer.set(0);
+public class StopConveyer extends Command {
+	public void execute() {
+		Robot.feeder.conveyer.set(0.0D);
 	}
 
-	@Override
 	protected boolean isFinished() {
 		return true;
 	}

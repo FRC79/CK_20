@@ -1,77 +1,70 @@
 package org.usfirst.frc.team79.robot.subsystems;
 
-import org.usfirst.frc.team79.robot.RobotMap;
-import org.usfirst.frc.team79.robot.commands.CheezyDrive;
-
 import com.ctre.CANTalon;
 import com.ctre.CANTalon.FeedbackDevice;
+import com.ctre.CANTalon.TalonControlMode;
 import com.kauailabs.navx.frc.AHRS;
-
-import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.SerialPort;
-
+import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import org.usfirst.frc.team79.robot.commands.CheezyDrive;
 
 public class DriveTrain extends Subsystem {
-
-	public CANTalon FrontLeft, BackLeft, FrontRight, BackRight;
+	public CANTalon FrontLeft;
+	public CANTalon BackLeft;
+	public CANTalon FrontRight;
+	public CANTalon BackRight;
 	public AHRS gyro;
 
 	public DriveTrain() {
+		this.FrontLeft = new CANTalon(1);
+		this.BackLeft = new CANTalon(3);
+		this.FrontRight = new CANTalon(2);
+		this.BackRight = new CANTalon(4);
 
-		FrontLeft = new CANTalon(RobotMap.FrontLeftMotor);
-		BackLeft = new CANTalon(RobotMap.BackLeftMotor);
-		FrontRight = new CANTalon(RobotMap.FrontRightMotor);
-		BackRight = new CANTalon(RobotMap.BackRightMotor);
-		// slaves back Talons to front Talons
-		BackRight.changeControlMode(CANTalon.TalonControlMode.Follower);
-		BackLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
-		
-		BackRight.set(FrontRight.getDeviceID());
-		BackLeft.set(FrontLeft.getDeviceID());
+		this.BackRight.changeControlMode(CANTalon.TalonControlMode.Follower);
+		this.BackLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
 
-		FrontLeft.setInverted(true);
-		FrontRight.setInverted(false);
-		
-		FrontLeft.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		FrontRight.setFeedbackDevice(FeedbackDevice.QuadEncoder);
-		FrontLeft.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
-		FrontRight.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
-		FrontRight.setProfile(0);
-		FrontLeft.setProfile(0);
-		FrontLeft.reverseSensor(true);
-		FrontRight.reverseSensor(false);
-		
-		FrontLeft.clearMotionProfileTrajectories();
-		FrontRight.clearMotionProfileTrajectories();
+		this.BackRight.set(this.FrontRight.getDeviceID());
+		this.BackLeft.set(this.FrontLeft.getDeviceID());
 
-		// gyro
-		gyro = new AHRS(SerialPort.Port.kMXP);
+		this.FrontLeft.setInverted(true);
+		this.FrontRight.setInverted(false);
 
+		this.FrontLeft.enableBrakeMode(false);
+		this.FrontRight.enableBrakeMode(false);
+		this.FrontLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		this.FrontRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
+		this.FrontLeft.configEncoderCodesPerRev(360);
+		this.FrontRight.configEncoderCodesPerRev(360);
+		this.FrontRight.setProfile(0);
+		this.FrontLeft.setProfile(0);
+		this.FrontLeft.reverseSensor(true);
+		this.FrontRight.reverseSensor(false);
+
+		this.FrontLeft.clearMotionProfileTrajectories();
+		this.FrontRight.clearMotionProfileTrajectories();
+
+		this.gyro = new AHRS(Port.kMXP);
 	}
 
 	public void initDefaultCommand() {
 		setDefaultCommand(new CheezyDrive());
 	}
 
-	// gyros
-
 	public double getGyroAngle() {
-		return gyro.getAngle();
+		return this.gyro.getAngle();
 	}
 
 	public double getNormalAngle() {
-		return ((gyro.getAngle() % 360) / 360);
+		return this.gyro.getAngle() % 360.0D / 360.0D;
 	}
 
 	public void resetGyro() {
-		gyro.reset();
+		this.gyro.reset();
 	}
 
 	public double pidValue() {
-
 		double gyroRead = getGyroAngle() % 360;
 		double returnValue;
 
@@ -84,14 +77,11 @@ public class DriveTrain extends Subsystem {
 		}
 
 		return returnValue / 180;
-
 	}
 
-	// driveTrain
-
 	public void stop() {
-		FrontLeft.set(0);
-		FrontRight.set(0);
+		this.FrontLeft.set(0.0D);
+		this.FrontRight.set(0.0D);
 	}
 
 	public void arcadeDrive(Joystick stick) {
@@ -103,11 +93,11 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public double maxSpeed(double speed) {
-		return speed > 0.8 ? 0.8 : speed;
+		return speed > 0.8D ? 0.8D : speed;
 	}
 
 	public void arcadeDriveScaled(Joystick joy) {
-		arcadeDriveScaled(joy.getX(), joy.getY(), 1.0);
+		arcadeDriveScaled(joy.getX(), joy.getY(), 1.0D);
 	}
 
 	public void arcadeDriveScaled(Joystick joy, double scalar) {
@@ -115,13 +105,13 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public void arcadeDriveScaled(double x, double y, double scalar) {
-		if (scalar > 1) {
-			scalar = 1;
+		if (scalar > 1.0D) {
+			scalar = 1.0D;
 		}
-		arcadeDrive((x * scalar), (y * scalar));
+		arcadeDrive(x * scalar, y * scalar);
 	}
 
 	public double getTurningConstant() {
-		return RobotMap.driveTurningConstant;
+		return 0.6D;
 	}
 }

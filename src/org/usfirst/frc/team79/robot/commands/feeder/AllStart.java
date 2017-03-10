@@ -1,43 +1,35 @@
 package org.usfirst.frc.team79.robot.commands.feeder;
 
-import org.usfirst.frc.team79.robot.Robot;
-
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team79.robot.Robot;
+import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
-/**
- *
- */
 public class AllStart extends Command {
+	public AllStart() {
+		requires(Robot.feeder);
+	}
 
-	/**
-	 * Starts the feeder and conveyer, or turns them both off if one is on.
-	 */
-    public AllStart() {
-    	requires(Robot.feeder);
-    }
+	protected void initialize() {
+	}
 
-    protected void initialize() {
-    	
-    }
+	protected void execute() {
+		if ((Robot.feeder.conveyer.get() != 0.0D) || (Robot.feeder.feeder.get() != 0.0D)) {
+			Robot.feeder.conveyer.set(0.0D);
+			Robot.feeder.feeder.set(0.0D);
+		} else {
+			Robot.feeder.conveyer.set(1.0D);
+			Robot.feeder.feeder.set(1.0D);
+		}
+	}
 
-    protected void execute() {
-    	if(Robot.feeder.conveyer.get() != 0 || Robot.feeder.feeder.get() != 0){
-    		Robot.feeder.conveyer.set(0);
-    		Robot.feeder.feeder.set(0);
-    	} else{
-    		Robot.feeder.conveyer.set(1);
-    		Robot.feeder.feeder.set(1);
-    	}
-    }
+	protected boolean isFinished() {
+		return true;
+	}
 
-    protected boolean isFinished() {
-        return true;
-    }
+	protected void end() {
+	}
 
-    protected void end() {
-    	
-    }
-
-    protected void interrupted() {
-    }
+	protected void interrupted() {
+	}
 }

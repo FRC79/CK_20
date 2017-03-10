@@ -1,56 +1,42 @@
 package org.usfirst.frc.team79.robot.commands;
 
-import org.usfirst.frc.team79.robot.Robot;
-
+import com.ctre.CANTalon;
 import com.ctre.CANTalon.TalonControlMode;
-
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import org.usfirst.frc.team79.robot.OI;
+import org.usfirst.frc.team79.robot.Robot;
+import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 
-
-/**
- *
- */
 public class CheezyDrive extends Command {
+	public CheezyDrive() {
+		requires(Robot.driveTrain);
+	}
 
-    public CheezyDrive() {
-    	requires(Robot.driveTrain);
-    }
+	protected void initialize() {
+		Robot.driveTrain.FrontLeft.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+		Robot.driveTrain.FrontRight.changeControlMode(CANTalon.TalonControlMode.PercentVbus);
+	}
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-      // We need to ensure that the drive motor ESCs are in vbus mode.
-      Robot.driveTrain.FrontLeft.changeControlMode(TalonControlMode.PercentVbus);
-      Robot.driveTrain.FrontRight.changeControlMode(TalonControlMode.PercentVbus);
-    }
+	protected void execute() {
+		double coeff = 1.0D;
+		double invert = 1.0D;
+		if (Robot.oi.getSlowDrivingMode()) {
+			coeff = 0.7D;
+		}
+		Robot.driveTrain.FrontLeft
+				.set(Robot.oi.getThrottle() * invert - Robot.oi.getSteering() * Robot.driveTrain.getTurningConstant());
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-      double coeff = 1.0;
-      double invert = 1.0;
+		Robot.driveTrain.FrontRight
+				.set(Robot.oi.getThrottle() * invert + Robot.oi.getSteering() * Robot.driveTrain.getTurningConstant());
+	}
 
-      // Precision driving mode
-      if(Robot.oi.getSlowDrivingMode()) {
-        coeff = 0.7;
-      }
-      
-      Robot.driveTrain.FrontLeft.set(Robot.oi.getThrottle() * invert - (Robot.oi.getSteering() * Robot.driveTrain.getTurningConstant()));
+	protected boolean isFinished() {
+		return false;
+	}
 
-      Robot.driveTrain.FrontRight.set(Robot.oi.getThrottle() * invert + (Robot.oi.getSteering() * Robot.driveTrain.getTurningConstant()));
+	protected void end() {
+	}
 
-    }
-
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
-
-    // Called once after isFinished returns true
-    protected void end() {
-    }
-
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    }
+	protected void interrupted() {
+	}
 }

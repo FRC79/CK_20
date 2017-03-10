@@ -1,17 +1,14 @@
 package org.usfirst.frc.team79.robot.commands;
 
-import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
-public class StopShooter extends Command {
-	public StopShooter() {
-		requires(Robot.shooter);
-	}
-
-	public void execute() {
-		Robot.shooter.shooterWheel.set(0.0D);
+public class EngageHanger extends Command {
+	protected void execute() {
+		Robot.shooter.solenoidShift.set(DoubleSolenoid.Value.kForward);
 	}
 
 	protected boolean isFinished() {

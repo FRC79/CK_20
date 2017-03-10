@@ -1,37 +1,29 @@
 package org.usfirst.frc.team79.robot.commands.feeder;
 
-import org.usfirst.frc.team79.robot.Robot;
-
+import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
+import org.usfirst.frc.team79.robot.Robot;
+import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
-/**
- *
- */
 public class StartConveyer extends Command {
+	private double invert;
 
-	private int invert;
-	
-	/**
-	 * Toggles the conveyer.
-	 */
-    public StartConveyer() {
-    	this(false);
-    }
-    
-    public StartConveyer(boolean invert){
-    	requires(Robot.feeder);
-    	this.invert = invert ? -1 : 1;
-    }
+	public StartConveyer() {
+		this(false);
+	}
 
-    protected void initialize() {
-    	
-    }
+	public StartConveyer(boolean invert) {
+		this.invert = (invert ? -0.6D : 1.0D);
+	}
 
-    protected void execute() {
-    	Robot.feeder.conveyer.set(-0.6*invert);
-    }
+	protected void initialize() {
+	}
 
-    protected boolean isFinished() {
-        return true;
-    }
+	protected void execute() {
+		Robot.feeder.conveyer.set(-1.0D * this.invert);
+	}
+
+	protected boolean isFinished() {
+		return true;
+	}
 }

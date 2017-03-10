@@ -1,80 +1,110 @@
 package org.usfirst.frc.team79.robot;
 
-import org.usfirst.frc.team79.robot.commands.ChangeProjection;
-import org.usfirst.frc.team79.robot.commands.DeployIntake;
-import org.usfirst.frc.team79.robot.commands.RetractIntake;
-import org.usfirst.frc.team79.robot.commands.ShiftShooterMotor;
-import org.usfirst.frc.team79.robot.commands.StartFiringSubsystems;
-import org.usfirst.frc.team79.robot.commands.StartIntake;
-import org.usfirst.frc.team79.robot.commands.StartShooter;
-import org.usfirst.frc.team79.robot.commands.StopConveyer;
-import org.usfirst.frc.team79.robot.commands.StopFeeder;
-import org.usfirst.frc.team79.robot.commands.StopFiringSubsystems;
-import org.usfirst.frc.team79.robot.commands.StopIntake;
-import org.usfirst.frc.team79.robot.commands.StopShooter;
-import org.usfirst.frc.team79.robot.commands.auton.AlignShooter;
-import org.usfirst.frc.team79.robot.commands.feeder.StartConveyer;
-import org.usfirst.frc.team79.robot.commands.feeder.StartFeeder;
-import org.usfirst.frc.team79.robot.utilities.ShiftState;
-
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
-/**
- * This class is the glue that binds the controls on the physical operator
- * interface to the commands and command groups that allow control of the robot.
- */
+import org.usfirst.frc.team79.robot.commands.DeployIntake;
+import org.usfirst.frc.team79.robot.commands.EngageHanger;
+import org.usfirst.frc.team79.robot.commands.GearDown;
+import org.usfirst.frc.team79.robot.commands.GearIn;
+import org.usfirst.frc.team79.robot.commands.GearOut;
+import org.usfirst.frc.team79.robot.commands.GearStop;
+import org.usfirst.frc.team79.robot.commands.GearUp;
+import org.usfirst.frc.team79.robot.commands.HoodDown;
+import org.usfirst.frc.team79.robot.commands.HoodUp;
+import org.usfirst.frc.team79.robot.commands.ManualShooterControl;
+import org.usfirst.frc.team79.robot.commands.RetractIntake;
+import org.usfirst.frc.team79.robot.commands.RunFeederConveyer;
+import org.usfirst.frc.team79.robot.commands.StartFiringSubsystems;
+import org.usfirst.frc.team79.robot.commands.StartIntake;
+import org.usfirst.frc.team79.robot.commands.StartShooter;
+import org.usfirst.frc.team79.robot.commands.StopFeederConveyer;
+import org.usfirst.frc.team79.robot.commands.StopFiringSubsystems;
+import org.usfirst.frc.team79.robot.commands.StopIntake;
+import org.usfirst.frc.team79.robot.commands.StopShooter;
+import org.usfirst.frc.team79.robot.commands.UnengageHanger;
+import org.usfirst.frc.team79.robot.commands.auton.RotateDegrees;
+import org.usfirst.frc.team79.robot.utilities.AxisButton;
+import org.usfirst.frc.team79.robot.utilities.POVButton;
+
 public class OI {
-
 	public Joystick throttleStick = new Joystick(0);
+	public Button intakeDeploy = new JoystickButton(this.throttleStick, 2);
+	public Button intakeRetract = new JoystickButton(this.throttleStick, 4);
+	public Button autoAlignWithBoiler = new JoystickButton(this.throttleStick, 3);
+	public Button intakeReverse = new JoystickButton(this.throttleStick, 8);
+	public Button intakeRun = new JoystickButton(this.throttleStick, 6);
+	public Button startShooter = new JoystickButton(this.throttleStick, 5);
+	public Button startConveyers = new JoystickButton(this.throttleStick, 7);
 	public Joystick operatorStick = new Joystick(1);
+	public Button gearIntake = new JoystickButton(this.operatorStick, 1);
+	public Button gearReject = new JoystickButton(this.operatorStick, 3);
+	public Button gearUp = new JoystickButton(this.operatorStick, 4);
+	public Button gearDown = new JoystickButton(this.operatorStick, 2);
+	public Button reverseShootRoutine = new JoystickButton(this.operatorStick, 5);
+	public Button unengageHanger = new JoystickButton(this.operatorStick, 7);
+	public Button engageHanger = new JoystickButton(this.operatorStick, 8);
+	public AxisButton manualShooterControl = new AxisButton(this.operatorStick, 1);
+	public AxisButton conveyer_FeederRun = new AxisButton(this.operatorStick, 3);
+	public POVButton hoodControl = new POVButton(this.operatorStick);
 
-//	public Button gripButton = new JoystickButton(throttleStick, 5);
-	public Button intakeButton = new JoystickButton(throttleStick, 2);
-	public Button feederButton = new JoystickButton(throttleStick, 4);
-	public Button conveyerButton = new JoystickButton(throttleStick, 3);
-	public Button shootButton = new JoystickButton(throttleStick, 8);
-	public Button firingButton = new JoystickButton(throttleStick, 7);
-	public Button deployIntake = new JoystickButton(throttleStick, 1);
-	public Button retractIntake = new JoystickButton(throttleStick, 10);
-	public Button invertSubsystems = new JoystickButton(throttleStick, 9);
-	public Button changeProjection = new JoystickButton(throttleStick, 6);
-	
-	public OI(){
-//		this.gripButton.toggleWhenPressed(new AlignShooter());
-		this.intakeButton.whenActive(new StartIntake());
-		this.feederButton.whenActive(new StartFeeder());
-		this.conveyerButton.whenActive(new StartConveyer());
-		this.shootButton.whenActive(new StartShooter());
-		this.firingButton.whenActive(new StartFiringSubsystems());
-		this.deployIntake.whenActive(new DeployIntake());
-		this.retractIntake.whenActive(new RetractIntake());
-		this.invertSubsystems.whenActive(new StartFiringSubsystems(true));
-//		this.shiftClimber.whenActive(new ShiftShooterMotor(ShiftState.CLIMBER));
-		this.changeProjection.whenActive(new ChangeProjection());
-		
-		this.intakeButton.whenReleased(new StopIntake());
-		this.feederButton.whenReleased(new StopFeeder());
-		this.conveyerButton.whenReleased(new StopConveyer());
-		this.shootButton.whenReleased(new StopShooter());
-		this.firingButton.whenReleased(new StopFiringSubsystems());
-		this.invertSubsystems.whenReleased(new StopFiringSubsystems());
-		
+	public OI() {
+		this.autoAlignWithBoiler.toggleWhenActive(new RotateDegrees(45.0D));
+
+		this.intakeReverse.whenPressed(new StartIntake(true));
+		this.intakeReverse.whenReleased(new StopIntake());
+
+		this.intakeRun.whenPressed(new StartIntake());
+		this.intakeRun.whenReleased(new StopIntake());
+
+		this.intakeDeploy.whenPressed(new DeployIntake());
+		this.intakeRetract.whenPressed(new RetractIntake());
+
+		this.startShooter.whileActive(new StartShooter(3500, false));
+		this.startShooter.whenInactive(new StopShooter());
+
+		this.startConveyers.whenActive(new RunFeederConveyer(false));
+		this.startConveyers.whenInactive(new StopFeederConveyer());
+
+		this.hoodControl.whenActive(new HoodUp(), 0);
+		this.hoodControl.whenActive(new HoodDown(), 180);
+
+		this.manualShooterControl.whileActive(new ManualShooterControl(), -1.0D, 0.87D);
+		this.manualShooterControl.whenActive(new StopShooter(), 0.0D, 0.1D);
+
+		this.engageHanger.whenPressed(new EngageHanger());
+		this.unengageHanger.whenPressed(new UnengageHanger());
+
+		this.conveyer_FeederRun.whenActive(new RunFeederConveyer(true), 1.0D, 0.8D);
+		this.conveyer_FeederRun.whenActive(new RunFeederConveyer(false), -1.0D, 0.8D);
+		this.conveyer_FeederRun.whenActive(new StopFeederConveyer(), 0.0D, 0.1D);
+
+		this.reverseShootRoutine.whenPressed(new StartFiringSubsystems(true));
+		this.reverseShootRoutine.whenReleased(new StopFiringSubsystems());
+
+		this.gearIntake.whenPressed(new GearIn());
+		this.gearIntake.whenReleased(new GearStop());
+
+		this.gearReject.whenPressed(new GearOut());
+		this.gearReject.whenReleased(new GearStop());
+
+		this.gearUp.whenPressed(new GearUp());
+		this.gearDown.whenPressed(new GearDown());
 	}
-	
+
 	public Joystick getJoystick() {
-		return throttleStick;
+		return this.throttleStick;
 	}
 
 	public double getThrottle() {
-		return throttleStick.getY();
+		return this.throttleStick.getY();
 	}
 
 	public double getSteering() {
-		return throttleStick.getZ();
+		return this.throttleStick.getZ();
 	}
 
 	public boolean getSlowDrivingMode() {
-		return throttleStick.getTrigger();
+		return this.throttleStick.getTrigger();
 	}
 }

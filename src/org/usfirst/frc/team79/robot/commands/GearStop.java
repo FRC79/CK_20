@@ -3,15 +3,11 @@ package org.usfirst.frc.team79.robot.commands;
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team79.robot.Robot;
-import org.usfirst.frc.team79.robot.subsystems.Shooter;
+import org.usfirst.frc.team79.robot.subsystems.GearManipulator;
 
-public class StopShooter extends Command {
-	public StopShooter() {
-		requires(Robot.shooter);
-	}
-
-	public void execute() {
-		Robot.shooter.shooterWheel.set(0.0D);
+public class GearStop extends Command {
+	protected void execute() {
+		Robot.gearManipulator.intake.set(0.0D);
 	}
 
 	protected boolean isFinished() {

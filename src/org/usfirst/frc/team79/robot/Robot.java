@@ -1,26 +1,32 @@
-
 package org.usfirst.frc.team79.robot;
 
-import org.usfirst.frc.team79.robot.commands.auton.InitAuton;
-import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
-import org.usfirst.frc.team79.robot.subsystems.Feeder;
-import org.usfirst.frc.team79.robot.subsystems.Intake;
-import org.usfirst.frc.team79.robot.subsystems.Shooter;
-
+import com.ctre.CANTalon;
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.IterativeRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
+import edu.wpi.first.wpilibj.networktables.NetworkTable;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import jaci.pathfinder.Waypoint;
+import java.io.PrintStream;
+import org.usfirst.frc.team79.robot.commands.RetractIntake;
+import org.usfirst.frc.team79.robot.commands.UnengageHanger;
+import org.usfirst.frc.team79.robot.commands.auton.GearForwardAuton;
+import org.usfirst.frc.team79.robot.commands.auton.GearLeftAuton;
+import org.usfirst.frc.team79.robot.commands.auton.GearRightAuton;
+import org.usfirst.frc.team79.robot.commands.auton.GenerateMotionProfile;
+import org.usfirst.frc.team79.robot.commands.auton.InitAuton;
+import org.usfirst.frc.team79.robot.pathfinding.FWaypoint;
+import org.usfirst.frc.team79.robot.pathfinding.IWaypoint;
+import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
+import org.usfirst.frc.team79.robot.subsystems.Feeder;
+import org.usfirst.frc.team79.robot.subsystems.GearManipulator;
+import org.usfirst.frc.team79.robot.subsystems.Intake;
+import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
-/**
- * The VM is configured to automatically run this class, and to call the
- * functions corresponding to each mode, as described in the IterativeRobot
- * documentation. If you change the name of this class or the package after
- * creating this project, you must also update the manifest file in the resource
- * directory.
- */
 public class Robot extends IterativeRobot {
 	public Compressor pump;
 	public static OI oi;
@@ -28,45 +34,56 @@ public class Robot extends IterativeRobot {
 	public static Feeder feeder;
 	public static Intake intake;
 	public static Shooter shooter;
-
+	public static GearManipulator gearManipulator;
 	CameraServer server;
+	SendableChooser<Integer> autonChooser;
 
 	public void robotInit() {
 		driveTrain = new DriveTrain();
 		feeder = new Feeder();
 		intake = new Intake();
 		shooter = new Shooter();
+		gearManipulator = new GearManipulator();
 		oi = new OI();
-		
-		pump = new Compressor();
-		//pump.setClosedLoopControl(true);
-		
+
+		this.pump = new Compressor();
+
 		UsbCamera camera = new UsbCamera("cam0", 0);
-		camera.setBrightness(15);
-		server = CameraServer.getInstance();
-		server.startAutomaticCapture(camera);
+		camera.setBrightness(7);
+		this.server = CameraServer.getInstance();
+		this.server.startAutomaticCapture(camera);
 
-			SmartDashboard.putNumber("Heading to Boiler", 0);
-			SmartDashboard.putNumber("Center X", 0);
-			SmartDashboard.putNumber("Center Y", 0);
-			
-			SmartDashboard.putNumber("Turn P", 0);
-			SmartDashboard.putNumber("Turn I", 0);
-			SmartDashboard.putNumber("Turn D", 0);
-			SmartDashboard.putNumber("Velocity", 0);
-			SmartDashboard.putNumber("Set Shooter Speed", 1);
+		SmartDashboard.putNumber("Heading to Boiler", 0.0D);
+		SmartDashboard.putNumber("Center X", 0.0D);
+		SmartDashboard.putNumber("Center Y", 0.0D);
+
+		NetworkTable.getTable("SmartDashboard").setPersistent("Set Shooter Speed");
+
+		SmartDashboard.putNumber("Velocity", 0.0D);
+		SmartDashboard.putNumber("Autonomous Mode", 1.0D);
+
+		this.autonChooser = new SendableChooser<Integer>();
+		this.autonChooser.addDefault("Gear Auto", 0);
+		this.autonChooser.addObject("Forward Auto", 1);
+		this.autonChooser.addObject("Left Gear", 2);
+		this.autonChooser.addObject("Right Gear", 3);
+		SmartDashboard.putData("Autonomous Chooser", this.autonChooser);
+		if (NetworkTable.getTable("SmartDashboard").containsSubTable("Turn P")) {
+			SmartDashboard.putNumber("Turn P", 0.0D);
 		}
+		if (NetworkTable.getTable("SmartDashboard").containsSubTable("Turn I")) {
+			SmartDashboard.putNumber("Turn I", 0.0D);
+		}
+		if (NetworkTable.getTable("SmartDashboard").containsSubTable("Turn D")) {
+			SmartDashboard.putNumber("Turn D", 0.0D);
+		}
+	}
 
-	/**
-	 * This function is called once each time the robot enters Disabled mode.
-	 * You can use it to reset any subsystem information you want to clear when
-	 * the robot is disabled.
-	 */
 	public void disabledInit() {
-		Robot.driveTrain.FrontLeft.clearMotionProfileTrajectories();
-		Robot.driveTrain.FrontRight.clearMotionProfileTrajectories();
-		Robot.driveTrain.FrontLeft.setEncPosition(0);
-		Robot.driveTrain.FrontRight.setEncPosition(0);
+		driveTrain.FrontLeft.clearMotionProfileTrajectories();
+		driveTrain.FrontRight.clearMotionProfileTrajectories();
+		driveTrain.FrontLeft.setEncPosition(0);
+		driveTrain.FrontRight.setEncPosition(0);
 	}
 
 	public void disabledPeriodic() {
@@ -74,7 +91,22 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void autonomousInit() {
-		Scheduler.getInstance().add(new InitAuton());
+		this.pump.setClosedLoopControl(true);
+		Scheduler.getInstance().add(new RetractIntake());
+		Scheduler.getInstance().add(new UnengageHanger());
+		switch(this.autonChooser.getSelected()){
+			case 0:
+				Scheduler.getInstance().add(new GearForwardAuton());
+				break;
+			case 1:
+				Scheduler.getInstance().add(new InitAuton());
+				break;
+			case 2:
+				Scheduler.getInstance().add(new GearLeftAuton());
+				break;
+			case 3:
+				Scheduler.getInstance().add(new GearRightAuton());
+		}
 	}
 
 	public void autonomousPeriodic() {
@@ -84,7 +116,11 @@ public class Robot extends IterativeRobot {
 	}
 
 	public void teleopInit() {
-		pump.setClosedLoopControl(true);
+		this.pump.setClosedLoopControl(true);
+	}
+
+	public void robotPeriodic() {
+		SmartDashboard.putNumber("Match Time", DriverStation.getInstance().getMatchTime());
 	}
 
 	public void teleopPeriodic() {
@@ -96,7 +132,22 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Shooter Velocity", shooter.shooterWheel.getSpeed());
 	}
 
-	public void testPeriodic() {
+	public void testInit() {
+		generateMPPoints();
+	}
 
+	public void testPeriodic() {
+	}
+
+	private void generateMPPoints() {
+		System.out.println("Starting motion profiling point generation. Please wait...");
+		GenerateMotionProfile.generate("DriveStraight",
+				new Waypoint[] { new FWaypoint(0.0D, 0.0D, 0.0D), new FWaypoint(16.0D, 0.1D, 0.0D) });
+		GenerateMotionProfile.generate("Gear",
+				new Waypoint[] { new FWaypoint(0.0D, 0.0D, 0.0D), new FWaypoint(-3.0D, 0.0D, 0.0D) });
+		GenerateMotionProfile.generate("GearSidePart1", new IWaypoint(0, 0, 0), new IWaypoint(105-RobotMap.ROBOT_LENGTH/2, 0, 0));
+		GenerateMotionProfile.generate("GearSidePart2", new IWaypoint(0, 0, 0), new IWaypoint(50, 0, 0));
+		GenerateMotionProfile.generate("GearSidePart2", new IWaypoint(0, 0, 0), new IWaypoint(-50, 0, 0));
+		System.out.println("All points have been generated.");
 	}
 }

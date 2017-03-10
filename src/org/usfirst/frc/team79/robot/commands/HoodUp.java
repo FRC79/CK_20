@@ -1,17 +1,17 @@
 package org.usfirst.frc.team79.robot.commands;
 
-import com.ctre.CANTalon;
+import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj.command.Command;
 import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
-public class StopShooter extends Command {
-	public StopShooter() {
+public class HoodUp extends Command {
+	public HoodUp() {
 		requires(Robot.shooter);
 	}
 
-	public void execute() {
-		Robot.shooter.shooterWheel.set(0.0D);
+	protected void execute() {
+		Robot.shooter.hoodController.set(true);
 	}
 
 	protected boolean isFinished() {
