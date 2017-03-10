@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class GearCenterAuton extends CommandGroup{
 	
 	public GearCenterAuton(){
-		this.addSequential(new ExecuteMotionProfile("GearSidePart1"));
+		this.addSequential(new ExecuteMotionProfile("Gear"));
 		this.addSequential(new WaitForIt(.2));
 		this.addSequential(new GearDown());
 		this.addSequential(new WaitForIt(.2));
