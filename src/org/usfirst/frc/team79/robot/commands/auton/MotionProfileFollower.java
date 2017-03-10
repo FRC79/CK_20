@@ -111,8 +111,9 @@ public class MotionProfileFollower {
 		}
 		this.talon.clearMotionProfileTrajectories();
 		for (int i = 0; i < this.segments.length; i++) {
-			point.position = (this.segments[i].position * 3.280841666666667D / 1.0471975511965976D);
-			point.velocity = (this.segments[i].velocity * 3.280841666666667D / 1.0471975511965976D * 60.0D);
+			double invert = segments[i].x < 0 ? -1 : 1;
+			point.position = invert * (this.segments[i].position * 3.280841666666667D / 1.0471975511965976D);
+			point.velocity = invert * (this.segments[i].velocity * 3.280841666666667D / 1.0471975511965976D * 60.0D);
 			point.timeDurMs = ((int) (this.segments[i].dt * 1000.0D));
 			point.profileSlotSelect = 0;
 			point.velocityOnly = false;
