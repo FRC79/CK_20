@@ -14,11 +14,12 @@ import jaci.pathfinder.Waypoint;
 import java.io.PrintStream;
 import org.usfirst.frc.team79.robot.commands.RetractIntake;
 import org.usfirst.frc.team79.robot.commands.UnengageHanger;
-import org.usfirst.frc.team79.robot.commands.auton.GearForwardAuton;
+import org.usfirst.frc.team79.robot.commands.auton.GearCenterAuton;
+import org.usfirst.frc.team79.robot.commands.auton.GearCenterAutonOld;
 import org.usfirst.frc.team79.robot.commands.auton.GearLeftAuton;
 import org.usfirst.frc.team79.robot.commands.auton.GearRightAuton;
 import org.usfirst.frc.team79.robot.commands.auton.GenerateMotionProfile;
-import org.usfirst.frc.team79.robot.commands.auton.InitAuton;
+import org.usfirst.frc.team79.robot.commands.auton.DriveForwardAuton;
 import org.usfirst.frc.team79.robot.pathfinding.FWaypoint;
 import org.usfirst.frc.team79.robot.pathfinding.IWaypoint;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
@@ -60,7 +61,6 @@ public class Robot extends IterativeRobot {
 		NetworkTable.getTable("SmartDashboard").setPersistent("Set Shooter Speed");
 
 		SmartDashboard.putNumber("Velocity", 0.0D);
-		SmartDashboard.putNumber("Autonomous Mode", 1.0D);
 
 		this.autonChooser = new SendableChooser<Integer>();
 		this.autonChooser.addDefault("Gear Auto", 0);
@@ -68,15 +68,9 @@ public class Robot extends IterativeRobot {
 		this.autonChooser.addObject("Left Gear", 2);
 		this.autonChooser.addObject("Right Gear", 3);
 		SmartDashboard.putData("Autonomous Chooser", this.autonChooser);
-		if (NetworkTable.getTable("SmartDashboard").containsSubTable("Turn P")) {
-			SmartDashboard.putNumber("Turn P", 0.0D);
-		}
-		if (NetworkTable.getTable("SmartDashboard").containsSubTable("Turn I")) {
-			SmartDashboard.putNumber("Turn I", 0.0D);
-		}
-		if (NetworkTable.getTable("SmartDashboard").containsSubTable("Turn D")) {
-			SmartDashboard.putNumber("Turn D", 0.0D);
-		}
+		SmartDashboard.putNumber("Turn P", 0.05D);
+		SmartDashboard.putNumber("Turn I", 0.0D);
+		SmartDashboard.putNumber("Turn D", 0.0D);
 	}
 
 	public void disabledInit() {
@@ -96,10 +90,10 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().add(new UnengageHanger());
 		switch(this.autonChooser.getSelected()){
 			case 0:
-				Scheduler.getInstance().add(new GearForwardAuton());
+				Scheduler.getInstance().add(new GearCenterAuton());
 				break;
 			case 1:
-				Scheduler.getInstance().add(new InitAuton());
+				Scheduler.getInstance().add(new DriveForwardAuton());
 				break;
 			case 2:
 				Scheduler.getInstance().add(new GearLeftAuton());
@@ -145,9 +139,9 @@ public class Robot extends IterativeRobot {
 				new Waypoint[] { new FWaypoint(0.0D, 0.0D, 0.0D), new FWaypoint(16.0D, 0.1D, 0.0D) });
 		GenerateMotionProfile.generate("Gear",
 				new Waypoint[] { new FWaypoint(0.0D, 0.0D, 0.0D), new FWaypoint(-3.0D, 0.0D, 0.0D) });
-		GenerateMotionProfile.generate("GearSidePart1", new IWaypoint(0, 0, 0), new IWaypoint(105-RobotMap.ROBOT_LENGTH/2, 0, 0));
-		GenerateMotionProfile.generate("GearSidePart2", new IWaypoint(0, 0, 0), new IWaypoint(50, 0, 0));
+		GenerateMotionProfile.generate("GearSidePart1", new IWaypoint(0, 0, 0), new IWaypoint(-105+RobotMap.ROBOT_LENGTH/2, 0, 0));
 		GenerateMotionProfile.generate("GearSidePart2", new IWaypoint(0, 0, 0), new IWaypoint(-50, 0, 0));
+		GenerateMotionProfile.generate("GearSidePart3", new IWaypoint(0, 0, 0), new IWaypoint(50, 0, 0));
 		System.out.println("All points have been generated.");
 	}
 }
