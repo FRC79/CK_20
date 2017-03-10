@@ -45,7 +45,6 @@ public class RotateDegrees extends Command {
 	}
 
 	protected void execute() {
-		System.out.println("Error: " + this.gyroPID.getError());
 	}
 
 	protected boolean isFinished() {
