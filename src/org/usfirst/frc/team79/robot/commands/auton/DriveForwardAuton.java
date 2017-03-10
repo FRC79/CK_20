@@ -7,8 +7,8 @@ import org.usfirst.frc.team79.robot.commands.DriveTime;
 import org.usfirst.frc.team79.robot.commands.WaitForIt;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 
-public class InitAuton extends CommandGroup {
-	public InitAuton() {
+public class DriveForwardAuton extends CommandGroup {
+	public DriveForwardAuton() {
 		addSequential(new DriveTime(0.8D, 1.65D));
 		addSequential(new WaitForIt(1.0D));
 	}
