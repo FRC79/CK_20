@@ -29,6 +29,7 @@ import org.usfirst.frc.team79.robot.utilities.POVButton;
 
 public class OI {
 	public Joystick throttleStick = new Joystick(0);
+	
 	public Button intakeDeploy = new JoystickButton(this.throttleStick, 2);
 	public Button intakeRetract = new JoystickButton(this.throttleStick, 4);
 	public Button autoAlignWithBoiler = new JoystickButton(this.throttleStick, 3);
@@ -36,7 +37,9 @@ public class OI {
 	public Button intakeRun = new JoystickButton(this.throttleStick, 6);
 	public Button startShooter = new JoystickButton(this.throttleStick, 5);
 	public Button startConveyers = new JoystickButton(this.throttleStick, 7);
+	
 	public Joystick operatorStick = new Joystick(1);
+	
 	public Button gearIntake = new JoystickButton(this.operatorStick, 1);
 	public Button gearReject = new JoystickButton(this.operatorStick, 3);
 	public Button gearUp = new JoystickButton(this.operatorStick, 4);
