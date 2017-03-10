@@ -24,6 +24,7 @@ import org.usfirst.frc.team79.robot.commands.StopIntake;
 import org.usfirst.frc.team79.robot.commands.StopShooter;
 import org.usfirst.frc.team79.robot.commands.UnengageHanger;
 import org.usfirst.frc.team79.robot.commands.auton.RotateDegrees;
+import org.usfirst.frc.team79.robot.commands.auton.RotateTime;
 import org.usfirst.frc.team79.robot.utilities.AxisButton;
 import org.usfirst.frc.team79.robot.utilities.POVButton;
 
@@ -52,7 +53,7 @@ public class OI {
 	public POVButton hoodControl = new POVButton(this.operatorStick);
 
 	public OI() {
-		this.autoAlignWithBoiler.toggleWhenActive(new RotateDegrees(45.0D));
+		this.autoAlignWithBoiler.toggleWhenActive(new RotateTime(false, 0.45, 0.5));
 
 		this.intakeReverse.whenPressed(new StartIntake(true));
 		this.intakeReverse.whenReleased(new StopIntake());
