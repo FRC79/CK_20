@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class GearManipulator extends Subsystem {
 	
 	public DoubleSolenoid deploy = new DoubleSolenoid(RobotMap.GEAR_DOWN, RobotMap.GEAR_UP);
-	public CANTalon intake = new CANTalon(RobotMap.INTAKE_MOTOR);
+	public CANTalon intake = new CANTalon(RobotMap.GEAR_INTAKE);
 
 	protected void initDefaultCommand() {
 	}
