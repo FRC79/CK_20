@@ -11,7 +11,7 @@ import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 
 public class GearCenterAutonOld extends CommandGroup {
 	public GearCenterAutonOld() {
-		addSequential(new DriveTime(-0.8D, 1.0D));
+		addSequential(new DriveTime(-0.5D, 1.5D));
 		addSequential(new WaitForIt(1.0D));
 		addSequential(new GearDown());
 		addSequential(new WaitForIt(0.5D));
