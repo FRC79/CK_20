@@ -53,7 +53,7 @@ public class OI {
 	public POVButton hoodControl = new POVButton(this.operatorStick);
 
 	public OI() {
-		this.autoAlignWithBoiler.toggleWhenActive(new RotateTime(false, 0.45, 0.5));
+//		this.autoAlignWithBoiler.toggleWhenActive(new RotateTime(false, 0.45, 0.5));
 
 		this.intakeReverse.whenPressed(new StartIntake(true));
 		this.intakeReverse.whenReleased(new StopIntake());
