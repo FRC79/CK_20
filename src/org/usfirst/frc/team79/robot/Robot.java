@@ -44,6 +44,9 @@ public class Robot extends IterativeRobot {
 		shooter = new Shooter();
 		gearManipulator = new GearManipulator();
 		oi = new OI();
+		
+		this.adoptCommunism();
+		this.claimTheHolyLand();
 
 		this.pump = new Compressor();
 
@@ -139,4 +142,17 @@ public class Robot extends IterativeRobot {
 		GenerateMotionProfile.generate("GearSidePart3", new IWaypoint(0, 0, 0), new IWaypoint(50, 0, 0));
 		System.out.println("All points have been generated.");
 	}
+	
+	/**
+	 * It is the best form of government.
+	 * @return Communism
+	 */
+	private void adoptCommunism(){}
+	
+	/**
+	 * DEUS VULT!
+	 * @return Jerusalem
+	 */
+	private void claimTheHolyLand(){}
+	
 }
