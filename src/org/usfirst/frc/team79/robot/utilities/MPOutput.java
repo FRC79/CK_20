@@ -7,6 +7,9 @@ import com.ctre.CANTalon.TrajectoryPoint;
 import edu.wpi.first.wpilibj.Timer;
 import java.io.PrintStream;
 
+/**
+ * Various outputs for the motion profile control.
+ */
 public class MPOutput {
 	static double timeout = 0.0D;
 	static int count = 0;

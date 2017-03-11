@@ -8,6 +8,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class GearCenterAuton extends CommandGroup{
 	
+	/**
+	 * The autonomous function to call when you want to place a gear in the center peg.
+	 */
 	public GearCenterAuton(){
 		this.addSequential(new ExecuteMotionProfile("Gear"));
 		this.addSequential(new WaitForIt(.2));

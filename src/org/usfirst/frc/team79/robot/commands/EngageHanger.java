@@ -7,6 +7,12 @@ import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
 public class EngageHanger extends Command {
+	
+	/**
+	 * Engages the hanger to be controlled by the shooter motor.
+	 */
+	public EngageHanger(){}
+	
 	protected void execute() {
 		Robot.shooter.solenoidShift.set(DoubleSolenoid.Value.kReverse);
 	}

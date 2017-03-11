@@ -8,6 +8,9 @@ import org.usfirst.frc.team79.robot.subsystems.Feeder;
 public class StartConveyer extends Command {
 	private double invert;
 
+	/**
+	 * Starts the conveyer
+	 */
 	public StartConveyer() {
 		this(false);
 	}

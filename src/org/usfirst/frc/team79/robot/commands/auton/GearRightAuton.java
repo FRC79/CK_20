@@ -9,10 +9,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 
 public class GearRightAuton extends CommandGroup{
 	
+	/**
+	 * The autonomous function to call when you want to place a gear in the right peg.
+	 */
 	public GearRightAuton(){
 		this.addSequential(new DriveTime(-0.8D, 0.965D));
 		this.addSequential(new WaitForIt(.8));
-		this.addSequential(new RotateTime(false, 0.5, 0.45));
+		this.addSequential(new RotateTime(false, 0.5, 0.438));
 		this.addSequential(new WaitForIt(.8));
 		this.addSequential(new DriveTime(-0.8, 0.65));
 		this.addSequential(new WaitForIt(.5));

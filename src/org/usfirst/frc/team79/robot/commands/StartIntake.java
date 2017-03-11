@@ -11,7 +11,11 @@ public class StartIntake extends Command {
 	public StartIntake() {
 		this(false);
 	}
-
+	
+	/**
+	 * Start intaking balls
+	 * @param invert Invert the motor
+	 */
 	public StartIntake(boolean invert) {
 		requires(Robot.intake);
 		this.invert = (invert ? -1.0D : 1.0D);

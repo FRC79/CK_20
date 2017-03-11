@@ -11,6 +11,11 @@ public class Intake extends Subsystem {
 	public CANTalon intake = new CANTalon(RobotMap.INTAKE_MOTOR);
 	public DoubleSolenoid deploy = new DoubleSolenoid(RobotMap.INTAKE_DEPLOY_DOWN, RobotMap.INTAKE_DEPLOY_UP);
 
+	/**
+	 * Initializes the intake motor and double solenoid.
+	 */
+	public Intake(){}
+	
 	public void initDefaultCommand() {
 	}
 }

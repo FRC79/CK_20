@@ -5,10 +5,16 @@ import org.usfirst.frc.team79.robot.commands.feeder.StartConveyer;
 import org.usfirst.frc.team79.robot.commands.feeder.StartFeeder;
 
 public class StartFiringSubsystems extends CommandGroup {
+	
+	
 	public StartFiringSubsystems() {
 		this(false);
 	}
 
+	/**
+	 * Start the systems used for firing.
+	 * @param invert Invert the motors
+	 */
 	public StartFiringSubsystems(boolean invert) {
 		addSequential(new StartShooter(3500, true));
 		addSequential(new StartFeeder(invert));

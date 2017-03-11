@@ -29,6 +29,10 @@ import org.usfirst.frc.team79.robot.utilities.AxisButton;
 import org.usfirst.frc.team79.robot.utilities.POVButton;
 
 public class OI {
+	
+	/**
+	 * The main driving joystick.
+	 */
 	public Joystick throttleStick = new Joystick(0);
 	
 	public Button intakeDeploy = new JoystickButton(this.throttleStick, 2);
@@ -39,6 +43,9 @@ public class OI {
 	public Button startShooter = new JoystickButton(this.throttleStick, 5);
 	public Button startConveyers = new JoystickButton(this.throttleStick, 7);
 	
+	/**
+	 * The joystick for various robot functions
+	 */
 	public Joystick operatorStick = new Joystick(1);
 	
 	public Button gearIntake = new JoystickButton(this.operatorStick, 1);

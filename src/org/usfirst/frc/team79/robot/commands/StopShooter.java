@@ -6,6 +6,10 @@ import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
 public class StopShooter extends Command {
+	
+	/**
+	 * Stops the shooter.
+	 */
 	public StopShooter() {
 		requires(Robot.shooter);
 	}

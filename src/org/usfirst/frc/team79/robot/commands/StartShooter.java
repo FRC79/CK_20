@@ -17,6 +17,11 @@ public class StartShooter extends Command {
 		this(false);
 	}
 
+	/**
+	 * Start the shooter wheel.
+	 * @param speed RPM
+	 * @param invert Invert the motor
+	 */
 	public StartShooter(int speed, boolean invert) {
 		this(invert);
 		this.speed = speed;

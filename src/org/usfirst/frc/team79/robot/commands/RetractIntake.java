@@ -9,6 +9,10 @@ import org.usfirst.frc.team79.robot.subsystems.Feeder;
 import org.usfirst.frc.team79.robot.subsystems.Intake;
 
 public class RetractIntake extends Command {
+	
+	/**
+	 * Retracts the intake.
+	 */
 	public RetractIntake() {
 		requires(Robot.intake);
 	}

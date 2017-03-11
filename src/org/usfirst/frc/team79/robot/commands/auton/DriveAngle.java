@@ -16,6 +16,12 @@ public class DriveAngle extends PIDCommand {
 	public double angle;
 	public double time;
 
+	/**
+	 * Was I high when I made this?
+	 * @param speed
+	 * @param angle
+	 * @param time
+	 */
 	public DriveAngle(double speed, double angle, double time) {
 		super(0.1D, 0.0D, 0.0D);
 		this.speed = speed;

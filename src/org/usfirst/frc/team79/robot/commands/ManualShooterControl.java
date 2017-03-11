@@ -1,14 +1,14 @@
 package org.usfirst.frc.team79.robot.commands;
 
 import com.ctre.CANTalon;
-import com.ctre.CANTalon.TalonControlMode;
-import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.command.Command;
-import org.usfirst.frc.team79.robot.OI;
 import org.usfirst.frc.team79.robot.Robot;
-import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
 public class ManualShooterControl extends Command {
+	
+	/**
+	 * Uses the operator left axis to control the shooter. Used for hanging.
+	 */
 	public ManualShooterControl() {
 		requires(Robot.shooter);
 	}

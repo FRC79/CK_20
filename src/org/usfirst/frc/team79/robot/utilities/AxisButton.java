@@ -12,6 +12,11 @@ public class AxisButton extends Trigger {
 	private GenericHID joystick;
 	private ITable m_table;
 
+	/**
+	 * Creates a trigger based off of an axis.
+	 * @param joystick
+	 * @param axis
+	 */
 	public AxisButton(GenericHID joystick, int axis) {
 		this.joystick = joystick;
 		this.axis = axis;

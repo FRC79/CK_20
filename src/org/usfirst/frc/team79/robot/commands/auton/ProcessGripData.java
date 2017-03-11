@@ -10,11 +10,20 @@ import org.usfirst.frc.team79.robot.grip.Contour;
 public class ProcessGripData {
 	public static NetworkTable grip = NetworkTable.getTable("GRIP");
 
+	/**
+	 * Gets the heading to rotate to the GRIP target.
+	 * @return Angle in degrees
+	 */
 	public static double getHeading() {
 		Contour tape = getSingleContour();
 		return getHeading(tape);
 	}
 
+	/**
+	 * Gets the heading to rotate to the GRIP target.
+	 * @param tape Contour if you already have it.
+	 * @return Angle in degrees
+	 */
 	public static double getHeading(Contour tape) {
 		double headingToTarget = 0.0D;
 		if (tape != null) {
@@ -32,11 +41,20 @@ public class ProcessGripData {
 		return headingToTarget;
 	}
 
+	/**
+	 * Gets the distance to the target
+	 * @return distance in feet.
+	 */
 	public static double getDistance() {
 		Contour tape = getSingleContour();
 		return getDistance(tape);
 	}
 
+	/**
+	 * Gets the distance to the target
+	 * @param tape Contour if you already have it.
+	 * @return distance in feet.
+	 */
 	public static double getDistance(Contour tape) {
 		double distance = 0.0D;
 		if (tape != null) {
@@ -50,11 +68,20 @@ public class ProcessGripData {
 		return distance;
 	}
 
+	/**
+	 * Gets the pitch heading to the GRIP target.
+	 * @return Angle in degrees
+	 */
 	public static double getPitchHeading() {
 		Contour tape = getSingleContour();
 		return getPitchHeading(tape);
 	}
 
+	/**
+	 * Gets the pitch heading to the GRIP target.
+	 * @param tape Contour if you already have it.
+	 * @return Angle in degrees
+	 */
 	public static double getPitchHeading(Contour tape) {
 		double pitchHeading = 0.0D;
 		if (tape != null) {
@@ -76,6 +103,10 @@ public class ProcessGripData {
 		return boilerPitchHeading;
 	}
 
+	/**
+	 * Gets the contour of the greatest area reported by GRIP.
+	 * @return The greatest Contour
+	 */
 	private static Contour getSingleContour() {
 		ITable gripSub = grip.getSubTable("reflectiveTapeReport");
 		double[] areas = gripSub.getNumberArray("area", new double[0]);

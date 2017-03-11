@@ -11,6 +11,10 @@ public class POVButton extends Trigger {
 	private GenericHID joystick;
 	private ITable m_table;
 
+	/**
+	 * Creates a trigger based off of the POV on the joystick.
+	 * @param joystick
+	 */
 	public POVButton(GenericHID joystick) {
 		this.joystick = joystick;
 	}

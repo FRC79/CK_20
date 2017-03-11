@@ -9,6 +9,9 @@ import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 public class GyroPIDSource implements PIDSource {
 	PIDSourceType sourceType;
 
+	/**
+	 * The source for the gyro PID loop.
+	 */
 	public GyroPIDSource() {
 		this.sourceType = PIDSourceType.kDisplacement;
 	}

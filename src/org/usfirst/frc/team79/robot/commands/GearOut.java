@@ -6,6 +6,12 @@ import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.subsystems.GearManipulator;
 
 public class GearOut extends Command {
+	
+	/**
+	 * Expels the gear.
+	 */
+	public GearOut(){}
+	
 	protected void execute() {
 		Robot.gearManipulator.intake.set(1.0D);
 	}

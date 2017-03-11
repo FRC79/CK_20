@@ -7,6 +7,10 @@ public class WaitForIt extends Command {
 	public double time;
 	private Timer timer;
 
+	/**
+	 * Waits for a certain time before finishing.
+	 * @param time Seconds
+	 */
 	public WaitForIt(double time) {
 		this.time = time;
 	}

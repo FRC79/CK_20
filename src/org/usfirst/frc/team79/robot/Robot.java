@@ -27,6 +27,7 @@ import org.usfirst.frc.team79.robot.subsystems.Intake;
 import org.usfirst.frc.team79.robot.subsystems.Shooter;
 
 public class Robot extends IterativeRobot {
+	
 	public Compressor pump;
 	public static OI oi;
 	public static DriveTrain driveTrain;
@@ -131,6 +132,9 @@ public class Robot extends IterativeRobot {
 	public void testPeriodic() {
 	}
 
+	/**
+	 * Generates the points needed for motion profiling.
+	 */
 	private void generateMPPoints() {
 		System.out.println("Starting motion profiling point generation. Please wait...");
 		GenerateMotionProfile.generate("DriveStraight",

@@ -6,6 +6,12 @@ import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
 public class StopConveyer extends Command {
+	
+	/**
+	 * Stops the conveyer.
+	 */
+	public StopConveyer(){}
+	
 	public void execute() {
 		Robot.feeder.conveyer.set(0.0D);
 	}

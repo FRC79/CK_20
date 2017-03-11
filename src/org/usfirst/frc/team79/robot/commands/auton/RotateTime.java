@@ -15,6 +15,12 @@ public class RotateTime extends Command{
 	public double time;
 	public double speed;
 	
+	/**
+	 * Rotates with the given speed for a certain time.
+	 * @param invert Clockwise if true, counterclockwise if false.
+	 * @param speed Percentage.
+	 * @param time Seconds.
+	 */
 	public RotateTime(boolean invert, double speed, double time){
 		this.invert = invert ? -1 : 1;
 		this.speed = speed;

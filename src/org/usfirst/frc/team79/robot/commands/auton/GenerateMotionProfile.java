@@ -19,6 +19,11 @@ public class GenerateMotionProfile {
 	
 	public static final String PATHNAME = "/home/lvuser/trajectory/";
 
+	/**
+	 * Generates a motion profile to store in a file on the rio.
+	 * @param name filename
+	 * @param points The points to connect.
+	 */
 	public static void generate(String name, Waypoint... points) {
 		System.out.println("Generating motion profile for " + name);
 		File lFile = new File(PATHNAME + name + "Left.traj");
@@ -31,12 +36,20 @@ public class GenerateMotionProfile {
 		System.out.println("Generation for " + name + " has finished.");
 	}
 
+	/**
+	 * Generates a motion profile to keep saved in this class.
+	 * @param points he points to connect.
+	 */
 	public static void generate(Waypoint... points) {
 		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(RobotMap.WHEEL_BASE);
 		left = modifier.getLeftTrajectory();
 		right = modifier.getRightTrajectory();
 	}
 
+	/**
+	 * Loads a motion profile from a file to store in this class.
+	 * @param name
+	 */
 	public static void load(String name) {
 		File lFile = new File(PATHNAME + name + "Left.traj");
 		File rFile = new File(PATHNAME + name + "Right.traj");
@@ -47,7 +60,12 @@ public class GenerateMotionProfile {
 		if(left!=null) System.out.println(left.segments[5].position);
 		if(right!=null) System.out.println(right.segments[5].position);
 	}
-
+	
+	/**
+	 * Determines if a motion profile exists as a file on the rio.
+	 * @param name filename
+	 * @return If it exists.
+	 */
 	public static boolean motionProfileExists(String name) {
 		File lFile = new File(PATHNAME + name + "Left.traj");
 		File rFile = new File(PATHNAME + name + "Right.traj");

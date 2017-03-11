@@ -8,6 +8,9 @@ import org.usfirst.frc.team79.robot.subsystems.Feeder;
 public class StartFeeder extends Command {
 	private double invert;
 
+	/**
+	 * Starts the feeder
+	 */
 	public StartFeeder() {
 		this(false);
 	}

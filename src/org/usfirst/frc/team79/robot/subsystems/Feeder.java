@@ -10,6 +10,9 @@ public class Feeder extends Subsystem {
 	public CANTalon conveyer = new CANTalon(RobotMap.CONVEYER_MOTOR);
 	public CANTalon feeder = new CANTalon(RobotMap.FEEDER_MOTOR);
 
+	/**
+	 * Initializes the conveyer and feeder motors.
+	 */
 	public Feeder() {
 		this.conveyer.reverseOutput(true);
 	}

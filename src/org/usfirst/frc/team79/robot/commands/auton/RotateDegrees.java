@@ -18,12 +18,19 @@ public class RotateDegrees extends Command {
 	public PIDController gyroPID;
 	private boolean grip;
 
+	/**
+	 * Rotates to the specified degree offset.
+	 * @param degrees offset.
+	 */
 	public RotateDegrees(double degrees) {
 		requires(Robot.driveTrain);
 		this.deltaDegrees = (degrees + Robot.driveTrain.getGyroAngle());
 		this.gyroPID = new PIDController(0.0D, 0.0D, 0.0D, new GyroPIDSource(), new GyroPIDOutput(), 0.01D);
 	}
 
+	/**
+	 * Rotates based off of GRIP data.
+	 */
 	public RotateDegrees() {
 		this.grip = true;
 		this.gyroPID = new PIDController(0.0D, 0.0D, 0.0D, new GyroPIDSource(), new GyroPIDOutput(), 0.01D);

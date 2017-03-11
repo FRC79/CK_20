@@ -6,6 +6,12 @@ import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.subsystems.Feeder;
 
 public class StopFeeder extends Command {
+	
+	/**
+	 * Stops the feeder.
+	 */
+	public StopFeeder(){}
+	
 	public void execute() {
 		Robot.feeder.feeder.set(0.0D);
 	}

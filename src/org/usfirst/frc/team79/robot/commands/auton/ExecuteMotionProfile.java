@@ -17,9 +17,16 @@ public class ExecuteMotionProfile extends Command {
 	String filename;
 	boolean loadFile;
 
+	/**
+	 * Executes the current motion profile stored in GenerateMotionProfile.
+	 */
 	public ExecuteMotionProfile() {
 	}
 
+	/**
+	 * Executes the motion profile from a file on the rio.
+	 * @param name
+	 */
 	public ExecuteMotionProfile(String name) {
 		this.filename = name;
 		loadFile = true;

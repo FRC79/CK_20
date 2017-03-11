@@ -7,6 +7,9 @@ import org.usfirst.frc.team79.robot.commands.StartShooter;
 public class AutoShoot extends CommandGroup {
 	Command shootCom;
 
+	/**
+	 * Theoretically starts the shooter with the correct velocity to shoot accurately.
+	 */
 	public AutoShoot() {
 		addSequential(this.shootCom = new StartShooter(3500, false));
 	}

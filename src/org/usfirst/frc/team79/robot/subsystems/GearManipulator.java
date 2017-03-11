@@ -11,6 +11,11 @@ public class GearManipulator extends Subsystem {
 	public DoubleSolenoid deploy = new DoubleSolenoid(RobotMap.GEAR_DOWN, RobotMap.GEAR_UP);
 	public CANTalon intake = new CANTalon(RobotMap.GEAR_INTAKE);
 
+	/**
+	 * Initializes the double solenoid and motors for the gear manipulator.
+	 */
+	public GearManipulator(){}
+	
 	protected void initDefaultCommand() {
 	}
 }

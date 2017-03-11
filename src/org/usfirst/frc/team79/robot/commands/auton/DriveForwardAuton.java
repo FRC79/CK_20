@@ -8,6 +8,10 @@ import org.usfirst.frc.team79.robot.commands.WaitForIt;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 
 public class DriveForwardAuton extends CommandGroup {
+	
+	/**
+	 * The autonomous function to call if you want to cross into the neutral zone.
+	 */
 	public DriveForwardAuton() {
 		addSequential(new DriveTime(0.8D, 1.65D));
 		addSequential(new WaitForIt(1.0D));

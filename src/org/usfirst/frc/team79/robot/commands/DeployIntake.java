@@ -9,6 +9,10 @@ import org.usfirst.frc.team79.robot.subsystems.Feeder;
 import org.usfirst.frc.team79.robot.subsystems.Intake;
 
 public class DeployIntake extends Command {
+	
+	/**
+	 * Deploys the intake. Just like that.
+	 */
 	public DeployIntake() {
 		requires(Robot.intake);
 	}

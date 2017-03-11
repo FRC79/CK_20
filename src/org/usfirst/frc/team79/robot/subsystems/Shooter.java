@@ -17,6 +17,9 @@ public class Shooter extends Subsystem {
 	public DoubleSolenoid solenoidShift = new DoubleSolenoid(RobotMap.SHIFT_SHOOTER, RobotMap.SHIFT_CLIMBER);
 	public Solenoid hoodController = new Solenoid(RobotMap.HOOD_CONTROLLER);
 
+	/**
+	 * Initializes the shooter motors, hanger-shifter double solenoid, and hood solenoid.
+	 */
 	public Shooter() {
 		this.shooterWheelSlave.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.shooterWheelSlave.set(this.shooterWheel.getDeviceID());
@@ -25,6 +28,6 @@ public class Shooter extends Subsystem {
 	}
 
 	public void initDefaultCommand() {
-		new StopShooter();
+		
 	}
 }

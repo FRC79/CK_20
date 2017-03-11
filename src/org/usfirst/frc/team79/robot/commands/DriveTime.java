@@ -12,6 +12,11 @@ public class DriveTime extends Command {
 	public Timer timer;
 	public double time;
 
+	/**
+	 * Drive at a certain speed for a certain time.
+	 * @param speed Percentage
+	 * @param time Seconds
+	 */
 	public DriveTime(double speed, double time) {
 		this.speed = speed;
 		this.time = time;

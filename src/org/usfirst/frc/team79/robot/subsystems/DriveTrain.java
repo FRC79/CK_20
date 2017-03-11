@@ -18,6 +18,9 @@ public class DriveTrain extends Subsystem {
 	public CANTalon BackRight;
 	public AHRS gyro;
 
+	/**
+	 * Initialized the drive train motors and gyro.
+	 */
 	public DriveTrain() {
 		this.FrontLeft = new CANTalon(RobotMap.FrontLeftMotor);
 		this.BackLeft = new CANTalon(RobotMap.BackLeftMotor);

@@ -10,6 +10,11 @@ import org.usfirst.frc.team79.robot.commands.WaitForIt;
 import org.usfirst.frc.team79.robot.subsystems.DriveTrain;
 
 public class GearCenterAutonOld extends CommandGroup {
+	
+	/**
+	 * The autonomous function to call when you want to place a gear in the center peg.
+	 * It's older, but it works better somehow.
+	 */
 	public GearCenterAutonOld() {
 		addSequential(new DriveTime(-0.5D, 1.5D));
 		addSequential(new WaitForIt(1.0D));
