@@ -7,6 +7,8 @@ import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SerialPort.Port;
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import org.usfirst.frc.team79.robot.RobotMap;
 import org.usfirst.frc.team79.robot.commands.CheezyDrive;
 
 public class DriveTrain extends Subsystem {
@@ -17,10 +19,10 @@ public class DriveTrain extends Subsystem {
 	public AHRS gyro;
 
 	public DriveTrain() {
-		this.FrontLeft = new CANTalon(1);
-		this.BackLeft = new CANTalon(3);
-		this.FrontRight = new CANTalon(2);
-		this.BackRight = new CANTalon(4);
+		this.FrontLeft = new CANTalon(RobotMap.FrontLeftMotor);
+		this.BackLeft = new CANTalon(RobotMap.BackLeftMotor);
+		this.FrontRight = new CANTalon(RobotMap.FrontRightMotor);
+		this.BackRight = new CANTalon(RobotMap.BackRightMotor);
 
 		this.BackRight.changeControlMode(CANTalon.TalonControlMode.Follower);
 		this.BackLeft.changeControlMode(CANTalon.TalonControlMode.Follower);
@@ -35,8 +37,8 @@ public class DriveTrain extends Subsystem {
 		this.FrontRight.enableBrakeMode(false);
 		this.FrontLeft.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
 		this.FrontRight.setFeedbackDevice(CANTalon.FeedbackDevice.QuadEncoder);
-		this.FrontLeft.configEncoderCodesPerRev(360);
-		this.FrontRight.configEncoderCodesPerRev(360);
+		this.FrontLeft.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
+		this.FrontRight.configEncoderCodesPerRev(RobotMap.TICKS_PER_REV);
 		this.FrontRight.setProfile(0);
 		this.FrontLeft.setProfile(0);
 		this.FrontLeft.reverseSensor(true);
@@ -112,6 +114,6 @@ public class DriveTrain extends Subsystem {
 	}
 
 	public double getTurningConstant() {
-		return 0.6D;
+		return RobotMap.driveTurningConstant;
 	}
 }

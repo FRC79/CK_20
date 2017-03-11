@@ -9,6 +9,8 @@ import jaci.pathfinder.modifiers.TankModifier;
 import java.io.File;
 import java.io.PrintStream;
 
+import org.usfirst.frc.team79.robot.RobotMap;
+
 public class GenerateMotionProfile {
 	public static final Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, 1000,
 			0.05D, 1.2D, 2.0D, 60.0D);
@@ -21,7 +23,7 @@ public class GenerateMotionProfile {
 		System.out.println("Generating motion profile for " + name);
 		File lFile = new File(PATHNAME + name + "Left.traj");
 		File rFile = new File(PATHNAME + name + "Right.traj");
-		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(0.7112D);
+		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(RobotMap.WHEEL_BASE);
 		left = modifier.getLeftTrajectory();
 		right = modifier.getRightTrajectory();
 		Pathfinder.writeToFile(lFile, left);
@@ -30,7 +32,7 @@ public class GenerateMotionProfile {
 	}
 
 	public static void generate(Waypoint... points) {
-		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(0.7112D);
+		TankModifier modifier = new TankModifier(Pathfinder.generate(points, config)).modify(RobotMap.WHEEL_BASE);
 		left = modifier.getLeftTrajectory();
 		right = modifier.getRightTrajectory();
 	}

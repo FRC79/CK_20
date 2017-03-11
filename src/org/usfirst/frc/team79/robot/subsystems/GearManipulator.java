@@ -1,12 +1,15 @@
 package org.usfirst.frc.team79.robot.subsystems;
 
+import org.usfirst.frc.team79.robot.RobotMap;
+
 import com.ctre.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 public class GearManipulator extends Subsystem {
-	public DoubleSolenoid deploy = new DoubleSolenoid(3, 2);
-	public CANTalon intake = new CANTalon(10);
+	
+	public DoubleSolenoid deploy = new DoubleSolenoid(RobotMap.GEAR_DOWN, RobotMap.GEAR_UP);
+	public CANTalon intake = new CANTalon(RobotMap.INTAKE_MOTOR);
 
 	protected void initDefaultCommand() {
 	}

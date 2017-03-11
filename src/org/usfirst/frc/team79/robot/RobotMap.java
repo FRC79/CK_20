@@ -1,6 +1,8 @@
 package org.usfirst.frc.team79.robot;
 
 public class RobotMap {
+	
+	//Talons
 	public static final int FrontLeftMotor = 1;
 	public static final int FrontRightMotor = 2;
 	public static final int BackLeftMotor = 3;
@@ -11,6 +13,8 @@ public class RobotMap {
 	public static final int FEEDER_MOTOR = 8;
 	public static final int CONVEYER_MOTOR = 9;
 	public static final int GEAR_INTAKE = 10;
+	
+	//PCM
 	public static final int INTAKE_DEPLOY_DOWN = 0;
 	public static final int INTAKE_DEPLOY_UP = 1;
 	public static final int GEAR_UP = 2;
@@ -18,25 +22,24 @@ public class RobotMap {
 	public static final int SHIFT_CLIMBER = 6;
 	public static final int SHIFT_SHOOTER = 7;
 	public static final int HOOD_CONTROLLER = 4;
-	public static final int LEFT_WHEEL_ENCODER_A = 1;
-	public static final int LEFT_WHEEL_ENCODER_B = 2;
-	public static final int RIGHT_WHEEL_ENCODER_A = 1;
-	public static final int RIGHT_WHEEL_ENCODER_B = 2;
+	
 	public static final double driveTurningConstant = 0.6D;
+	
+	//Camera constants
 	public static final double CAMERAOFFSET = 5.25D;
 	public static final double DIAGONAL_FOV = 68.5D;
 	public static final double HORIZONTAL_ASPECT_RATIO = 4.0D;
 	public static final double VERTICAL_ASPECT_RATIO = 3.0D;
 	public static final double IMAGE_WIDTH = 120.0D;
 	public static final double IMAGE_HEIGHT = 160.0D;
-	public static final double HORIZONTAL_FOV = Math.toDegrees(Math.atan(
-			Math.tan(Math.toRadians(34.25D)) * (4.0D / Math.sqrt(Math.pow(4.0D, 2.0D) + Math.pow(3.0D, 2.0D)))) * 2.0D);
-	public static final double FOCAL_LENGTH = 120.0D
-			/ Math.toDegrees(2.0D * Math.tan(Math.toRadians(HORIZONTAL_FOV / 2.0D)));
+	public static final double HORIZONTAL_FOV = Math.toDegrees(Math.atan(Math.tan(Math.toRadians(DIAGONAL_FOV / 2)) * (4 / Math.sqrt(Math.pow(HORIZONTAL_ASPECT_RATIO, 2) + Math.pow(VERTICAL_ASPECT_RATIO, 2)))) * 2);
+	public static final double FOCAL_LENGTH = IMAGE_WIDTH / Math.toDegrees((2 * Math.tan(Math.toRadians(HORIZONTAL_FOV / 2))));
 	public static final double CX = 59.5D;
 	public static final double CY = 79.5D;
 	public static final double CAMERA_ANGLE = 44.0D;
 	public static final double CAMERA_HEIGHT = 1.9416666666666667D;
+	
+	//Robot constants
 	public static final double SHOOTER_MAX_VELOCITY = 5000.0D;
 	public static final double SHOOTER_WHEEL_RADIUS = 1.0D;
 	public static final double WHEEL_CIRCUMFERENCE = 1.0471975511965976D;
@@ -50,7 +53,7 @@ public class RobotMap {
 	public static final double ROBOT_WIDTH = 40.0D;
 	public static final double ROBOT_LENGTH = 36.0D;
 	public static final double ROBOT_HEIGHT = 24.0D;
-	public static final double TURN_P = 0.1D;
+	public static final double TURN_P = 0.025D;
 	public static final double TURN_I = 0.0D;
 	public static final double TURN_D = 0.0D;
 }

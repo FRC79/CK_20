@@ -61,17 +61,11 @@ public class Robot extends IterativeRobot {
 		SmartDashboard.putNumber("Velocity", 0.0D);
 
 		this.autonChooser = new SendableChooser<Integer>();
-		this.autonChooser.addDefault("Gear Auto", 0);
+		this.autonChooser.addDefault("Center Gear", 0);
 		this.autonChooser.addObject("Forward Auto", 1);
 		this.autonChooser.addObject("Left Gear", 2);
 		this.autonChooser.addObject("Right Gear", 3);
 		SmartDashboard.putData("Autonomous Chooser", this.autonChooser);
-		SmartDashboard.putNumber("Turn P", 0.025D);
-		SmartDashboard.putNumber("Turn I", 0.0D);
-		SmartDashboard.putNumber("Turn D", 0.0D);
-		
-		SmartDashboard.putNumber("Rotate Speed", 1);
-		SmartDashboard.putNumber("Rotate Time", 1);
 	}
 
 	public void disabledInit() {
