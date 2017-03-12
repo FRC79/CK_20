@@ -17,7 +17,7 @@ public class RotateTime extends Command{
 	
 	/**
 	 * Rotates with the given speed for a certain time.
-	 * @param invert Clockwise if true, counterclockwise if false.
+	 * @param invert counterclockwise if true, clockwise if false.
 	 * @param speed Percentage.
 	 * @param time Seconds.
 	 */
