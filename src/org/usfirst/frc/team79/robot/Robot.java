@@ -17,6 +17,9 @@ import org.usfirst.frc.team79.robot.commands.auton.GearCenterAutonOld;
 import org.usfirst.frc.team79.robot.commands.auton.GearLeftAuton;
 import org.usfirst.frc.team79.robot.commands.auton.GearRightAuton;
 import org.usfirst.frc.team79.robot.commands.auton.GenerateMotionProfile;
+import org.usfirst.frc.team79.robot.commands.auton.RedBallsAuton;
+import org.usfirst.frc.team79.robot.commands.auton.BlueBallsAuton;
+import org.usfirst.frc.team79.robot.commands.auton.SideGearAuton;
 import org.usfirst.frc.team79.robot.commands.auton.DriveForwardAuton;
 import org.usfirst.frc.team79.robot.pathfinding.FWaypoint;
 import org.usfirst.frc.team79.robot.pathfinding.IWaypoint;
@@ -69,6 +72,9 @@ public class Robot extends IterativeRobot {
 		this.autonChooser.addObject("Forward Auto", 1);
 		this.autonChooser.addObject("Left Gear", 2);
 		this.autonChooser.addObject("Right Gear", 3);
+		this.autonChooser.addObject("Side Gear", 4);
+		this.autonChooser.addObject("Shoot Balls Blue", 5);
+		this.autonChooser.addObject("Shoot Balls Red", 6);
 		SmartDashboard.putData("Autonomous Chooser", this.autonChooser);
 	}
 
@@ -99,6 +105,16 @@ public class Robot extends IterativeRobot {
 				break;
 			case 3:
 				Scheduler.getInstance().add(new GearRightAuton());
+				break;
+			case 4:
+				Scheduler.getInstance().add(new SideGearAuton());
+				break;
+			case 5:
+				Scheduler.getInstance().add(new BlueBallsAuton());
+				break;
+			case 6:
+				Scheduler.getInstance().add(new RedBallsAuton());
+				break;
 		}
 	}
 
