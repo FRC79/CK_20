@@ -16,11 +16,11 @@ public class GearCenterAutonOld extends CommandGroup {
 	 * It's older, but it works better somehow.
 	 */
 	public GearCenterAutonOld() {
-		addSequential(new DriveTime(-0.5D, 1.5D));
+		addSequential(new DriveAngle(-0.32D, 3.1D));
 		addSequential(new WaitForIt(1.0D));
 		addSequential(new GearDown());
 		addSequential(new WaitForIt(0.5D));
-		addSequential(new DriveTime(0.8D, 0.5D));
+		addSequential(new DriveAngle(0.8D, 0.5D));
 		addSequential(new WaitForIt(1.0D));
 		addSequential(new GearUp());
 	}
