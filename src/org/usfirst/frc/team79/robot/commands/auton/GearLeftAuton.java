@@ -1,5 +1,6 @@
 package org.usfirst.frc.team79.robot.commands.auton;
 
+import org.usfirst.frc.team79.robot.Robot;
 import org.usfirst.frc.team79.robot.commands.DriveTime;
 import org.usfirst.frc.team79.robot.commands.GearDown;
 import org.usfirst.frc.team79.robot.commands.GearUp;
@@ -23,6 +24,11 @@ public class GearLeftAuton extends CommandGroup{
 		this.addSequential(new WaitForIt(.5));
 		this.addSequential(new DriveTime(0.5, 1));
 		this.addSequential(new GearUp());
+	}
+	
+	public void end(){
+		Robot.driveTrain.FrontLeft.enableBrakeMode(false);
+		Robot.driveTrain.FrontRight.enableBrakeMode(false);
 	}
 
 }
