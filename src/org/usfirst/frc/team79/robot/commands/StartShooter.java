@@ -52,6 +52,6 @@ public class StartShooter extends Command {
 	}
 
 	protected boolean isFinished() {
-		return Robot.shooter.shooterWheel.getEncVelocity() > this.speed * this.invert - 200.0D;
+		return true;
 	}
 }
